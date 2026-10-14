@@ -16,6 +16,48 @@ follows below; upstream authorship, licenses, and project identity remain intact
 
 ---
 
+## Fork checkout and repository boundaries
+
+This is the [hsoliwal fork](https://github.com/hsoliwal/eclipse.platform.releng.aggregator)
+of the [upstream Eclipse SDK aggregator](https://github.com/eclipse-platform/eclipse.platform.releng.aggregator).
+To inspect or build this fork's recorded revision:
+
+```sh
+git clone --recurse-submodules https://github.com/hsoliwal/eclipse.platform.releng.aggregator.git
+cd eclipse.platform.releng.aggregator
+```
+
+**The submodules still point to upstream repositories.** See
+[.gitmodules](.gitmodules): Platform, SWT, Platform UI, JDT, PDE and Equinox
+URLs are upstream URLs. A recursive clone checks out the submodule commits
+recorded by this aggregator; it does not automatically select the latest
+`master` commits or the corresponding `hsoliwal` forks. If evaluating changes
+from sibling forks, record the exact component revisions and integration
+changes separately rather than assuming they are included.
+
+The [root reactor](pom.xml) ties together these distinct areas:
+
+- [eclipse-platform-parent/](eclipse-platform-parent/): shared Maven/Tycho configuration
+- [eclipse.platform.releng.prereqs.sdk/](eclipse.platform.releng.prereqs.sdk/):
+  SDK prerequisite target definition
+- Component submodules: Platform, SWT, UI, JDT, PDE and Equinox source
+- [eclipse.platform.common/](eclipse.platform.common/) and
+  [eclipse.platform.releng/](eclipse.platform.releng/): shared documentation and releng content
+- [products/](products/) and [sites/](sites/): product and p2 repository assembly
+
+Use this repository for SDK integration and packaging. A component-only change
+is usually easier to develop and test in the owning component repository first.
+For the full development workspace, inspect
+[oomph/PlatformSDKConfiguration.setup](oomph/PlatformSDKConfiguration.setup).
+For release work, distinguish [RELENG.md](RELENG.md) from the
+[release checklist](RELEASE.md).
+
+Fork-specific integration changes belong in
+[hsoliwal/eclipse.platform.releng.aggregator pull requests](https://github.com/hsoliwal/eclipse.platform.releng.aggregator/pulls).
+The upstream clone and contribution instructions below remain available for
+upstream Eclipse development. Preserve the existing [LICENSE](LICENSE) and
+[NOTICE](NOTICE) and the individual components' notices.
+
 Aggregator repo for Eclipse SDK builds
 ======================================
 
@@ -36,7 +78,7 @@ For a complete build run the following command from the root of this repository:
 mvn clean verify
 ```
 But this will result in a significant runtime of up to 10 hours, mainly due to test executions.
-Skiping the execution of tests and building in parallel reduces the runtime to about 10-20min (depending on your computer):
+Skipping tests and building in parallel can reduce runtime substantially (the upstream estimate is about 10–20 minutes, depending on the computer). This is a packaging/build check, not a passing test run:
 ```
 mvn clean verify -DskipTests --threads 1C
 ```
@@ -57,7 +99,7 @@ git checkout master
 git pull --recurse-submodules
 git submodule update
 ```
-Furthermore it's recommended to make sure your work-tree is clean before a build, which can be ensured by executing
+Use a clean working tree for a reproducible build. **The cleanup commands below are destructive:** `git clean -f -d -x` removes untracked and ignored files, including local build outputs, and `git reset --hard HEAD` discards tracked edits. They affect the submodules as well as the aggregator. Only use this cleanup in a disposable checkout or after preserving all work you need; it is not a required setup step.
 ```
 git submodule foreach git clean -f -d -x
 git submodule foreach git reset --hard HEAD
