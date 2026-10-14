@@ -1,3 +1,13 @@
+## Start building the Eclipse SDK
+
+See how Platform, JDT, PDE, SWT and Equinox become an SDK: clone the recorded sources, choose packaging or verification, and locate the resulting products.
+
+**[Start here: SDK build and source-selection guide](docs/FORK_GUIDE.md)** · **[Build command cheat sheet](docs/COMMAND_CHEATSHEET.md)**
+
+The guide covers Java 25/Maven requirements, upstream submodule URLs, reproducible gitlink snapshots, output paths and safe troubleshooting. A recursive clone does not automatically substitute the other hsoliwal forks. Existing fork notes and upstream instructions follow unchanged.
+
+---
+
 ## M3 direction in this fork
 
 M3 is based on the idea that shared immutable structure and indexed metadata can
