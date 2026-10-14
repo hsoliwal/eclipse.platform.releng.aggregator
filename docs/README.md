@@ -96,3 +96,57 @@ step; preserve local work and diagnose the first failing module.
 Keep upstream notices and attribution intact. Fork-specific experimental goals in
 the README are proposals; use measured results and reproducible source inputs
 before making acceptance or performance claims.
+
+## Debugging exercise: built successfully, but the SDK is missing a feature
+
+Source checkout, reactor participation, p2 publication and product installation
+are different stages. Trace a concrete feature through them before rebuilding
+everything or editing dependency versions.
+
+1. Open [sdk.product](../products/eclipse-sdk/sdk.product). It declares a
+   feature-based product with ID `org.eclipse.sdk.ide`, application
+   `org.eclipse.ui.ide.workbench` and explicit features including `org.eclipse.sdk`
+   and `org.eclipse.terminal.feature`. A source module's existence is not itself a
+   product inclusion rule.
+2. Locate the same feature in
+   [category.xml](../sites/eclipse-platform-repository/category.xml).
+   This file also describes test/tool categories and SDK/Platform installable units.
+   Being available in an update repository does not mean being installed into each
+   product; the file explicitly includes extras outside the main SDK.
+3. Read [sites/pom.xml](../sites/pom.xml) for repository modules and inherited
+   dependency/source inclusion settings, then [products/pom.xml](../products/pom.xml)
+   for materialization. The SDK and repository directories are pomless children;
+   use their `.product`, `category.xml` and build.properties rather than assuming
+   a missing child pom.xml is the build defect.
+4. After an actual build, inspect the emitted repository metadata and installed
+   product bundle/feature inventory. Compare the exact IDs and versions with the
+   requested feature and its dependency closure; folder names alone are weak proof.
+5. If source attachments are missing, inspect `product.installSources` together with
+   `repository.includeAllSources`. The product parent explicitly requires the
+   latter when the former is true. A product cannot install sources absent from the
+   repository it consumes.
+6. Separate installation from startup: the SDK product currently sets
+   `osgi.requiredJavaVersion=25`, native-access flags and macOS first-thread options.
+   Record the actual launched JDK and OS when a materialized product fails to start.
+
+The following are read-only inspection commands for an existing checkout; they were
+not run here and do not perform a build or modify product configuration:
+
+```sh
+git grep -n 'org.eclipse.terminal.feature' -- products sites
+git grep -n 'product.installSources\|repository.includeAllSources' -- products/pom.xml sites/pom.xml
+git grep -n 'requiredJavaVersion\|XstartOnFirstThread' -- products/eclipse-sdk/sdk.product
+```
+
+| Failure stage | First evidence to retain | What it does not establish |
+| --- | --- | --- |
+| Parent or p2 resolution | First missing coordinate/IU, repository URL, JDK/Maven and revision set | A compiler or test regression |
+| Feature absent from product | Product feature list versus repository IU metadata | Whether its sources compiled elsewhere |
+| Sources absent | Both source-inclusion settings and emitted source IUs | A failure of binary product assembly |
+| Product fails at launch | Product ID, launch JVM/options, OS and runtime log | That all build targets are broken |
+| Test failures in a completed build | Per-suite XML and test counts | That every artifact is unusable |
+
+For an actionable report, include the first failing stage, expected and actual IDs,
+aggregator/submodule revisions and a minimal reproduction command. Keep local
+packaging diagnosis separate from signing or publication; neither is needed to
+inspect these contracts.
