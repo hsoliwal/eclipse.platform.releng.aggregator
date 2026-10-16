@@ -1,3 +1,116 @@
+<!-- fork-homepage-detail:v1:start -->
+# Eclipse SDK aggregator: assemble the complete development platform
+
+This repository joins the Eclipse Platform, SWT, UI, JDT, PDE and Equinox
+components into an Eclipse SDK build, products and p2 update site. It is the
+integration checkout for release engineering and full-SDK verification. Develop
+an isolated component change in its owning repository first, then integrate its
+exact revision here.
+
+[Build map](#sdk-build-map) · [Concepts](#sdk-key-concepts) ·
+[Quickstart](#sdk-quickstart) · [Example](#sdk-worked-example) ·
+[Detailed reference](docs/source-reference/README.md)
+
+## SDK build map
+
+| Area | Responsibility |
+| --- | --- |
+| [.gitmodules](.gitmodules) | Component repository URLs and checkout locations |
+| [pom.xml](pom.xml) | Top-level Maven reactor and assembly order |
+| [eclipse-platform-parent/](eclipse-platform-parent/) | Shared Maven/Tycho, toolchain and verification configuration |
+| [eclipse.platform.releng.prereqs.sdk/](eclipse.platform.releng.prereqs.sdk/) | Prerequisite target-platform definition |
+| [products/](products/) | Eclipse Platform and SDK product assembly |
+| [sites/](sites/) | p2 repository and site assembly |
+| [RELENG.md](RELENG.md) and [RELEASE.md](RELEASE.md) | Build operations and release checklist |
+
+## SDK key concepts
+
+- **Aggregator:** coordinates component builds and packaging; it does not replace
+  the source ownership of SWT, JDT, PDE or other projects.
+- **Submodule / gitlink:** a component checkout at a commit recorded by the parent
+  repository. A recursive clone uses those recorded commits, not every latest tip.
+- **Reactor:** Maven's set of modules participating in this build.
+- **Target platform:** the Eclipse dependencies Tycho resolves for compilation
+  and execution; it is different from the JDK that launches Maven.
+- **Product / p2 repository:** a runnable Eclipse distribution versus an update
+  repository containing installable bundles and features.
+- **BREE:** a bundle's required execution environment. The build JDK and BREE are
+  distinct inputs; use the documented toolchains for the `bree-libs` lane.
+
+## SDK fork status
+
+This is [hsoliwal's downstream fork](https://github.com/hsoliwal/eclipse.platform.releng.aggregator)
+of the [Eclipse SDK aggregator](https://github.com/eclipse-platform/eclipse.platform.releng.aggregator).
+The inspected [.gitmodules](.gitmodules) still uses upstream component URLs.
+Cloning this fork does not automatically include changes in the sibling hsoliwal
+component forks. The [coverage ledger](docs/source-reference/COVERAGE.md) documents
+the inspected source boundaries; an inventory or opt-in research lane is not an
+SDK compatibility, release or performance qualification.
+
+## SDK quickstart
+
+The retained build instructions below require **Java 25+ and Maven 3.9.12+**.
+Also provide Git, network access to component/Maven/p2 repositories, sufficient
+disk space and the native/display prerequisites of the selected test platforms.
+For an IDE workspace see [the Oomph setup](oomph/PlatformSDKConfiguration.setup).
+
+```sh
+git clone --recurse-submodules https://github.com/hsoliwal/eclipse.platform.releng.aggregator.git
+cd eclipse.platform.releng.aggregator
+git rev-parse HEAD
+git submodule status --recursive
+java -version
+mvn -version
+mvn clean verify
+```
+
+The full test build can be lengthy. Commands here describe the checked-in entry
+points; this homepage update did not run the SDK build or its tests.
+
+## SDK command cheat sheet
+
+```sh
+# Review the recorded component commits and local differences.
+git submodule status --recursive
+git diff --submodule=log
+# Initialize missing component checkouts at the recorded commits.
+git submodule update --init --recursive
+# Packaging lane only: skipped tests must be reported as skipped.
+mvn clean verify -DskipTests --threads 1C
+```
+
+After a successful assembly, inspect `products/eclipse-sdk/target/products`,
+`products/eclipse-platform/target/products` and
+`sites/eclipse-platform-repository/target/repository`.
+Missing submodules, dependency-resolution failures and failing tests are different
+failure boundaries. Do not use destructive cleanup commands as routine setup;
+the existing cleanup section below explains their data-loss consequences.
+
+## SDK worked example
+
+**Check whether an SDK build really contains a sibling SWT change.**
+
+1. Read `.gitmodules` to identify the SWT checkout and its remote.
+2. Read `git submodule status --recursive` and record its actual SWT commit.
+   A leading `-` means uninitialized, `+` means a different checkout commit and
+   `U` indicates a merge conflict.
+3. Compare that exact commit with the intended SWT change. The aggregator's fork
+   name and a successful recursive clone do not establish inclusion.
+4. If integration changes are needed, review the component commit and parent
+   gitlink change explicitly. Keep the component test evidence with the SDK run.
+5. After building, verify both the assembled product and test reports; a produced
+   archive with skipped tests is packaging evidence only.
+
+Use [the source reference](docs/source-reference/README.md) for module/package
+navigation and [RELEASE.md](RELEASE.md) before release work. Original upstream
+build, contribution and licensing documentation is retained below.
+
+> Source tour checked at [`98a846bf6264`](https://github.com/hsoliwal/eclipse.platform.releng.aggregator/tree/98a846bf62648d30bb7871e3c8a61d6888761f25). Commands describe that revision; recheck build configuration when changing revisions. Build/UI/performance verification was not run for this README update.
+
+---
+
+<!-- fork-homepage-detail:v1:end -->
+
 ## M3 direction in this fork
 
 M3 is based on the idea that shared immutable structure and indexed metadata can
@@ -15,6 +128,48 @@ This section describes the direction of the hsoliwal fork. Upstream documentatio
 follows below; upstream authorship, licenses, and project identity remain intact.
 
 ---
+
+## Fork checkout and repository boundaries
+
+This is the [hsoliwal fork](https://github.com/hsoliwal/eclipse.platform.releng.aggregator)
+of the [upstream Eclipse SDK aggregator](https://github.com/eclipse-platform/eclipse.platform.releng.aggregator).
+To inspect or build this fork's recorded revision:
+
+```sh
+git clone --recurse-submodules https://github.com/hsoliwal/eclipse.platform.releng.aggregator.git
+cd eclipse.platform.releng.aggregator
+```
+
+**The submodules still point to upstream repositories.** See
+[.gitmodules](.gitmodules): Platform, SWT, Platform UI, JDT, PDE and Equinox
+URLs are upstream URLs. A recursive clone checks out the submodule commits
+recorded by this aggregator; it does not automatically select the latest
+`master` commits or the corresponding `hsoliwal` forks. If evaluating changes
+from sibling forks, record the exact component revisions and integration
+changes separately rather than assuming they are included.
+
+The [root reactor](pom.xml) ties together these distinct areas:
+
+- [eclipse-platform-parent/](eclipse-platform-parent/): shared Maven/Tycho configuration
+- [eclipse.platform.releng.prereqs.sdk/](eclipse.platform.releng.prereqs.sdk/):
+  SDK prerequisite target definition
+- Component submodules: Platform, SWT, UI, JDT, PDE and Equinox source
+- [eclipse.platform.common/](eclipse.platform.common/) and
+  [eclipse.platform.releng/](eclipse.platform.releng/): shared documentation and releng content
+- [products/](products/) and [sites/](sites/): product and p2 repository assembly
+
+Use this repository for SDK integration and packaging. A component-only change
+is usually easier to develop and test in the owning component repository first.
+For the full development workspace, inspect
+[oomph/PlatformSDKConfiguration.setup](oomph/PlatformSDKConfiguration.setup).
+For release work, distinguish [RELENG.md](RELENG.md) from the
+[release checklist](RELEASE.md).
+
+Fork-specific integration changes belong in
+[hsoliwal/eclipse.platform.releng.aggregator pull requests](https://github.com/hsoliwal/eclipse.platform.releng.aggregator/pulls).
+The upstream clone and contribution instructions below remain available for
+upstream Eclipse development. Preserve the existing [LICENSE](LICENSE) and
+[NOTICE](NOTICE) and the individual components' notices.
 
 Aggregator repo for Eclipse SDK builds
 ======================================
@@ -36,7 +191,7 @@ For a complete build run the following command from the root of this repository:
 mvn clean verify
 ```
 But this will result in a significant runtime of up to 10 hours, mainly due to test executions.
-Skiping the execution of tests and building in parallel reduces the runtime to about 10-20min (depending on your computer):
+Skipping tests and building in parallel can reduce runtime substantially (the upstream estimate is about 10–20 minutes, depending on the computer). This is a packaging/build check, not a passing test run:
 ```
 mvn clean verify -DskipTests --threads 1C
 ```
@@ -57,7 +212,7 @@ git checkout master
 git pull --recurse-submodules
 git submodule update
 ```
-Furthermore it's recommended to make sure your work-tree is clean before a build, which can be ensured by executing
+Use a clean working tree for a reproducible build. **The cleanup commands below are destructive:** `git clean -f -d -x` removes untracked and ignored files, including local build outputs, and `git reset --hard HEAD` discards tracked edits. They affect the submodules as well as the aggregator. Only use this cleanup in a disposable checkout or after preserving all work you need; it is not a required setup step.
 ```
 git submodule foreach git clean -f -d -x
 git submodule foreach git reset --hard HEAD
@@ -124,3 +279,7 @@ License
 [Eclipse Public License (EPL) v2.0][2]
 
 [2]: https://www.eclipse.org/legal/epl-2.0/
+
+## Pinned project, module and package reference
+
+The [source reference](docs/source-reference/README.md) maps every metadata-backed project/module path and recognized Java namespace at the documented revision. It includes selected build/API/lifecycle contracts and an explicit [coverage ledger](docs/source-reference/COVERAGE.md). Structural accounting is not a claim of complete package semantics, successful builds or verified M3 integration.
