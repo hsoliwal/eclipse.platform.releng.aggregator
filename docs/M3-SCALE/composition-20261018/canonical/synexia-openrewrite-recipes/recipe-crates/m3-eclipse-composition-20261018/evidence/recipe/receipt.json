@@ -1,0 +1,197 @@
+{
+  "schema": "m3-eclipse-composition-sdk-qualification-v1",
+  "spdxLicenseId": "Apache-2.0",
+  "status": "PASS",
+  "startedAt": "2026-10-18T13:43:44.548534+00:00",
+  "finishedAt": "2026-10-18T13:43:52.014321+00:00",
+  "cwd": "/tmp/eclipse-m3-20261018/synexia/synexia-openrewrite-recipes/recipe-crates/m3-eclipse-composition-20261018",
+  "argv": [
+    "/tmp/m3-toolchain/apache-maven-3.9.12/bin/mvn",
+    "-o",
+    "-B",
+    "-ntp",
+    "-Dmaven.repo.local=/tmp/m3-parser-maven-repository",
+    "-f",
+    "/tmp/eclipse-m3-20261018/synexia/synexia-openrewrite-recipes/recipe-crates/m3-eclipse-composition-20261018/pom.xml",
+    "-Dmaterialize.dir=/tmp/eclipse-m3-20261018/synexia/synexia-openrewrite-recipes/recipe-crates/m3-eclipse-composition-20261018/target/recipe-output",
+    "test"
+  ],
+  "exitCode": 0,
+  "javaHome": "/tmp/m3-toolchain/jdk-21.0.12.1+1",
+  "javaVersionOutput": "openjdk version \"21.0.12.1\" 2026-08-18 LTS\nOpenJDK Runtime Environment Temurin-21.0.12.1+1 (build 21.0.12.1+1-LTS)\nOpenJDK 64-Bit Server VM Temurin-21.0.12.1+1 (build 21.0.12.1+1-LTS, mixed mode, sharing)\n",
+  "recipeName": "com.synexia.eclipse.Composition20261018",
+  "openRewriteVersion": "8.17.1",
+  "defaultRecipeOwnerRoot": "${project.basedir}/../../src/main/java",
+  "recipeOwnerRootOverridden": false,
+  "sharedRecipeOwners": [
+    {
+      "path": "synexia-openrewrite-recipes/src/main/java/com/synexia/rewrite/M3EditScope.java",
+      "sha256": "962d37d62d740c3e8055c365a048ae7ee0479c26a9f6bbfe741e540d6c1134ab",
+      "gitBlob": "274360816db1e44a2f1796a3bc5cdeff6b0ce6db",
+      "bytes": 1052
+    },
+    {
+      "path": "synexia-openrewrite-recipes/src/main/java/com/synexia/rewrite/M3ScopeInference.java",
+      "sha256": "13660b59f60ec2941ec19e9bc8964ffd4b04689cdc33cd19711fba14b8da09a4",
+      "gitBlob": "d24729950508857280ea1b56d4e930f05137ec85",
+      "bytes": 7655
+    },
+    {
+      "path": "synexia-openrewrite-recipes/src/main/java/com/synexia/rewrite/M3HashPinnedJavaSnapshotRecipe.java",
+      "sha256": "67f7b81126e4736c7b61b444fa6545153a61e23c012975ca796fcee623ab6625",
+      "gitBlob": "3bdeeaea9a212fe0c7d1f544510f87c4cd49eb40",
+      "bytes": 31181
+    },
+    {
+      "path": "synexia-openrewrite-recipes/src/main/java/com/synexia/rewrite/M3HashPinnedTextSnapshotRecipe.java",
+      "sha256": "58c94f4b87a6e4a53268808bf0c635fe7bd56e2864cb8fe46483c85efba771d0",
+      "gitBlob": "cc5f86ab579d2f4b1b9bc4c26b4592d2d8142244",
+      "bytes": 20355
+    }
+  ],
+  "qualifiedInputs": [
+    {
+      "path": "pom.xml",
+      "sha256": "76787548da88eafff86e5533f7e7f303a6d22f4a3ad6228764355bef274a536a",
+      "gitBlob": "3c3d3e15fd4bdd17ccb8b1feaadb6dcca7a10ccc",
+      "bytes": 3387
+    },
+    {
+      "path": "SOURCE_PINS.json",
+      "sha256": "5042f2277b05996f8d0b820f98b5c82c2cbb4db655362aff0ce006fe6bd6e0d1",
+      "gitBlob": "b28de10032335876e4a4ebec56faa813ce8a816d",
+      "bytes": 13484
+    },
+    {
+      "path": "src/test/java/com/synexia/rewrite/M3EclipseCompositionRecipeTest.java",
+      "sha256": "2b397c6391581cef4d8e028c70a401cff6bbd13c2f9d200f042681459e451a3d",
+      "gitBlob": "b81938fbcb9034b686a8225360d23fce5216c605",
+      "bytes": 7108
+    },
+    {
+      "path": "resources/META-INF/rewrite/m3-eclipse-composition-20261018.yml",
+      "sha256": "9e547f65d29cc264309f6c7f3f874951c98aabffc9fc66f42be21ea4f7cf8eb9",
+      "gitBlob": "8d05aa2e45d29720bf6b67142136e6db1a4132f7",
+      "bytes": 685
+    },
+    {
+      "path": "resources/com/synexia/rewrite/hash-pinned-text/m3-eclipse-composition-20261018/before-gitmodules.txt",
+      "sha256": "e0db0c3445e743e8a0b081c41535ea5420b6a02e1894d879b5a88920bbab9bbd",
+      "gitBlob": "0d7252d6ec3d671acdcc4c97ece0a156703078f5",
+      "bytes": 1609
+    },
+    {
+      "path": "resources/com/synexia/rewrite/hash-pinned-text/m3-eclipse-composition-20261018/composition.tsv.txt",
+      "sha256": "fc03143317627ee9998d0301af0eb5bc47b46ea98b726ddc69267a83b4c809f2",
+      "gitBlob": "f0f3f55a2433935b5af49bfc0cee505eba88abb7",
+      "bytes": 1311
+    },
+    {
+      "path": "resources/com/synexia/rewrite/hash-pinned-text/m3-eclipse-composition-20261018/gitmodules.txt",
+      "sha256": "28f1af659cfce0b6581f27e16c2367c3162a8619c3ba4eb7dc73c3a3442013e8",
+      "gitBlob": "d7ea710217406494d3fd9945ce072cee744878c7",
+      "bytes": 1585
+    },
+    {
+      "path": "resources/com/synexia/rewrite/hash-pinned-text/m3-eclipse-composition-20261018/manifest.tsv",
+      "sha256": "d54f546ebf6946edb0341faa98dbec4a00a3843b05ed94daaaf4e90876f31175",
+      "gitBlob": "089d7db103bc81c5b0a2f57f6297381428ef60f3",
+      "bytes": 300
+    }
+  ],
+  "testCounts": {
+    "name": "com.synexia.rewrite.M3EclipseCompositionRecipeTest",
+    "tests": 5,
+    "failures": 0,
+    "errors": 0,
+    "skipped": 0
+  },
+  "rawLog": {
+    "path": "evidence/recipe/maven.log",
+    "sha256": "7f49a78c0446916746a329fbfdcefc2152738626ba2b60d38e381236fcb7f083",
+    "gitBlob": "70545a657e5b85375e974d9a5a0071299d14c895",
+    "bytes": 2386
+  },
+  "rawXml": {
+    "path": "evidence/recipe/TEST-com.synexia.rewrite.M3EclipseCompositionRecipeTest.xml",
+    "sha256": "af551b066e6080009e7621f910c691128ebf7e26d95ff63f70a9226a0cbd4618",
+    "gitBlob": "5b93a2fe9934b17ab464b224f9bbcb9a307ef296",
+    "bytes": 13743
+  },
+  "actualSdkMaterializationDirectory": "/tmp/eclipse-m3-20261018/synexia/synexia-openrewrite-recipes/recipe-crates/m3-eclipse-composition-20261018/target/recipe-output",
+  "actualSdkMaterializedOutputs": [
+    {
+      "path": ".gitmodules",
+      "sha256": "28f1af659cfce0b6581f27e16c2367c3162a8619c3ba4eb7dc73c3a3442013e8",
+      "gitBlob": "d7ea710217406494d3fd9945ce072cee744878c7",
+      "bytes": 1585,
+      "pinnedBefore": "e0db0c3445e743e8a0b081c41535ea5420b6a02e1894d879b5a88920bbab9bbd",
+      "pinnedAfter": "28f1af659cfce0b6581f27e16c2367c3162a8619c3ba4eb7dc73c3a3442013e8",
+      "matchesPinnedAfter": true
+    },
+    {
+      "path": "docs/M3-SCALE/composition-20261018/composition.tsv",
+      "sha256": "fc03143317627ee9998d0301af0eb5bc47b46ea98b726ddc69267a83b4c809f2",
+      "gitBlob": "f0f3f55a2433935b5af49bfc0cee505eba88abb7",
+      "bytes": 1311,
+      "pinnedBefore": "ABSENT",
+      "pinnedAfter": "fc03143317627ee9998d0301af0eb5bc47b46ea98b726ddc69267a83b4c809f2",
+      "matchesPinnedAfter": true
+    }
+  ],
+  "actualSdkOutputPaths": [
+    ".gitmodules",
+    "docs/M3-SCALE/composition-20261018/composition.tsv"
+  ],
+  "exactTwoPinnedOutputsVerified": true,
+  "materializationMethod": "M3EclipseCompositionRecipeTest.namedGenerationAndFixedPoint writes actual OpenRewrite Results; no template copying",
+  "selectedReceiverCommits": {
+    "eclipse.platform.swt": "422fb369629ba47fc5c5c6ddf01794b6d7c79f42",
+    "eclipse.platform": "52f3d67e43402c5a65207109c2b37b68b5bbd74e",
+    "eclipse.platform.ui": "52f64fe74beb3f8763cefd28651c5d5ab01d5d92"
+  },
+  "manifestModuleCount": 12,
+  "unchangedOtherGitlinks": 9,
+  "gitlinkUpdatesOutsideTextRecipe": [
+    {
+      "path": "eclipse.platform",
+      "mode": "160000",
+      "beforeCommit": "9dd1e78ff1e058c2b5abbc43f72dc95587d55101",
+      "afterCommit": "52f3d67e43402c5a65207109c2b37b68b5bbd74e",
+      "beforeUrl": "https://github.com/eclipse-platform/eclipse.platform.git",
+      "afterUrl": "https://github.com/hsoliwal/eclipse.platform.git"
+    },
+    {
+      "path": "eclipse.platform.swt",
+      "mode": "160000",
+      "beforeCommit": "687c8a2f8b7d72344e8671f47e521b130de4499e",
+      "afterCommit": "422fb369629ba47fc5c5c6ddf01794b6d7c79f42",
+      "beforeUrl": "https://github.com/eclipse-platform/eclipse.platform.swt.git",
+      "afterUrl": "https://github.com/hsoliwal/eclipse.platform.swt.git"
+    },
+    {
+      "path": "eclipse.platform.ui",
+      "mode": "160000",
+      "beforeCommit": "b29167282ef667f36149d5427dc9872ed8b667b5",
+      "afterCommit": "52f64fe74beb3f8763cefd28651c5d5ab01d5d92",
+      "beforeUrl": "https://github.com/eclipse-platform/eclipse.platform.ui.git",
+      "afterUrl": "https://github.com/hsoliwal/eclipse.platform.ui.git"
+    }
+  ],
+  "gitlinkMutationByRecipe": false,
+  "gitOperationsByThisRun": false,
+  "frozenVerifierFilesUnchanged": true,
+  "qualifiedInputsUnchangedDuringRun": true,
+  "sharedRecipeOwnersUnchangedDuringRun": true,
+  "frozenVerifierTestCountsRecordedPreviously": {
+    "tests": 46,
+    "failures": 0,
+    "errors": 0,
+    "skipped": 0
+  },
+  "frozenVerifierTestsRerun": false,
+  "runtimeOrNativeTestsRerun": false,
+  "twelveInitializedWorktreeSourceGate": "NOT_RUN",
+  "fullTychoPdeAcceptance": "NOT_CLAIMED",
+  "wholeEclipseMigration": false
+}

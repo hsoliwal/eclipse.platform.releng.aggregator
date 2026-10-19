@@ -1,0 +1,12 @@
+Eclipse M3 composition and verification
+Copyright 2026 Hitesh Soliwal and Contributors to the Synexia Project
+
+Canonical recipe and proof code: Apache License 2.0.
+The preserved Eclipse aggregator .gitmodules preimage and adapted postimage
+originate from eclipse.platform.releng.aggregator at the exact revision recorded
+in SOURCE_PINS.json. Their upstream Eclipse Public License 2.0 is preserved.
+Full license texts are included alongside this notice.
+
+The composition verifier is the recovered existing Java implementation, retained
+with its original SPDX attribution. This crate neither reimplements Eclipse nor
+claims acceptance from a synthetic SDK checkout.
