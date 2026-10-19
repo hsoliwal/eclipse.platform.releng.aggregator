@@ -1,0 +1,267 @@
+{
+  "schema": "m3-eclipse-ci-longpaths-publication-inventory-v1",
+  "spdxLicenseId": "Apache-2.0",
+  "canonicalCratePath": "synexia-openrewrite-recipes/recipe-crates/m3-eclipse-ci-longpaths-20261019",
+  "publicationFileCount": 44,
+  "selfHashExcluded": "inventory/publication-files.json; external closed inventory includes this file",
+  "files": [
+    {
+      "path": "CONTRACT.md",
+      "bytes": 4236,
+      "sha256": "9588db7d638f6e15e11221c04ce62b131e8e0d04b7b0be1a748323d5f3247ad2",
+      "gitBlob": "905027602fe5123aec8838794e228439478c050e"
+    },
+    {
+      "path": "COVERAGE.tsv",
+      "bytes": 649,
+      "sha256": "27cc08cf9b0e1dad741a0175729d2497f396f18271adb88cec79248f3b022f4f",
+      "gitBlob": "fcfa174881960aaf6cae408afb080f1729b0c515"
+    },
+    {
+      "path": "LICENSE-APACHE-2.0",
+      "bytes": 11358,
+      "sha256": "cfc7749b96f63bd31c3c42b5c471bf756814053e847c10f3eb003417bc523d30",
+      "gitBlob": "d645695673349e3947e8e5ae42332d0ac3164cd7"
+    },
+    {
+      "path": "LICENSE-EPL-2.0",
+      "bytes": 14198,
+      "sha256": "0becf16567beb77fa252b7664631dd177c8f9a1889e48995b45379c7130e5303",
+      "gitBlob": "e23ece2c852415800ac224b74ede6c5849f6f88d"
+    },
+    {
+      "path": "NOTICE",
+      "bytes": 1735,
+      "sha256": "9bfabbf8a2da5e41e59c43f5d10d1ef77eb95b9496733a1d517a63ff7dc3b32a",
+      "gitBlob": "c8d2b377abe9c9fa3900e3791c1d8d39008fb1f7"
+    },
+    {
+      "path": "README.md",
+      "bytes": 4953,
+      "sha256": "8e6fd102ac846c2ff26b709901b4d2860f839254e27957a8557c84788b675288",
+      "gitBlob": "58ce9729d92920d00b50259baf00e8e7d3cb9657"
+    },
+    {
+      "path": "RECEIPT.json",
+      "bytes": 11571,
+      "sha256": "e1456d438db356134c243f95439c445a18fa270168cab6ebbb6ead6bd88bd641",
+      "gitBlob": "6c19c1fd1d4748d33e9e415ace21ba3274f85178"
+    },
+    {
+      "path": "SOURCE_PINS.json",
+      "bytes": 5741,
+      "sha256": "a59d47647d10b40b6e820f9b8e20ef3538e274c52651516480298524a4c5da3e",
+      "gitBlob": "420c58a684cd113300aa367e186f63665f9cd3d5"
+    },
+    {
+      "path": "SPECTRUM.md",
+      "bytes": 2680,
+      "sha256": "1dc64394e50b150a69aaf6c662864da3b18b3dcd9e42190c742bfaaae9962618",
+      "gitBlob": "aef5926f93673715b93594f770af5f4c54b45870"
+    },
+    {
+      "path": "UPSTREAM-NOTICE",
+      "bytes": 1011,
+      "sha256": "52ad8f7685fec1a087d67d0f593c819bd94805f00f5e5e4b1f593c0cb8179cc7",
+      "gitBlob": "68d8c4a07d0a9b3298819ce9eefcf422aa54f2a2"
+    },
+    {
+      "path": "evidence/baseline/README.md",
+      "bytes": 1126,
+      "sha256": "baa515d4de823d99fc9466b671964c7e6227548eb91349a962addc37b3c11ef6",
+      "gitBlob": "9e9778e2405fe92606c8e6c36eb5d12b32aee960"
+    },
+    {
+      "path": "evidence/baseline/platform-windows-checkout-excerpt.log",
+      "bytes": 709,
+      "sha256": "620f62cf1d457584dd60df406e78b1363c8914e727a9d9ac10ebbd4dafb67918",
+      "gitBlob": "b62ea201889c9c84b07e7e5d8625867f4d2a2919"
+    },
+    {
+      "path": "evidence/baseline/ui-windows-checkout-excerpt.log",
+      "bytes": 3414,
+      "sha256": "3e03227202b35a6dffd2ebe7d19a828db5c6d8fd7d97a47e99460f024c38ce72",
+      "gitBlob": "ef0dfe50c2d8b56586e4ad4464f7341564e4cd77"
+    },
+    {
+      "path": "evidence/baseline/windows-failure-diagnosis.json",
+      "bytes": 24172,
+      "sha256": "7f2c9b6a688cad92940685022c69de43d75b37c21bcbbe960260f0980e75af89",
+      "gitBlob": "bde3ea056a5ce3ec9c050f298eeddb4f28939c66"
+    },
+    {
+      "path": "evidence/parser-diagnostic/DiagnoseYaml.java",
+      "bytes": 2279,
+      "sha256": "9b2204ca7cfea4e2b73fee571d497697d18f6c4e52974d67ab31c5b846eb60e5",
+      "gitBlob": "0f01a3cd17c6909da4033642eb4948bec6eb749b"
+    },
+    {
+      "path": "evidence/parser-diagnostic/execution.json",
+      "bytes": 5051,
+      "sha256": "81b8785dac0dd6f24936efe8d0fa7593bdc430dc52c74d310c06579fd2b7f71b",
+      "gitBlob": "1db7cb183cce9c9f3a7681d0bb0adfa17109fe51"
+    },
+    {
+      "path": "evidence/parser-diagnostic/mavenBuild-yaml-parser.log",
+      "bytes": 1651,
+      "sha256": "b079c34445a909f0a2cdafc9d89ce8a3797aed65c97d6c7d43ca773f26cef017",
+      "gitBlob": "f06e7900b22099e6e1782e198c022f77afb01427"
+    },
+    {
+      "path": "evidence/parser-diagnostic/printer-delta.json",
+      "bytes": 1636,
+      "sha256": "046c79cf00a6f1db4ee9c060a89aab24d3a237e08db8d6efba34c048895a54b8",
+      "gitBlob": "37d8bab0c0d082974140aaf69fad4b122fd7ad7a"
+    },
+    {
+      "path": "evidence/sdk-green/TEST-com.synexia.rewrite.M3EclipseCiLongPathsRecipeTest.xml",
+      "bytes": 14299,
+      "sha256": "7ea867e4ccb18184dd4bd04e56f102c9b077b598def5cacf95f383b57719dd7e",
+      "gitBlob": "dec9f4a072b4fc996c5ed4ec03481559dd11579a"
+    },
+    {
+      "path": "evidence/sdk-green/maven.log",
+      "bytes": 2308,
+      "sha256": "b373620ac1bfee19d2085ee9e385c87afb06367243df4bad8d06f23d78475ac9",
+      "gitBlob": "c687f4414d627e92ecd4cb1f1d2560202bdec278"
+    },
+    {
+      "path": "evidence/sdk-green/receipt.json",
+      "bytes": 6525,
+      "sha256": "9514c8919c2b46be1929590e4f512fe06d56a5ac22e84d6e4040da2ea6c9d01c",
+      "gitBlob": "f48c4ed4f0c639439d077b2049a1fe71f332eb0b"
+    },
+    {
+      "path": "evidence/sdk-red/TEST-com.synexia.rewrite.M3EclipseCiLongPathsRecipeTest.xml",
+      "bytes": 14655,
+      "sha256": "b8612a5596de5115c26a11e5be16ad3a4b37f7b8f18e8c2e8e25209ff301efdd",
+      "gitBlob": "97bec1b4ceafb342451bfdef055c5b1fc003a263"
+    },
+    {
+      "path": "evidence/sdk-red/manifest.tsv",
+      "bytes": 182,
+      "sha256": "4a20979ac82db2e8a0c3e84178341e396b8fd1dd728198344fdcad811853e908",
+      "gitBlob": "af259a05e379e6dd1511eca3d633ebb55b48b9a0"
+    },
+    {
+      "path": "evidence/sdk-red/maven.log",
+      "bytes": 4313,
+      "sha256": "8710304d18d8a7e641a4479429a4a0dedb2d43f193fe3657863d01ac544fe40e",
+      "gitBlob": "294f3f45c279aa70d8394a73451bf4be2e448ffd"
+    },
+    {
+      "path": "evidence/sdk-red/mavenBuild.yml.txt",
+      "bytes": 3238,
+      "sha256": "b9ba4a35ef634726477534373fc39ed23d5185254ee71ecf1ff63475830742e8",
+      "gitBlob": "0416c8be3bef180616929288ad634e3b4c7d9515"
+    },
+    {
+      "path": "evidence/sdk-red/receipt.json",
+      "bytes": 6928,
+      "sha256": "00646d608607ee9fe13182bafa2c78993a061ea9ed9a218272c7a144c9d82e75",
+      "gitBlob": "0968eb57247b76f4060bca769378c39f543bfd12"
+    },
+    {
+      "path": "evidence/sdk-setup-refusal/manifest.tsv",
+      "bytes": 182,
+      "sha256": "4a20979ac82db2e8a0c3e84178341e396b8fd1dd728198344fdcad811853e908",
+      "gitBlob": "af259a05e379e6dd1511eca3d633ebb55b48b9a0"
+    },
+    {
+      "path": "evidence/sdk-setup-refusal/maven.log",
+      "bytes": 2710,
+      "sha256": "3f22c2c1729c83900013021c8393e566eca315a9af31538491e989654e20338c",
+      "gitBlob": "5fb14aa064d816d710cf0a727afdf78a3746f21a"
+    },
+    {
+      "path": "evidence/sdk-setup-refusal/mavenBuild.yml.txt",
+      "bytes": 3238,
+      "sha256": "b9ba4a35ef634726477534373fc39ed23d5185254ee71ecf1ff63475830742e8",
+      "gitBlob": "0416c8be3bef180616929288ad634e3b4c7d9515"
+    },
+    {
+      "path": "evidence/sdk-setup-refusal/receipt.json",
+      "bytes": 6685,
+      "sha256": "e6cde91f039da310da9847aa1d16a0330f08ce0b13b07bd0b60cae28f4c97e76",
+      "gitBlob": "67a5eb5ca45721bba93499b49b3cdc290b8fe13c"
+    },
+    {
+      "path": "evidence/sdk-yaml-printer-refusal/CONTRACT.md",
+      "bytes": 3449,
+      "sha256": "cc8e4aa71d19815efaa127f4a48f676c5f00245e3b5365eb6132993bcd805d7b",
+      "gitBlob": "a0e6cc524ee6f31bdaa49a87f501902e213ebff0"
+    },
+    {
+      "path": "evidence/sdk-yaml-printer-refusal/M3EclipseCiLongPathsRecipeTest.java",
+      "bytes": 10053,
+      "sha256": "ef705d224cf242b98926439d4e0bd16e195a48d05935e17440a4d466004be013",
+      "gitBlob": "6c683f0ffcd2ec5cab0c38f8ae659a355ae452d0"
+    },
+    {
+      "path": "evidence/sdk-yaml-printer-refusal/README.md",
+      "bytes": 4169,
+      "sha256": "d404e7042bdcd580845490cef74ad369d45015f138ebf77ba07c563c53c45c74",
+      "gitBlob": "5819c65b879ecc34e4ad3ce91a25d4315c505710"
+    },
+    {
+      "path": "evidence/sdk-yaml-printer-refusal/SPECTRUM.md",
+      "bytes": 2256,
+      "sha256": "890a10489c0411de92c47e4d2c64e5cb6ef7186130e050950f1214e50166f0a1",
+      "gitBlob": "b8d51741ff7119f8ea930fdb6a1c38db2c5c8b8d"
+    },
+    {
+      "path": "evidence/sdk-yaml-printer-refusal/TEST-com.synexia.rewrite.M3EclipseCiLongPathsRecipeTest.xml",
+      "bytes": 16955,
+      "sha256": "5deaff2dafbe79d9129f07bf9499338d351dccfa9344c0d5cd62554a668a9ba7",
+      "gitBlob": "d1fd41ffb53be6e5f3a4471c369cf46ae845a1db"
+    },
+    {
+      "path": "evidence/sdk-yaml-printer-refusal/maven.log",
+      "bytes": 6104,
+      "sha256": "2416feb3d032586bd615f6ac18c0fedf5ad531d24c1a48d77e9a5bcc72435c49",
+      "gitBlob": "9ebbb027a6ea869272a522a8c2fbd3fa28a09926"
+    },
+    {
+      "path": "evidence/sdk-yaml-printer-refusal/receipt.json",
+      "bytes": 8226,
+      "sha256": "4e920b3db86d255dbaebc566fe8da05006e97d176c81613ee837e992aa112d44",
+      "gitBlob": "ea66255a478a70b397047e4bc74025d7f0f407f4"
+    },
+    {
+      "path": "pom.xml",
+      "bytes": 3543,
+      "sha256": "bd27602d8ee7b6b290f17bad646c3bf798201a869578958feb7b1ebc4dd30349",
+      "gitBlob": "84e5e40b2bc814745a5ebefa5b49bc4f69375ffa"
+    },
+    {
+      "path": "resources/META-INF/rewrite/m3-eclipse-ci-longpaths-20261019.yml",
+      "bytes": 576,
+      "sha256": "73517772c69df85cc17da0a9ebf00f90ff8327ea0018f9e9b824b55b8b3a5ef4",
+      "gitBlob": "da2f91819bfbd877bde3a2dd16f98702fbb5fafa"
+    },
+    {
+      "path": "resources/com/synexia/rewrite/hash-pinned-text/m3-eclipse-ci-longpaths-20261019/before-mavenBuild.yml.txt",
+      "bytes": 3238,
+      "sha256": "b9ba4a35ef634726477534373fc39ed23d5185254ee71ecf1ff63475830742e8",
+      "gitBlob": "0416c8be3bef180616929288ad634e3b4c7d9515"
+    },
+    {
+      "path": "resources/com/synexia/rewrite/hash-pinned-text/m3-eclipse-ci-longpaths-20261019/manifest.tsv",
+      "bytes": 182,
+      "sha256": "ce4add2b93cfb55fcffebd6371233867358513fdb83044901aa0a6d6056a0f3a",
+      "gitBlob": "bed1cbeb546e4073c00b77be6621e5becf1fa00d"
+    },
+    {
+      "path": "resources/com/synexia/rewrite/hash-pinned-text/m3-eclipse-ci-longpaths-20261019/mavenBuild.yml.txt",
+      "bytes": 3363,
+      "sha256": "23522344c0010e850bdc279312e9c0ebf546f0af97162e51d59024d533d4c0d9",
+      "gitBlob": "d6d1096b7f38bb975fa3c9e3e6c0ef47a9166fbf"
+    },
+    {
+      "path": "src/test/java/com/synexia/rewrite/M3EclipseCiLongPathsRecipeTest.java",
+      "bytes": 12822,
+      "sha256": "7efa664ee7fb703eff2e0001b6cc0183c335831ddec6070e90d9d2ed4f88a8a5",
+      "gitBlob": "2a643eea6db968440b775b0a0f93ec50d81fd3bb"
+    }
+  ]
+}

@@ -1,0 +1,17 @@
+SOURCE=/tmp/eclipse-m3-20261019/synexia/synexia-openrewrite-recipes/recipe-crates/m3-eclipse-ci-longpaths-20261019/resources/com/synexia/rewrite/hash-pinned-text/m3-eclipse-ci-longpaths-20261019/before-mavenBuild.yml.txt
+SLF4J(W): No SLF4J providers were found.
+SLF4J(W): Defaulting to no-operation (NOP) logger implementation
+SLF4J(W): See https://www.slf4j.org/codes.html#noProviders for further details.
+RESULT=org.openrewrite.tree.ParseError
+ERROR=Failed to parse .github/workflows/mavenBuild.yml because of parse-to-print idempotence
+PARSED=org.openrewrite.yaml.tree.Yaml$Documents
+FIRST_DIFFERENCE=1308; INPUT_BYTES=3238; PRINTED_BYTES=3250
+INPUT_WINDOW=     matrix:\n        config: \n          - { name: Linux,   os: ubuntu-latest  }\n          - { name: Windows, os: windows
+PRINT_WINDOW=     matrix:\n        config: \n           \n          - { name: Linux,   os: ubuntu-latest  }\n          - { name: Windows,
+SOURCE=/tmp/eclipse-m3-20261019/synexia/synexia-openrewrite-recipes/recipe-crates/m3-eclipse-ci-longpaths-20261019/resources/com/synexia/rewrite/hash-pinned-text/m3-eclipse-ci-longpaths-20261019/mavenBuild.yml.txt
+RESULT=org.openrewrite.tree.ParseError
+ERROR=Failed to parse .github/workflows/mavenBuild.yml because of parse-to-print idempotence
+PARSED=org.openrewrite.yaml.tree.Yaml$Documents
+FIRST_DIFFERENCE=1308; INPUT_BYTES=3363; PRINTED_BYTES=3375
+INPUT_WINDOW=     matrix:\n        config: \n          - { name: Linux,   os: ubuntu-latest  }\n          - { name: Windows, os: windows
+PRINT_WINDOW=     matrix:\n        config: \n           \n          - { name: Linux,   os: ubuntu-latest  }\n          - { name: Windows,

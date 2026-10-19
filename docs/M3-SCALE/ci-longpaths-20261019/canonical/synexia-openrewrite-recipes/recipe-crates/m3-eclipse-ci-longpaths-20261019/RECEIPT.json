@@ -1,0 +1,261 @@
+{
+  "schema": "m3-eclipse-ci-longpaths-receipt-v1",
+  "spdxLicenseId": "Apache-2.0",
+  "qualifiedAt": "2026-10-19T04:27:05.610568+00:00",
+  "status": "EXACT_ONE_WORKFLOW_SDK_QUALIFIED",
+  "recipeName": "com.synexia.eclipse.CiLongPaths20261019",
+  "canonicalSourceRepository": "hsoliwal/com.synexia",
+  "canonicalCratePath": "synexia-openrewrite-recipes/recipe-crates/m3-eclipse-ci-longpaths-20261019",
+  "sourcePins": {
+    "path": "SOURCE_PINS.json",
+    "bytes": 5741,
+    "sha256": "a59d47647d10b40b6e820f9b8e20ef3538e274c52651516480298524a4c5da3e",
+    "gitBlob": "420c58a684cd113300aa367e186f63665f9cd3d5"
+  },
+  "coverage": {
+    "path": "COVERAGE.tsv",
+    "bytes": 649,
+    "sha256": "27cc08cf9b0e1dad741a0175729d2497f396f18271adb88cec79248f3b022f4f",
+    "gitBlob": "fcfa174881960aaf6cae408afb080f1729b0c515"
+  },
+  "receiverRepository": "hsoliwal/eclipse.platform.releng.aggregator",
+  "receiverBaseRevision": "f1c1343f92f68a53dd3593fd3f98a3137e8003c0",
+  "sharedOwnerSourceRevision": "06388d86767d4baa86c5461b755421415b14278d",
+  "sharedRecipeOwners": [
+    {
+      "path": "synexia-openrewrite-recipes/src/main/java/com/synexia/rewrite/M3EditScope.java",
+      "gitBlob": "274360816db1e44a2f1796a3bc5cdeff6b0ce6db",
+      "sha256": "962d37d62d740c3e8055c365a048ae7ee0479c26a9f6bbfe741e540d6c1134ab",
+      "bytes": 1052
+    },
+    {
+      "path": "synexia-openrewrite-recipes/src/main/java/com/synexia/rewrite/M3HashPinnedJavaSnapshotRecipe.java",
+      "gitBlob": "3bdeeaea9a212fe0c7d1f544510f87c4cd49eb40",
+      "sha256": "67f7b81126e4736c7b61b444fa6545153a61e23c012975ca796fcee623ab6625",
+      "bytes": 31181
+    },
+    {
+      "path": "synexia-openrewrite-recipes/src/main/java/com/synexia/rewrite/M3HashPinnedTextSnapshotRecipe.java",
+      "gitBlob": "cc5f86ab579d2f4b1b9bc4c26b4592d2d8142244",
+      "sha256": "58c94f4b87a6e4a53268808bf0c635fe7bd56e2864cb8fe46483c85efba771d0",
+      "bytes": 20355
+    },
+    {
+      "path": "synexia-openrewrite-recipes/src/main/java/com/synexia/rewrite/M3ScopeInference.java",
+      "gitBlob": "d24729950508857280ea1b56d4e930f05137ec85",
+      "sha256": "13660b59f60ec2941ec19e9bc8964ffd4b04689cdc33cd19711fba14b8da09a4",
+      "bytes": 7655
+    }
+  ],
+  "defaultOwnerRootUsed": true,
+  "recipeOwnerRootOverridden": false,
+  "qualification": {
+    "mavenInvocations": 4,
+    "actualTestRuns": 3,
+    "setupRefusal": {
+      "receipt": {
+        "path": "evidence/sdk-setup-refusal/receipt.json",
+        "bytes": 6685,
+        "sha256": "e6cde91f039da310da9847aa1d16a0330f08ce0b13b07bd0b60cae28f4c97e76",
+        "gitBlob": "67a5eb5ca45721bba93499b49b3cdc290b8fe13c"
+      },
+      "testsExecuted": false,
+      "cause": "Surefire selected org.junit.platform:junit-platform-launcher:1.10.2, which was not yet present in the offline cache; no JUnit test executed."
+    },
+    "red": {
+      "receipt": {
+        "path": "evidence/sdk-red/receipt.json",
+        "bytes": 6928,
+        "sha256": "00646d608607ee9fe13182bafa2c78993a061ea9ed9a218272c7a144c9d82e75",
+        "gitBlob": "0968eb57247b76f4060bca769378c39f543bfd12"
+      },
+      "testCounts": {
+        "tests": 1,
+        "failures": 1,
+        "errors": 0,
+        "skipped": 0
+      },
+      "expectedFailure": {
+        "testcase": "namedRecipeCorrectsWindowsCheckoutAndMaterializes",
+        "kind": "failure",
+        "message": "The SDK must emit the Windows checkout correction ==> expected: <1> but was: <0>"
+      },
+      "interpretation": "Actual named SDK produced zero changes for the original no-op manifest/template; the positive one-output assertion failed."
+    },
+    "initialCorrectedSuite": {
+      "receipt": {
+        "path": "evidence/sdk-yaml-printer-refusal/receipt.json",
+        "bytes": 8226,
+        "sha256": "4e920b3db86d255dbaebc566fe8da05006e97d176c81613ee837e992aa112d44",
+        "gitBlob": "ea66255a478a70b397047e4bc74025d7f0f407f4"
+      },
+      "testCounts": {
+        "tests": 6,
+        "failures": 2,
+        "errors": 0,
+        "skipped": 0
+      },
+      "exitCode": 1,
+      "interpretation": "Two newly authored YAML byte-round-trip assertions failed on the auxiliary printer limitation also present in the untouched pinned upstream workflow. Original test, contract, spectrum, README and raw log/XML are retained."
+    },
+    "green": {
+      "receipt": {
+        "path": "evidence/sdk-green/receipt.json",
+        "bytes": 6525,
+        "sha256": "9514c8919c2b46be1929590e4f512fe06d56a5ac22e84d6e4040da2ea6c9d01c",
+        "gitBlob": "f48c4ed4f0c639439d077b2049a1fe71f332eb0b"
+      },
+      "testCounts": {
+        "tests": 6,
+        "failures": 0,
+        "errors": 0,
+        "skipped": 0
+      },
+      "exitCode": 0
+    },
+    "onlyChangedQualifiedInputsBetweenRedAndGreen": [
+      "synexia-openrewrite-recipes/recipe-crates/m3-eclipse-ci-longpaths-20261019/CONTRACT.md",
+      "synexia-openrewrite-recipes/recipe-crates/m3-eclipse-ci-longpaths-20261019/SPECTRUM.md",
+      "synexia-openrewrite-recipes/recipe-crates/m3-eclipse-ci-longpaths-20261019/resources/com/synexia/rewrite/hash-pinned-text/m3-eclipse-ci-longpaths-20261019/manifest.tsv",
+      "synexia-openrewrite-recipes/recipe-crates/m3-eclipse-ci-longpaths-20261019/resources/com/synexia/rewrite/hash-pinned-text/m3-eclipse-ci-longpaths-20261019/mavenBuild.yml.txt",
+      "synexia-openrewrite-recipes/recipe-crates/m3-eclipse-ci-longpaths-20261019/src/test/java/com/synexia/rewrite/M3EclipseCiLongPathsRecipeTest.java"
+    ],
+    "qualifiedInputCountEachPhase": 12,
+    "actualSdkMaterializedOutputs": [
+      {
+        "path": ".github/workflows/mavenBuild.yml",
+        "bytes": 3363,
+        "sha256": "23522344c0010e850bdc279312e9c0ebf546f0af97162e51d59024d533d4c0d9",
+        "gitBlob": "d6d1096b7f38bb975fa3c9e3e6c0ef47a9166fbf"
+      }
+    ],
+    "exactOutputCount": 1,
+    "materializationMethod": "M3EclipseCiLongPathsRecipeTest.namedRecipeCorrectsWindowsCheckoutAndMaterializes writes the actual SDK changeset result.",
+    "threeInsertedLinesOnly": true,
+    "removedInsertionRestoresEveryOriginalByte": true,
+    "realParsedYamlDocumentsInspected": true,
+    "yamlPrinterQualification": {
+      "diagnostic": {
+        "path": "evidence/parser-diagnostic/printer-delta.json",
+        "bytes": 1636,
+        "sha256": "046c79cf00a6f1db4ee9c060a89aab24d3a237e08db8d6efba34c048895a54b8",
+        "gitBlob": "37d8bab0c0d082974140aaf69fad4b122fd7ad7a"
+      },
+      "sameExactObservedBaselineAndPostimageDeltaBytes": 12,
+      "delta": "One line of eleven spaces plus LF immediately after the unique unchanged matrix.config declaration.",
+      "acceptedWrapperReason": "parse-to-print idempotence",
+      "arbitraryParseErrorsAccepted": false,
+      "parsedStepConditionCommandAndOrderChecked": true,
+      "nativeYamlBytePreservingRoundTripClaimed": false
+    },
+    "textOutputHashUnchangedFromInitialCorrectedSuite": true,
+    "fixedPointMissingDriftDuplicatePathAliasUnrelatedPermutationAndTwoWorkerChecks": true
+  },
+  "protectedSourceVerification": {
+    "expectedPublishedSourceRevision": "06388d86767d4baa86c5461b755421415b14278d",
+    "protectedInventory": {
+      "path": "/tmp/eclipse-m3-20261019/ci-longpaths-authoring/protected-321-files.json",
+      "bytes": 102659,
+      "sha256": "b4d86eff1459da02fe2161ea3fab2859085dee55560faa648ca60624abbcaced",
+      "gitBlob": "7f9b0edb88d75f1e95b21bf39fbb173f255dacb9"
+    },
+    "verifiedFiles": 321,
+    "historicalCrateFiles": 317,
+    "sharedOwnerFiles": 4,
+    "changedFiles": [],
+    "allProtectedFilesUnchanged": true,
+    "historicalTestsRerun": false
+  },
+  "verifiedSdkArtifacts": [
+    {
+      "artifact": "org.openrewrite:rewrite-core:8.17.1",
+      "bytes": 3392625,
+      "sha256": "d7c07f91ab085a39bf1b40d7f2a7796a52619aaeefeca1481435e685aa663efa",
+      "published_sha1": "88a6ab348d0555ad6e04efc6fb8b5d2dc7b10e3a",
+      "verified": true
+    },
+    {
+      "artifact": "org.openrewrite:rewrite-java:8.17.1",
+      "bytes": 1613246,
+      "sha256": "32a3b27c0eafeb44c776500ae1378efdfb79d490a6afd7b58be07c6c0d6c55ff",
+      "published_sha1": "789f98dba7aa7093b917dbec70f6768ba6dfcdb7",
+      "verified": true
+    },
+    {
+      "artifact": "org.openrewrite:rewrite-java-21:8.17.1",
+      "bytes": 109302,
+      "sha256": "7e654435905cf6afb9e659185773de0b75e4282c8e30c916ad15fd16b0fba9f4",
+      "published_sha1": "4ad86cf0980f231ac7f94abdb37f741c3adf271c",
+      "verified": true
+    },
+    {
+      "artifact": "org.openrewrite:rewrite-yaml:8.17.1",
+      "bytes": 245085,
+      "sha256": "0203cc3b08f519975ed2dc2d20091f0b8e0ab20f72016871c05e50feb49e5a13",
+      "published_sha1": "2628294c8956131a54a8cbac3898a6b35675a5f3",
+      "verified": true
+    },
+    {
+      "artifact": "org.junit.jupiter:junit-jupiter-api:5.10.2",
+      "bytes": 210956,
+      "sha256": "afff77c186cd317275803872fa5133aa801fd6ac40bd91c78a6cf8009b4b17cc",
+      "published_sha1": "fb55d6e2bce173f35fd28422e7975539621055ef",
+      "verified": true
+    },
+    {
+      "artifact": "org.junit.jupiter:junit-jupiter-engine:5.10.2",
+      "bytes": 244690,
+      "sha256": "b6df35da750a546ae932376f11b3c0df841f0c90c7cb2944cd39adb432886e4b",
+      "published_sha1": "f1f8fe97bd58e85569205f071274d459c2c4f8cd",
+      "verified": true
+    },
+    {
+      "artifact": "org.apache.maven.surefire:surefire-junit-platform:3.2.5",
+      "bytes": 27152,
+      "sha256": "a426d731705a4804f33b5f51ff9dd6c13eaba15bac41e2a01595ccd137548ef3",
+      "published_sha1": "359ef45ecdbc6ee4eabdd017fc01fba00668acd6",
+      "verified": true
+    },
+    {
+      "artifact": "org.junit.platform:junit-platform-launcher:1.10.2",
+      "bytes": 183814,
+      "sha256": "aed4f42fb90ada9b347c231f13656fc09121ba20dab6dc646a6bd9d4da31e4aa",
+      "published_sha1": "8125dd29e847ca274dd1a7a9ca54859acc284cb3",
+      "verified": true
+    }
+  ],
+  "toolchainArchiveVerification": [
+    {
+      "name": "jdk21",
+      "version": "Temurin 21.0.12.1+1",
+      "url": "https://github.com/adoptium/temurin21-binaries/releases/download/jdk-21.0.12.1%2B1/OpenJDK21U-jdk_x64_linux_hotspot_21.0.12.1_1.tar.gz",
+      "algorithm": "sha256",
+      "checksum_suffix": ".sha256.txt",
+      "checksum_url": "https://github.com/adoptium/temurin21-binaries/releases/download/jdk-21.0.12.1%2B1/OpenJDK21U-jdk_x64_linux_hotspot_21.0.12.1_1.tar.gz.sha256.txt",
+      "upstream_checksum": "ce79869e1307ed8ee1e2baa86a412b1eb5b75d10a01006d788a6f968bcfaee94",
+      "bytes": 207473347,
+      "sha256": "ce79869e1307ed8ee1e2baa86a412b1eb5b75d10a01006d788a6f968bcfaee94"
+    },
+    {
+      "name": "maven",
+      "version": "Apache Maven 3.9.12",
+      "url": "https://repo.maven.apache.org/maven2/org/apache/maven/apache-maven/3.9.12/apache-maven-3.9.12-bin.tar.gz",
+      "algorithm": "sha512",
+      "checksum_suffix": ".sha512",
+      "checksum_url": "https://repo.maven.apache.org/maven2/org/apache/maven/apache-maven/3.9.12/apache-maven-3.9.12-bin.tar.gz.sha512",
+      "upstream_checksum": "0a1be79f02466533fc1a80abbef8796e4f737c46c6574ede5658b110899942a94db634477dfd3745501c80aef9aac0d4f841d38574373f7e2d24cce89d694f70",
+      "bytes": 9233336,
+      "sha256": "fa2c9948729296c23afd18fd01a90f62cdda09a46191b54a8bc3764c2eee812e"
+    }
+  ],
+  "scope": {
+    "hostedWindowsCheckout": "NOT_RUN_BY_THIS_CRATE; separate receiving gate after publication",
+    "eclipseMavenTychoPdeBuildRun": false,
+    "runtimeOrNativeTestsRerun": false,
+    "wholeEclipseAcceptance": false,
+    "remoteWritesDuringCrateQualification": false,
+    "sharedOwnerEdits": false,
+    "globalLedgerOrCanonicalHomeEdits": false,
+    "callerOrGitlinkEdits": false
+  }
+}
