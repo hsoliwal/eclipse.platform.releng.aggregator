@@ -1,0 +1,13 @@
+path	url	commit
+eclipse.jdt	https://github.com/eclipse-jdt/eclipse.jdt.git	36db39a9a02496f1feb6f7d5d7a589c6a7280f03
+eclipse.jdt.core	https://github.com/hsoliwal/eclipse.jdt.core.git	b418f72c024d12ad7b62f56b384f15fc417b6cbc
+eclipse.jdt.core.binaries	https://github.com/eclipse-jdt/eclipse.jdt.core.binaries.git	987122d226c7ee6b501d8bc67a2bcda034f2fd6f
+eclipse.jdt.debug	https://github.com/hsoliwal/eclipse.jdt.debug.git	a40f0286553cc0eb36d494482b456c61f6286f1f
+eclipse.jdt.ui	https://github.com/hsoliwal/eclipse.jdt.ui.git	27f05c8d5e83209ff1c4a6ad86b54ca0ec37ec19
+eclipse.pde	https://github.com/eclipse-pde/eclipse.pde.git	a417758d373e966ce1af14d61d96e76550a84899
+eclipse.platform	https://github.com/hsoliwal/eclipse.platform.git	56fb83ade6a62c5a99e9cbe6505c88c9345c321a
+eclipse.platform.swt	https://github.com/hsoliwal/eclipse.platform.swt.git	c1ed5e568efc8ae628b32ff71d4f9a343a3f8f94
+eclipse.platform.ui	https://github.com/hsoliwal/eclipse.platform.ui.git	a8a292cb62e04e2e2c641f28fe1f87b1a99b216a
+equinox	https://github.com/hsoliwal/equinox.git	53e3dbba7e8e960f814efecb5d7af213242eda48
+equinox.binaries	https://github.com/eclipse-equinox/equinox.binaries.git	71ca93aa517069ffe41c9470ca4d232e305f50dc
+equinox.p2	https://github.com/eclipse-equinox/p2.git	a5382d1705062835b356ca8a64b1d49e566aa8ed
