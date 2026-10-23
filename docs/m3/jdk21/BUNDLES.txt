@@ -1,0 +1,3 @@
+eclipse.platform.common/bundles/org.eclipse.jdt.tips.user
+eclipse.platform.common/bundles/org.eclipse.platform.doc.tips
+eclipse.platform.releng/bundles/org.eclipse.test
