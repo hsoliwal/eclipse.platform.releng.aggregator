@@ -9,7 +9,6 @@
 			}
 		},
 		"mailingList": "platform-releng-dev@eclipse.org",
-		"testsFolder": "automated-tests",
 		"tests": [
 			{
 				"os": "linux",
@@ -63,6 +62,78 @@
 					"type": "temurin"
 				}
 			}
+		],
+		"smokeTests": [
+			{
+				"label": "openSUSE Leap",
+				"os": "linux",
+				"ws": "gtk",
+				"arch": "x86_64",
+				"javaVersion": [
+					25,
+					27
+				],
+				"agent": {
+					"type": "kubernetes",
+					"image": "ghcr.io/eclipse-platform/platformreleng-opensuse-gtk3-metacity:16"
+				}
+			},
+			{
+				"label": "Linux RISC-V",
+				"os": "linux",
+				"ws": "gtk",
+				"arch": "riscv64",
+				"javaVersion": [
+					25,
+					27
+				],
+				"agent": {
+					"type": "static",
+					"label": "riscv64"
+				}
+			},
+			{
+				"label": "CentOS 9",
+				"os": "linux",
+				"ws": "gtk",
+				"arch": "x86_64",
+				"javaVersion": [
+					25,
+					27
+				],
+				"agent": {
+					"type": "kubernetes",
+					"image": "ghcr.io/eclipse-platform/platformreleng-centos-gtk4-mutter:9"
+				}
+			},
+			{
+				"label": "CentOS ARM",
+				"os": "linux",
+				"ws": "gtk",
+				"arch": "aarch64",
+				"javaVersion": [
+					25,
+					27
+				],
+				"agent": {
+					"type": "static",
+					"label": "arm64"
+				}
+			},
+			{
+				"label": "CentOS PowerPC",
+				"os": "linux",
+				"ws": "gtk",
+				"arch": "ppc64le",
+				"javaVersion": [
+					25,
+					27
+				],
+				"agent": {
+					"type": "static",
+					"label": "ppctest"
+				}
+			}
 		]
 	},
 	"Y": {
@@ -72,7 +143,7 @@
 			"4.42": {
 				"branch": "master",
 				"disabled": false,
-				"schedule": "TZ=UTC\n# Format: Minute Hour Day Month Day-of-week (1-7)\n0 15 19-31 9 2,4,6\n0 15 * 10 2,4,6\n0 15 1-25 11 2,4,6"
+				"schedule": "TZ=UTC\n# Format: Minute Hour Day Month Day-of-week (1-7)\n0 15 * 10 *\n0 15 1-25 11 *"
 			}
 		},
 		"branches": {
@@ -81,7 +152,6 @@
 			"eclipse.jdt.ui": "BETA_JAVA28"
 		},
 		"mailingList": "jdt-dev@eclipse.org",
-		"testsFolder": "y-builds",
 		"tests": [
 			{
 				"os": "linux",
@@ -125,6 +195,72 @@
 				"jdk": {
 					"type": "install",
 					"url": "https://download.java.net/java/early_access/jdk28/16/GPL/openjdk-28-ea+16_windows-x64_bin.zip"
+				}
+			}
+		],
+		"smokeTests": [
+			{
+				"label": "openSUSE Leap",
+				"os": "linux",
+				"ws": "gtk",
+				"arch": "x86_64",
+				"javaVersion": [
+					25,
+					"28-ea"
+				],
+				"agent": {
+					"type": "kubernetes",
+					"image": "ghcr.io/eclipse-platform/platformreleng-opensuse-gtk3-metacity:16"
+				}
+			},
+			{
+				"label": "Linux RISC-V",
+				"os": "linux",
+				"ws": "gtk",
+				"arch": "riscv64",
+				"javaVersion": "28-ea",
+				"agent": {
+					"type": "static",
+					"label": "riscv64"
+				}
+			},
+			{
+				"label": "CentOS 9",
+				"os": "linux",
+				"ws": "gtk",
+				"arch": "x86_64",
+				"javaVersion": [
+					25,
+					"28-ea"
+				],
+				"agent": {
+					"type": "kubernetes",
+					"image": "ghcr.io/eclipse-platform/platformreleng-centos-gtk4-mutter:9"
+				}
+			},
+			{
+				"label": "CentOS ARM",
+				"os": "linux",
+				"ws": "gtk",
+				"arch": "aarch64",
+				"javaVersion": [
+					25,
+					"28-ea"
+				],
+				"agent": {
+					"type": "static",
+					"label": "arm64"
+				}
+			},
+			{
+				"label": "CentOS PowerPC",
+				"os": "linux",
+				"ws": "gtk",
+				"arch": "ppc64le",
+				"javaVersion": "28-ea",
+				"agent": {
+					"type": "static",
+					"label": "ppctest"
 				}
 			}
 		]

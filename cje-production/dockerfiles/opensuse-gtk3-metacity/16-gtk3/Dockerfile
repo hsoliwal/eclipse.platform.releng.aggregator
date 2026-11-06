@@ -1,4 +1,4 @@
-FROM opensuse/leap:16.0@sha256:7f3aeccb6a613c0fc1690d3d3e5eb493fd477ee4587de20640017fc36d72f9b0
+FROM opensuse/leap:16.0@sha256:40b8e1fc290b203380b9adc7cd147ef2141f5a613c7cf7117f678f626855654e
 
 ### user name recognition at runtime w/ an arbitrary uid - for OpenShift deployments
 COPY scripts/uid_entrypoint /usr/local/bin/uid_entrypoint
@@ -25,7 +25,14 @@ RUN zypper --non-interactive update && zypper --non-interactive install \
       git-core \
       vim \
       tar \
-      gzip
+      gzip \
+      hostname \
+      dbus-1-x11 \
+      dbus-1-daemon \
+      at-spi2-core
+
+# Allow GLib to autolaunch a D-Bus session bus on ${DISPLAY}
+RUN dbus-uuidgen > /etc/machine-id
 
 ENV HOME=/home/vnc
 ENV DISPLAY=:0

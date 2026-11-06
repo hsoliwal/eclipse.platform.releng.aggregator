@@ -5,7 +5,7 @@
     <location includeAllPlatforms="true" includeConfigurePhase="false" includeMode="slicer" includeSource="true" type="InstallableUnit">
 
       <!-- Maintained fork of the abandoned JCraft JSch; exports com.jcraft.jsch -->
-      <unit id="com.github.mwiede.jsch" version="2.28.7"/>
+      <unit id="com.github.mwiede.jsch" version="2.28.8"/>
 
       <unit id="org.apache.ant" version="1.10.18.v20260906-1000"/>
 
@@ -20,23 +20,23 @@
       <unit id="com.sun.jna" version="5.19.1.v20260612-1000"/>
 
       <!-- ECF -->
-      <unit id="org.apache.httpcomponents.client5.httpclient5" version="5.6.4.v20260809-1000"/>
+      <unit id="org.apache.httpcomponents.client5.httpclient5" version="5.6.5.v20261010-1000"/>
       <unit id="org.apache.httpcomponents.client5.httpclient5-win" version="5.2.3.v20231203-1619"/>
       <unit id="org.apache.httpcomponents.core5.httpcore5" version="5.4.4.v20260925-1000"/>
       <unit id="org.apache.httpcomponents.core5.httpcore5-h2" version="5.4.4.v20260925-1000"/>
 
       <!-- skija -->
-      <unit id="io.github.humbleui.skija-shared" version="0.143.17.v20260617-1000"/>
-      <unit id="io.github.humbleui.skija-linux-arm64" version="0.143.17.v20260617-1000"/>
-      <unit id="io.github.humbleui.skija-linux-x64" version="0.143.17.v20260617-1000"/>
-      <unit id="io.github.humbleui.skija-macos-arm64" version="0.143.17.v20260617-1000"/>
-      <unit id="io.github.humbleui.skija-macos-x64" version="0.143.17.v20260617-1000"/>
-      <unit id="io.github.humbleui.skija-windows-arm64" version="0.143.17.v20260617-1000"/>
-      <unit id="io.github.humbleui.skija-windows-x64" version="0.143.17.v20260617-1000"/>
+      <unit id="io.github.humbleui.skija-shared" version="0.143.18.v20261011-1000"/>
+      <unit id="io.github.humbleui.skija-linux-arm64" version="0.143.18.v20261011-1000"/>
+      <unit id="io.github.humbleui.skija-linux-x64" version="0.143.18.v20261011-1000"/>
+      <unit id="io.github.humbleui.skija-macos-arm64" version="0.143.18.v20261011-1000"/>
+      <unit id="io.github.humbleui.skija-macos-x64" version="0.143.18.v20261011-1000"/>
+      <unit id="io.github.humbleui.skija-windows-arm64" version="0.143.18.v20261011-1000"/>
+      <unit id="io.github.humbleui.skija-windows-x64" version="0.143.18.v20261011-1000"/>
       <unit id="io.github.humbleui.types" version="0.2.0.v20260416-1000"/>
 
       <!-- This is the "normal" Orbit repository is expected to be updated on milestones and releases based on Orbit deliveries. -->
-      <repository location="https://download.eclipse.org/tools/orbit/simrel/orbit-aggregation/milestone/S202610040925"/>
+      <repository location="https://download.eclipse.org/tools/orbit/simrel/orbit-aggregation/milestone/S202610121234"/>
     </location>
 
     <location includeAllPlatforms="true" includeConfigurePhase="false" includeMode="slicer" includeSource="true" type="InstallableUnit">
@@ -100,7 +100,7 @@
 			  <dependency>
 				  <groupId>com.google.code.gson</groupId>
 				  <artifactId>gson</artifactId>
-				  <version>2.14.0</version>
+				  <version>2.15.0</version>
 				  <type>jar</type>
 			  </dependency>
 			  <dependency>
@@ -130,7 +130,7 @@
 			  <dependency>
 				  <groupId>org.apache.sshd</groupId>
 				  <artifactId>sshd-osgi</artifactId>
-				  <version>2.20.0</version>
+				  <version>2.20.1</version>
 				  <type>jar</type>
 			  </dependency>
 			  <dependency>
@@ -312,13 +312,13 @@
 			  <dependency>
 				  <groupId>net.bytebuddy</groupId>
 				  <artifactId>byte-buddy-agent</artifactId>
-				  <version>1.18.14</version>
+				  <version>1.18.16</version>
 				  <type>jar</type>
 			  </dependency>
 			  <dependency>
 				  <groupId>net.bytebuddy</groupId>
 				  <artifactId>byte-buddy</artifactId>
-				  <version>1.18.14</version>
+				  <version>1.18.16</version>
 				  <type>jar</type>
 			  </dependency>
 			  <dependency>
@@ -346,31 +346,31 @@
 			  <dependency>
 				  <groupId>org.ow2.asm</groupId>
 				  <artifactId>asm-analysis</artifactId>
-				  <version>9.11</version>
+				  <version>9.11.1</version>
 				  <type>jar</type>
 			  </dependency>
 			  <dependency>
 				  <groupId>org.ow2.asm</groupId>
 				  <artifactId>asm-commons</artifactId>
-				  <version>9.11</version>
+				  <version>9.11.1</version>
 				  <type>jar</type>
 			  </dependency>
 			  <dependency>
 				  <groupId>org.ow2.asm</groupId>
 				  <artifactId>asm-tree</artifactId>
-				  <version>9.11</version>
+				  <version>9.11.1</version>
 				  <type>jar</type>
 			  </dependency>
 			  <dependency>
 				  <groupId>org.ow2.asm</groupId>
 				  <artifactId>asm-util</artifactId>
-				  <version>9.11</version>
+				  <version>9.11.1</version>
 				  <type>jar</type>
 			  </dependency>
 			  <dependency>
 				  <groupId>org.ow2.asm</groupId>
 				  <artifactId>asm</artifactId>
-				  <version>9.11</version>
+				  <version>9.11.1</version>
 				  <type>jar</type>
 			  </dependency>
 		  </dependencies>
@@ -930,13 +930,13 @@
 			  <dependency>
 				  <groupId>org.commonmark</groupId>
 				  <artifactId>commonmark-ext-gfm-tables</artifactId>
-				  <version>0.30.1</version>
+				  <version>0.31.0</version>
 				  <type>jar</type>
 			  </dependency>
 			  <dependency>
 				  <groupId>org.commonmark</groupId>
 				  <artifactId>commonmark</artifactId>
-				  <version>0.30.1</version>
+				  <version>0.31.0</version>
 				  <type>jar</type>
 			  </dependency>
 		  </dependencies>
