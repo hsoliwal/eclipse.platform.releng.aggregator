@@ -1,0 +1,11 @@
+# SPDX-FileCopyrightText: 2026 Hitesh Soliwal and Contributors to the Synexia Project
+# SPDX-License-Identifier: Apache-2.0
+type: specs.openrewrite.org/v1beta/recipe
+name: com.synexia.eclipse.CiLongPaths20261019
+displayName: Eclipse shared CI Windows checkout long-path configuration
+description: >-
+  Enables Git long paths before Windows checkout in one exact existing shared
+  workflow. Requires the pinned source and preserves every other workflow byte.
+recipeList:
+  - com.synexia.rewrite.M3HashPinnedTextSnapshotRecipe:
+      crateName: m3-eclipse-ci-longpaths-20261019

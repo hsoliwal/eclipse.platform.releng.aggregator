@@ -1,0 +1,13 @@
+step	path	changed_lines
+manifest	eclipse.platform.common/bundles/org.eclipse.jdt.tips.user/META-INF/MANIFEST.MF	1
+classpath	eclipse.platform.common/bundles/org.eclipse.jdt.tips.user/.classpath	1
+prefs	eclipse.platform.common/bundles/org.eclipse.jdt.tips.user/.settings/org.eclipse.jdt.core.prefs	3
+manifest	eclipse.platform.common/bundles/org.eclipse.platform.doc.tips/META-INF/MANIFEST.MF	1
+classpath	eclipse.platform.common/bundles/org.eclipse.platform.doc.tips/.classpath	1
+prefs	eclipse.platform.common/bundles/org.eclipse.platform.doc.tips/.settings/org.eclipse.jdt.core.prefs	3
+manifest	eclipse.platform.releng/bundles/org.eclipse.test/META-INF/MANIFEST.MF	1
+classpath	eclipse.platform.releng/bundles/org.eclipse.test/.classpath	1
+prefs	eclipse.platform.releng/bundles/org.eclipse.test/.settings/org.eclipse.jdt.core.prefs	3
+pom	eclipse-platform-parent/pom.xml	1
+product	products/eclipse-platform/platform.product	1
+product	products/eclipse-sdk/sdk.product	1

@@ -1,0 +1,408 @@
+{
+  "schema": "m3-public-windows-checkout-failure-diagnosis-v1",
+  "observedAt": "2026-10-18T14:28:57.172Z",
+  "statusSnapshot": "../status-public-prs-20261018.json",
+  "readOnly": true,
+  "remoteWrites": 0,
+  "workflowReruns": 0,
+  "proofTestsRerun": 0,
+  "publicOrCanonicalFilesEdited": 0,
+  "conclusion": "Both Windows jobs failed while Git checked out their PR merge refs because directory paths were too long. Platform's reported path was introduced by PR 14. UI's reported path and all twelve contained blobs are already present unchanged in its base. Neither job reached Java setup, Maven setup or Maven build.",
+  "scopeLimit": "This diagnoses the reported checkout failures; it establishes no build/runtime result after a successful checkout and includes no rerun of a baseline job.",
+  "jobs": [
+    {
+      "repository": "hsoliwal/eclipse.platform",
+      "prNumber": 14,
+      "publishedHead": "52f3d67e43402c5a65207109c2b37b68b5bbd74e",
+      "jobId": 117690162562,
+      "jobUrl": "https://github.com/hsoliwal/eclipse.platform/actions/runs/39132434527/job/117690162562",
+      "failedStep": {
+        "name": "Checkout",
+        "status": "completed",
+        "conclusion": "failure",
+        "number": 2
+      },
+      "allSteps": [
+        {
+          "name": "Set up job",
+          "status": "completed",
+          "conclusion": "success",
+          "number": 1
+        },
+        {
+          "name": "Checkout",
+          "status": "completed",
+          "conclusion": "failure",
+          "number": 2
+        },
+        {
+          "name": "Set up Java",
+          "status": "completed",
+          "conclusion": "skipped",
+          "number": 3
+        },
+        {
+          "name": "Set up Maven",
+          "status": "completed",
+          "conclusion": "skipped",
+          "number": 4
+        },
+        {
+          "name": "Build with Maven",
+          "status": "completed",
+          "conclusion": "skipped",
+          "number": 5
+        },
+        {
+          "name": "Upload Test Results for Windows",
+          "status": "completed",
+          "conclusion": "success",
+          "number": 6
+        },
+        {
+          "name": "Post Checkout",
+          "status": "completed",
+          "conclusion": "success",
+          "number": 12
+        },
+        {
+          "name": "Complete job",
+          "status": "completed",
+          "conclusion": "success",
+          "number": 13
+        }
+      ],
+      "checkoutCommandLogLine": "2026-10-18T14:06:58.3190289Z [command]\"C:\\Program Files\\Git\\bin\\git.exe\" checkout --progress --force refs/remotes/pull/14/merge",
+      "gitExitCode": 128,
+      "reportedFatalLogLine": "2026-10-18T14:06:59.2337353Z ##[error]fatal: cannot create directory at 'docs/M3-SCALE/rules-forwarding-20261018/tooling/synexia-openrewrite-recipes/recipe-crates/m3-eclipse-rules-forwarding-20261018/resources/com/synexia/rewrite/hash-pinned-java/m3-eclipse-rules-forwarding-20261018': Filename too long",
+      "reportedDirectory": "docs/M3-SCALE/rules-forwarding-20261018/tooling/synexia-openrewrite-recipes/recipe-crates/m3-eclipse-rules-forwarding-20261018/resources/com/synexia/rewrite/hash-pinned-java/m3-eclipse-rules-forwarding-20261018",
+      "skippedJavaSetup": true,
+      "skippedMavenSetup": true,
+      "skippedMavenBuild": true,
+      "sourceComparison": {
+        "baseRef": "master",
+        "baseCommit": "2bfb19847bd09bf28749194d489e8696b4a997b1",
+        "headCommit": "52f3d67e43402c5a65207109c2b37b68b5bbd74e",
+        "baseDirectoryPresent": false,
+        "baseDirectoryError": {
+          "error": "GitHub API error 404: {\"message\":\"Not Found\",\"documentation_url\":\"https://docs.github.com/rest/repos/contents#get-repository-content\",\"status\":\"404\"}",
+          "error_code": "NOT_FOUND",
+          "error_data": {
+            "message": "Not Found",
+            "documentation_url": "https://docs.github.com/rest/repos/contents#get-repository-content",
+            "status": "404"
+          }
+        },
+        "baseEntries": null,
+        "headEntries": [
+          {
+            "name": "ISchedulingRule.java.txt",
+            "path": "docs/M3-SCALE/rules-forwarding-20261018/tooling/synexia-openrewrite-recipes/recipe-crates/m3-eclipse-rules-forwarding-20261018/resources/com/synexia/rewrite/hash-pinned-java/m3-eclipse-rules-forwarding-20261018/ISchedulingRule.java.txt",
+            "sha": "671abb111807b78377eeb5a6e48695854eaedcc9",
+            "type": "file"
+          },
+          {
+            "name": "M3Rules.java.txt",
+            "path": "docs/M3-SCALE/rules-forwarding-20261018/tooling/synexia-openrewrite-recipes/recipe-crates/m3-eclipse-rules-forwarding-20261018/resources/com/synexia/rewrite/hash-pinned-java/m3-eclipse-rules-forwarding-20261018/M3Rules.java.txt",
+            "sha": "e9804316372c01291136080e2b5a3bbd26e2505e",
+            "type": "file"
+          },
+          {
+            "name": "MultiRule.java.txt",
+            "path": "docs/M3-SCALE/rules-forwarding-20261018/tooling/synexia-openrewrite-recipes/recipe-crates/m3-eclipse-rules-forwarding-20261018/resources/com/synexia/rewrite/hash-pinned-java/m3-eclipse-rules-forwarding-20261018/MultiRule.java.txt",
+            "sha": "fe2b0dccd8b837146bc1f648745bf2cf4e2af111",
+            "type": "file"
+          },
+          {
+            "name": "before-MultiRule.java.txt",
+            "path": "docs/M3-SCALE/rules-forwarding-20261018/tooling/synexia-openrewrite-recipes/recipe-crates/m3-eclipse-rules-forwarding-20261018/resources/com/synexia/rewrite/hash-pinned-java/m3-eclipse-rules-forwarding-20261018/before-MultiRule.java.txt",
+            "sha": "be58b0dfc1cb059a4ccb63b5271f07486829a8e4",
+            "type": "file"
+          },
+          {
+            "name": "manifest.tsv",
+            "path": "docs/M3-SCALE/rules-forwarding-20261018/tooling/synexia-openrewrite-recipes/recipe-crates/m3-eclipse-rules-forwarding-20261018/resources/com/synexia/rewrite/hash-pinned-java/m3-eclipse-rules-forwarding-20261018/manifest.tsv",
+            "sha": "bda95473ceeba9599e93f9ae4e6edafe8899738e",
+            "type": "file"
+          },
+          {
+            "name": "parse-context.tsv",
+            "path": "docs/M3-SCALE/rules-forwarding-20261018/tooling/synexia-openrewrite-recipes/recipe-crates/m3-eclipse-rules-forwarding-20261018/resources/com/synexia/rewrite/hash-pinned-java/m3-eclipse-rules-forwarding-20261018/parse-context.tsv",
+            "sha": "fbcb3b3e770b6915bc01a2f2be0ab85706ee4eda",
+            "type": "file"
+          }
+        ],
+        "entriesIdenticalAcrossBaseAndHead": false,
+        "totalPrChangedPaths": 76,
+        "changedPathsUnderReportedDirectory": [
+          "docs/M3-SCALE/rules-forwarding-20261018/tooling/synexia-openrewrite-recipes/recipe-crates/m3-eclipse-rules-forwarding-20261018/resources/com/synexia/rewrite/hash-pinned-java/m3-eclipse-rules-forwarding-20261018/ISchedulingRule.java.txt",
+          "docs/M3-SCALE/rules-forwarding-20261018/tooling/synexia-openrewrite-recipes/recipe-crates/m3-eclipse-rules-forwarding-20261018/resources/com/synexia/rewrite/hash-pinned-java/m3-eclipse-rules-forwarding-20261018/M3Rules.java.txt",
+          "docs/M3-SCALE/rules-forwarding-20261018/tooling/synexia-openrewrite-recipes/recipe-crates/m3-eclipse-rules-forwarding-20261018/resources/com/synexia/rewrite/hash-pinned-java/m3-eclipse-rules-forwarding-20261018/MultiRule.java.txt",
+          "docs/M3-SCALE/rules-forwarding-20261018/tooling/synexia-openrewrite-recipes/recipe-crates/m3-eclipse-rules-forwarding-20261018/resources/com/synexia/rewrite/hash-pinned-java/m3-eclipse-rules-forwarding-20261018/before-MultiRule.java.txt",
+          "docs/M3-SCALE/rules-forwarding-20261018/tooling/synexia-openrewrite-recipes/recipe-crates/m3-eclipse-rules-forwarding-20261018/resources/com/synexia/rewrite/hash-pinned-java/m3-eclipse-rules-forwarding-20261018/manifest.tsv",
+          "docs/M3-SCALE/rules-forwarding-20261018/tooling/synexia-openrewrite-recipes/recipe-crates/m3-eclipse-rules-forwarding-20261018/resources/com/synexia/rewrite/hash-pinned-java/m3-eclipse-rules-forwarding-20261018/parse-context.tsv"
+        ],
+        "baseContentsUrl": "https://api.github.com/repos/hsoliwal/eclipse.platform/contents/docs/M3-SCALE/rules-forwarding-20261018/tooling/synexia-openrewrite-recipes/recipe-crates/m3-eclipse-rules-forwarding-20261018/resources/com/synexia/rewrite/hash-pinned-java/m3-eclipse-rules-forwarding-20261018?ref=2bfb19847bd09bf28749194d489e8696b4a997b1",
+        "headContentsUrl": "https://api.github.com/repos/hsoliwal/eclipse.platform/contents/docs/M3-SCALE/rules-forwarding-20261018/tooling/synexia-openrewrite-recipes/recipe-crates/m3-eclipse-rules-forwarding-20261018/resources/com/synexia/rewrite/hash-pinned-java/m3-eclipse-rules-forwarding-20261018?ref=52f3d67e43402c5a65207109c2b37b68b5bbd74e"
+      },
+      "observedFailureClassification": "CHECKOUT_PATH_LENGTH_AT_NEW_TOOLING_MIRROR_DIRECTORY",
+      "baselineCiWasNotRerun": true,
+      "runtimeOrCompilerFailureObserved": false,
+      "evidence": {
+        "jobStepsApi": "https://api.github.com/repos/hsoliwal/eclipse.platform/actions/jobs/117690162562",
+        "jobLogsApi": "https://api.github.com/repos/hsoliwal/eclipse.platform/actions/jobs/117690162562/logs",
+        "originalLogLineCount": 183,
+        "excerptFile": "platform-windows-checkout-excerpt.log",
+        "firstOriginalLine": 130,
+        "lastOriginalLine": 134,
+        "excerptLineCount": 5,
+        "excerptLineEndings": "LF normalized; original timestamped line text retained",
+        "fullLogSavedToDisk": false
+      }
+    },
+    {
+      "repository": "hsoliwal/eclipse.platform.ui",
+      "prNumber": 17,
+      "publishedHead": "52f64fe74beb3f8763cefd28651c5d5ab01d5d92",
+      "jobId": 117690950893,
+      "jobUrl": "https://github.com/hsoliwal/eclipse.platform.ui/actions/runs/39132706917/job/117690950893",
+      "failedStep": {
+        "name": "Checkout",
+        "status": "completed",
+        "conclusion": "failure",
+        "number": 2
+      },
+      "allSteps": [
+        {
+          "name": "Set up job",
+          "status": "completed",
+          "conclusion": "success",
+          "number": 1
+        },
+        {
+          "name": "Checkout",
+          "status": "completed",
+          "conclusion": "failure",
+          "number": 2
+        },
+        {
+          "name": "Set up Java",
+          "status": "completed",
+          "conclusion": "skipped",
+          "number": 3
+        },
+        {
+          "name": "Set up Maven",
+          "status": "completed",
+          "conclusion": "skipped",
+          "number": 4
+        },
+        {
+          "name": "Build with Maven",
+          "status": "completed",
+          "conclusion": "skipped",
+          "number": 5
+        },
+        {
+          "name": "Upload Test Results for Windows",
+          "status": "completed",
+          "conclusion": "success",
+          "number": 6
+        },
+        {
+          "name": "Post Checkout",
+          "status": "completed",
+          "conclusion": "success",
+          "number": 12
+        },
+        {
+          "name": "Complete job",
+          "status": "completed",
+          "conclusion": "success",
+          "number": 13
+        }
+      ],
+      "checkoutCommandLogLine": "2026-10-18T14:08:07.3609516Z [command]\"C:\\Program Files\\Git\\bin\\git.exe\" checkout --progress --force refs/remotes/pull/17/merge",
+      "gitExitCode": 128,
+      "reportedFatalLogLine": "2026-10-18T14:08:09.9884286Z ##[error]fatal: cannot create directory at 'docs/M3-SCALE/jface-forwarding-20261017/tooling/synexia-openrewrite-recipes/recipe-crates/m3-jface-array-forwarding-20261017/resources/com/synexia/rewrite/hash-pinned-java/m3-jface-array-forwarding-20261017': Filename too long",
+      "reportedDirectory": "docs/M3-SCALE/jface-forwarding-20261017/tooling/synexia-openrewrite-recipes/recipe-crates/m3-jface-array-forwarding-20261017/resources/com/synexia/rewrite/hash-pinned-java/m3-jface-array-forwarding-20261017",
+      "skippedJavaSetup": true,
+      "skippedMavenSetup": true,
+      "skippedMavenBuild": true,
+      "sourceComparison": {
+        "baseRef": "master",
+        "baseCommit": "16e944f83eec18d4cf609afd9ad9a937711211ce",
+        "headCommit": "52f64fe74beb3f8763cefd28651c5d5ab01d5d92",
+        "baseDirectoryPresent": true,
+        "baseDirectoryError": null,
+        "baseEntries": [
+          {
+            "name": "ArrayContentProvider.java.txt",
+            "path": "docs/M3-SCALE/jface-forwarding-20261017/tooling/synexia-openrewrite-recipes/recipe-crates/m3-jface-array-forwarding-20261017/resources/com/synexia/rewrite/hash-pinned-java/m3-jface-array-forwarding-20261017/ArrayContentProvider.java.txt",
+            "sha": "a40d21c71d8c19a61bbbbc587bd8e152db62746f",
+            "type": "file"
+          },
+          {
+            "name": "M3ViewerArrays.java.txt",
+            "path": "docs/M3-SCALE/jface-forwarding-20261017/tooling/synexia-openrewrite-recipes/recipe-crates/m3-jface-array-forwarding-20261017/resources/com/synexia/rewrite/hash-pinned-java/m3-jface-array-forwarding-20261017/M3ViewerArrays.java.txt",
+            "sha": "e6ee963c961125b828d338c2c6a1f1cc88249deb",
+            "type": "file"
+          },
+          {
+            "name": "StructuredSelection.java.txt",
+            "path": "docs/M3-SCALE/jface-forwarding-20261017/tooling/synexia-openrewrite-recipes/recipe-crates/m3-jface-array-forwarding-20261017/resources/com/synexia/rewrite/hash-pinned-java/m3-jface-array-forwarding-20261017/StructuredSelection.java.txt",
+            "sha": "21a4f7bc583e146d49b528707f6e670bf89a69d3",
+            "type": "file"
+          },
+          {
+            "name": "TreePath.java.txt",
+            "path": "docs/M3-SCALE/jface-forwarding-20261017/tooling/synexia-openrewrite-recipes/recipe-crates/m3-jface-array-forwarding-20261017/resources/com/synexia/rewrite/hash-pinned-java/m3-jface-array-forwarding-20261017/TreePath.java.txt",
+            "sha": "06415df435f7674609ef394574be1c32fdd5f447",
+            "type": "file"
+          },
+          {
+            "name": "ViewerComparator.java.txt",
+            "path": "docs/M3-SCALE/jface-forwarding-20261017/tooling/synexia-openrewrite-recipes/recipe-crates/m3-jface-array-forwarding-20261017/resources/com/synexia/rewrite/hash-pinned-java/m3-jface-array-forwarding-20261017/ViewerComparator.java.txt",
+            "sha": "e1cf0960702e4457ea437214c0e7b79cb5812386",
+            "type": "file"
+          },
+          {
+            "name": "ViewerFilter.java.txt",
+            "path": "docs/M3-SCALE/jface-forwarding-20261017/tooling/synexia-openrewrite-recipes/recipe-crates/m3-jface-array-forwarding-20261017/resources/com/synexia/rewrite/hash-pinned-java/m3-jface-array-forwarding-20261017/ViewerFilter.java.txt",
+            "sha": "6d6cb663b2ec6700a8a2c6a8071c47ec4044b00d",
+            "type": "file"
+          },
+          {
+            "name": "before-ArrayContentProvider.java.txt",
+            "path": "docs/M3-SCALE/jface-forwarding-20261017/tooling/synexia-openrewrite-recipes/recipe-crates/m3-jface-array-forwarding-20261017/resources/com/synexia/rewrite/hash-pinned-java/m3-jface-array-forwarding-20261017/before-ArrayContentProvider.java.txt",
+            "sha": "fc4401e54e40967d729ff38385b345a073af51b3",
+            "type": "file"
+          },
+          {
+            "name": "before-StructuredSelection.java.txt",
+            "path": "docs/M3-SCALE/jface-forwarding-20261017/tooling/synexia-openrewrite-recipes/recipe-crates/m3-jface-array-forwarding-20261017/resources/com/synexia/rewrite/hash-pinned-java/m3-jface-array-forwarding-20261017/before-StructuredSelection.java.txt",
+            "sha": "99612e6a76e3997be50aa901ecb4838ccad1903b",
+            "type": "file"
+          },
+          {
+            "name": "before-TreePath.java.txt",
+            "path": "docs/M3-SCALE/jface-forwarding-20261017/tooling/synexia-openrewrite-recipes/recipe-crates/m3-jface-array-forwarding-20261017/resources/com/synexia/rewrite/hash-pinned-java/m3-jface-array-forwarding-20261017/before-TreePath.java.txt",
+            "sha": "8f36feff56f3e1b6a453763195015fcff34ee04c",
+            "type": "file"
+          },
+          {
+            "name": "before-ViewerComparator.java.txt",
+            "path": "docs/M3-SCALE/jface-forwarding-20261017/tooling/synexia-openrewrite-recipes/recipe-crates/m3-jface-array-forwarding-20261017/resources/com/synexia/rewrite/hash-pinned-java/m3-jface-array-forwarding-20261017/before-ViewerComparator.java.txt",
+            "sha": "81d739c8f696c62d1d605e93a821db69888f6325",
+            "type": "file"
+          },
+          {
+            "name": "before-ViewerFilter.java.txt",
+            "path": "docs/M3-SCALE/jface-forwarding-20261017/tooling/synexia-openrewrite-recipes/recipe-crates/m3-jface-array-forwarding-20261017/resources/com/synexia/rewrite/hash-pinned-java/m3-jface-array-forwarding-20261017/before-ViewerFilter.java.txt",
+            "sha": "c942c6a26909161545bedd86f4d094f0ae212a14",
+            "type": "file"
+          },
+          {
+            "name": "manifest.tsv",
+            "path": "docs/M3-SCALE/jface-forwarding-20261017/tooling/synexia-openrewrite-recipes/recipe-crates/m3-jface-array-forwarding-20261017/resources/com/synexia/rewrite/hash-pinned-java/m3-jface-array-forwarding-20261017/manifest.tsv",
+            "sha": "1db1f4389dcbf537d3e028a69e6b3f49ac301ce3",
+            "type": "file"
+          }
+        ],
+        "headEntries": [
+          {
+            "name": "ArrayContentProvider.java.txt",
+            "path": "docs/M3-SCALE/jface-forwarding-20261017/tooling/synexia-openrewrite-recipes/recipe-crates/m3-jface-array-forwarding-20261017/resources/com/synexia/rewrite/hash-pinned-java/m3-jface-array-forwarding-20261017/ArrayContentProvider.java.txt",
+            "sha": "a40d21c71d8c19a61bbbbc587bd8e152db62746f",
+            "type": "file"
+          },
+          {
+            "name": "M3ViewerArrays.java.txt",
+            "path": "docs/M3-SCALE/jface-forwarding-20261017/tooling/synexia-openrewrite-recipes/recipe-crates/m3-jface-array-forwarding-20261017/resources/com/synexia/rewrite/hash-pinned-java/m3-jface-array-forwarding-20261017/M3ViewerArrays.java.txt",
+            "sha": "e6ee963c961125b828d338c2c6a1f1cc88249deb",
+            "type": "file"
+          },
+          {
+            "name": "StructuredSelection.java.txt",
+            "path": "docs/M3-SCALE/jface-forwarding-20261017/tooling/synexia-openrewrite-recipes/recipe-crates/m3-jface-array-forwarding-20261017/resources/com/synexia/rewrite/hash-pinned-java/m3-jface-array-forwarding-20261017/StructuredSelection.java.txt",
+            "sha": "21a4f7bc583e146d49b528707f6e670bf89a69d3",
+            "type": "file"
+          },
+          {
+            "name": "TreePath.java.txt",
+            "path": "docs/M3-SCALE/jface-forwarding-20261017/tooling/synexia-openrewrite-recipes/recipe-crates/m3-jface-array-forwarding-20261017/resources/com/synexia/rewrite/hash-pinned-java/m3-jface-array-forwarding-20261017/TreePath.java.txt",
+            "sha": "06415df435f7674609ef394574be1c32fdd5f447",
+            "type": "file"
+          },
+          {
+            "name": "ViewerComparator.java.txt",
+            "path": "docs/M3-SCALE/jface-forwarding-20261017/tooling/synexia-openrewrite-recipes/recipe-crates/m3-jface-array-forwarding-20261017/resources/com/synexia/rewrite/hash-pinned-java/m3-jface-array-forwarding-20261017/ViewerComparator.java.txt",
+            "sha": "e1cf0960702e4457ea437214c0e7b79cb5812386",
+            "type": "file"
+          },
+          {
+            "name": "ViewerFilter.java.txt",
+            "path": "docs/M3-SCALE/jface-forwarding-20261017/tooling/synexia-openrewrite-recipes/recipe-crates/m3-jface-array-forwarding-20261017/resources/com/synexia/rewrite/hash-pinned-java/m3-jface-array-forwarding-20261017/ViewerFilter.java.txt",
+            "sha": "6d6cb663b2ec6700a8a2c6a8071c47ec4044b00d",
+            "type": "file"
+          },
+          {
+            "name": "before-ArrayContentProvider.java.txt",
+            "path": "docs/M3-SCALE/jface-forwarding-20261017/tooling/synexia-openrewrite-recipes/recipe-crates/m3-jface-array-forwarding-20261017/resources/com/synexia/rewrite/hash-pinned-java/m3-jface-array-forwarding-20261017/before-ArrayContentProvider.java.txt",
+            "sha": "fc4401e54e40967d729ff38385b345a073af51b3",
+            "type": "file"
+          },
+          {
+            "name": "before-StructuredSelection.java.txt",
+            "path": "docs/M3-SCALE/jface-forwarding-20261017/tooling/synexia-openrewrite-recipes/recipe-crates/m3-jface-array-forwarding-20261017/resources/com/synexia/rewrite/hash-pinned-java/m3-jface-array-forwarding-20261017/before-StructuredSelection.java.txt",
+            "sha": "99612e6a76e3997be50aa901ecb4838ccad1903b",
+            "type": "file"
+          },
+          {
+            "name": "before-TreePath.java.txt",
+            "path": "docs/M3-SCALE/jface-forwarding-20261017/tooling/synexia-openrewrite-recipes/recipe-crates/m3-jface-array-forwarding-20261017/resources/com/synexia/rewrite/hash-pinned-java/m3-jface-array-forwarding-20261017/before-TreePath.java.txt",
+            "sha": "8f36feff56f3e1b6a453763195015fcff34ee04c",
+            "type": "file"
+          },
+          {
+            "name": "before-ViewerComparator.java.txt",
+            "path": "docs/M3-SCALE/jface-forwarding-20261017/tooling/synexia-openrewrite-recipes/recipe-crates/m3-jface-array-forwarding-20261017/resources/com/synexia/rewrite/hash-pinned-java/m3-jface-array-forwarding-20261017/before-ViewerComparator.java.txt",
+            "sha": "81d739c8f696c62d1d605e93a821db69888f6325",
+            "type": "file"
+          },
+          {
+            "name": "before-ViewerFilter.java.txt",
+            "path": "docs/M3-SCALE/jface-forwarding-20261017/tooling/synexia-openrewrite-recipes/recipe-crates/m3-jface-array-forwarding-20261017/resources/com/synexia/rewrite/hash-pinned-java/m3-jface-array-forwarding-20261017/before-ViewerFilter.java.txt",
+            "sha": "c942c6a26909161545bedd86f4d094f0ae212a14",
+            "type": "file"
+          },
+          {
+            "name": "manifest.tsv",
+            "path": "docs/M3-SCALE/jface-forwarding-20261017/tooling/synexia-openrewrite-recipes/recipe-crates/m3-jface-array-forwarding-20261017/resources/com/synexia/rewrite/hash-pinned-java/m3-jface-array-forwarding-20261017/manifest.tsv",
+            "sha": "1db1f4389dcbf537d3e028a69e6b3f49ac301ce3",
+            "type": "file"
+          }
+        ],
+        "entriesIdenticalAcrossBaseAndHead": true,
+        "totalPrChangedPaths": 246,
+        "changedPathsUnderReportedDirectory": [],
+        "baseContentsUrl": "https://api.github.com/repos/hsoliwal/eclipse.platform.ui/contents/docs/M3-SCALE/jface-forwarding-20261017/tooling/synexia-openrewrite-recipes/recipe-crates/m3-jface-array-forwarding-20261017/resources/com/synexia/rewrite/hash-pinned-java/m3-jface-array-forwarding-20261017?ref=16e944f83eec18d4cf609afd9ad9a937711211ce",
+        "headContentsUrl": "https://api.github.com/repos/hsoliwal/eclipse.platform.ui/contents/docs/M3-SCALE/jface-forwarding-20261017/tooling/synexia-openrewrite-recipes/recipe-crates/m3-jface-array-forwarding-20261017/resources/com/synexia/rewrite/hash-pinned-java/m3-jface-array-forwarding-20261017?ref=52f64fe74beb3f8763cefd28651c5d5ab01d5d92"
+      },
+      "observedFailureClassification": "CHECKOUT_PATH_LENGTH_AT_UNCHANGED_BASELINE_TOOLING_DIRECTORY",
+      "baselineCiWasNotRerun": true,
+      "runtimeOrCompilerFailureObserved": false,
+      "evidence": {
+        "jobStepsApi": "https://api.github.com/repos/hsoliwal/eclipse.platform.ui/actions/jobs/117690950893",
+        "jobLogsApi": "https://api.github.com/repos/hsoliwal/eclipse.platform.ui/actions/jobs/117690950893/logs",
+        "originalLogLineCount": 232,
+        "excerptFile": "ui-windows-checkout-excerpt.log",
+        "firstOriginalLine": 136,
+        "lastOriginalLine": 183,
+        "excerptLineCount": 48,
+        "excerptLineEndings": "LF normalized; original timestamped line text retained",
+        "fullLogSavedToDisk": false
+      }
+    }
+  ]
+}

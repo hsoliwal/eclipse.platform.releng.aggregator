@@ -1,0 +1,13 @@
+# SPDX-FileCopyrightText: 2026 Hitesh Soliwal and Contributors to the Synexia Project
+# SPDX-License-Identifier: Apache-2.0
+type: specs.openrewrite.org/v1beta/recipe
+name: com.synexia.eclipse.Composition20261018
+displayName: Select the qualified M3 Eclipse receiver composition
+description: >-
+  Hash-sealed adaptation of three existing root submodule URLs and addition of the
+  exact twelve-module composition manifest. Nine other SDK module URLs and pins
+  remain unchanged. Gitlink object updates and complete SDK runtime acceptance
+  are outside this text recipe.
+recipeList:
+  - com.synexia.rewrite.M3HashPinnedTextSnapshotRecipe:
+      crateName: m3-eclipse-composition-20261018

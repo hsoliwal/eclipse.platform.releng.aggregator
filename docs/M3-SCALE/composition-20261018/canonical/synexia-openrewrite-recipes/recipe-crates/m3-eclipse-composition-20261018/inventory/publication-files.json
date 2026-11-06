@@ -1,0 +1,146 @@
+[
+  {
+    "path": "CONTRACT.md",
+    "sha256": "ff81340e7fcca76627836f09a46d029b1e04c20a757f82482d0a9d0727f09911",
+    "gitBlob": "fa5dd8468e0dcaa9c63211f52208accf0d663a16",
+    "bytes": 1517
+  },
+  {
+    "path": "COVERAGE.tsv",
+    "sha256": "0c2c77180c11cb58ae4ab762a87c968940ea206150accfcdbc1ba9e8ea79013c",
+    "gitBlob": "300f23ead232f00186de349dab33bd496d085ad2",
+    "bytes": 3337
+  },
+  {
+    "path": "LICENSE-APACHE-2.0",
+    "sha256": "cfc7749b96f63bd31c3c42b5c471bf756814053e847c10f3eb003417bc523d30",
+    "gitBlob": "d645695673349e3947e8e5ae42332d0ac3164cd7",
+    "bytes": 11358
+  },
+  {
+    "path": "LICENSE-EPL-2.0",
+    "sha256": "721c2da257578bace3332b14d8ea06643d7d26753e7ef25a837b4e904edc0bf5",
+    "gitBlob": "d3087e4c54047062ddcc0b6ecd606711bb246ab8",
+    "bytes": 14199
+  },
+  {
+    "path": "NOTICE",
+    "sha256": "41bacb9659d0de515f0f44507a9a9868fca53cf45232cc757027dc2104bc2c4f",
+    "gitBlob": "b742e79af9b7e85d44b4a23e7869d0e8ed1d5aab",
+    "bytes": 664
+  },
+  {
+    "path": "README.md",
+    "sha256": "6b61b78f4659c7acdbac375f37cb1e1ad75ece09a494ff1039826ccdd1ffd7bd",
+    "gitBlob": "98de5c34f01dd48dacb2454a6c51143544daf8e7",
+    "bytes": 3981
+  },
+  {
+    "path": "RECEIPT.json",
+    "sha256": "b6d192f386a6457ac0f7b7691e220770560151ea27b246f97e6026365e1e309a",
+    "gitBlob": "9f99ecfc0b1e2685fb0c5c4eccc6fff8ca6fa057",
+    "bytes": 10534
+  },
+  {
+    "path": "SOURCE_PINS.json",
+    "sha256": "5042f2277b05996f8d0b820f98b5c82c2cbb4db655362aff0ce006fe6bd6e0d1",
+    "gitBlob": "b28de10032335876e4a4ebec56faa813ce8a816d",
+    "bytes": 13484
+  },
+  {
+    "path": "evidence/TEST-M3EclipseCompositionTest.xml",
+    "sha256": "2d7b0ea4f350b06d71ef5bf0bb93efc32c79070aa0dac27f90fb41b25e179a58",
+    "gitBlob": "6511c7cf849eb7dad1cd41809e7fb342cc8f17f6",
+    "bytes": 10375
+  },
+  {
+    "path": "evidence/maven-test.json",
+    "sha256": "cc9432aade2f94344d15cc7cdb026c9f93ab9937d2196aae4e42fb99776fa602",
+    "gitBlob": "f82b4f6b85e7f195dbd2377fc472e32807d3c7e7",
+    "bytes": 238
+  },
+  {
+    "path": "evidence/maven-test.log",
+    "sha256": "c221c7706ac2db53200746723f64d3851a3f3093c1016d0fa47b5e3331248869",
+    "gitBlob": "874fb7b445688a14a5aa7611cc2e088cb873b7ca",
+    "bytes": 2133
+  },
+  {
+    "path": "evidence/recipe/TEST-com.synexia.rewrite.M3EclipseCompositionRecipeTest.xml",
+    "sha256": "af551b066e6080009e7621f910c691128ebf7e26d95ff63f70a9226a0cbd4618",
+    "gitBlob": "5b93a2fe9934b17ab464b224f9bbcb9a307ef296",
+    "bytes": 13743
+  },
+  {
+    "path": "evidence/recipe/maven.log",
+    "sha256": "7f49a78c0446916746a329fbfdcefc2152738626ba2b60d38e381236fcb7f083",
+    "gitBlob": "70545a657e5b85375e974d9a5a0071299d14c895",
+    "bytes": 2386
+  },
+  {
+    "path": "evidence/recipe/receipt.json",
+    "sha256": "4b98dd994c69751e4e21c255763b527d237a81c989592d4361197000a607f3fa",
+    "gitBlob": "3f5a0acaa5c6138374b31edf1bce960e6d9df458",
+    "bytes": 8526
+  },
+  {
+    "path": "pom.xml",
+    "sha256": "76787548da88eafff86e5533f7e7f303a6d22f4a3ad6228764355bef274a536a",
+    "gitBlob": "3c3d3e15fd4bdd17ccb8b1feaadb6dcca7a10ccc",
+    "bytes": 3387
+  },
+  {
+    "path": "proof/pom.xml",
+    "sha256": "a681cf8540423d537e78749b8cce9d8d8d4b2e11a93cc76a789d17a46201106c",
+    "gitBlob": "5871241de0aeb48b7f0a15ac19c8a1b38f2939d4",
+    "bytes": 1869
+  },
+  {
+    "path": "proof/src/main/java/M3EclipseComposition.java",
+    "sha256": "c667623237c17762f719a3b10b8c639a698333d9ae1e97cfa46ed7b2623a1473",
+    "gitBlob": "7dd26b29e5abb2fd094fdbd29a334f98acd3cbef",
+    "bytes": 25021
+  },
+  {
+    "path": "proof/src/test/java/M3EclipseCompositionTest.java",
+    "sha256": "07bf6007702850e7e7161afe85ebd2bdf0bae35ab4619d1ed750b40d6e4c6cba",
+    "gitBlob": "8591b84caf39538ef76d74843b99864023aca411",
+    "bytes": 21805
+  },
+  {
+    "path": "resources/META-INF/rewrite/m3-eclipse-composition-20261018.yml",
+    "sha256": "9e547f65d29cc264309f6c7f3f874951c98aabffc9fc66f42be21ea4f7cf8eb9",
+    "gitBlob": "8d05aa2e45d29720bf6b67142136e6db1a4132f7",
+    "bytes": 685
+  },
+  {
+    "path": "resources/com/synexia/rewrite/hash-pinned-text/m3-eclipse-composition-20261018/before-gitmodules.txt",
+    "sha256": "e0db0c3445e743e8a0b081c41535ea5420b6a02e1894d879b5a88920bbab9bbd",
+    "gitBlob": "0d7252d6ec3d671acdcc4c97ece0a156703078f5",
+    "bytes": 1609
+  },
+  {
+    "path": "resources/com/synexia/rewrite/hash-pinned-text/m3-eclipse-composition-20261018/composition.tsv.txt",
+    "sha256": "fc03143317627ee9998d0301af0eb5bc47b46ea98b726ddc69267a83b4c809f2",
+    "gitBlob": "f0f3f55a2433935b5af49bfc0cee505eba88abb7",
+    "bytes": 1311
+  },
+  {
+    "path": "resources/com/synexia/rewrite/hash-pinned-text/m3-eclipse-composition-20261018/gitmodules.txt",
+    "sha256": "28f1af659cfce0b6581f27e16c2367c3162a8619c3ba4eb7dc73c3a3442013e8",
+    "gitBlob": "d7ea710217406494d3fd9945ce072cee744878c7",
+    "bytes": 1585
+  },
+  {
+    "path": "resources/com/synexia/rewrite/hash-pinned-text/m3-eclipse-composition-20261018/manifest.tsv",
+    "sha256": "d54f546ebf6946edb0341faa98dbec4a00a3843b05ed94daaaf4e90876f31175",
+    "gitBlob": "089d7db103bc81c5b0a2f57f6297381428ef60f3",
+    "bytes": 300
+  },
+  {
+    "path": "src/test/java/com/synexia/rewrite/M3EclipseCompositionRecipeTest.java",
+    "sha256": "2b397c6391581cef4d8e028c70a401cff6bbd13c2f9d200f042681459e451a3d",
+    "gitBlob": "b81938fbcb9034b686a8225360d23fce5216c605",
+    "bytes": 7108
+  }
+]

@@ -1,0 +1,353 @@
+{
+  "schema": "m3-eclipse-composition-source-pins-v1",
+  "spdxLicenseId": "Apache-2.0",
+  "canonicalSourceRepository": "hsoliwal/com.synexia",
+  "canonicalCratePath": "synexia-openrewrite-recipes/recipe-crates/m3-eclipse-composition-20261018",
+  "canonicalHandoffBaseRevision": "2b39b8232652ad86c16b239779a0c0cc205e5ecd",
+  "qualifiedRuntimeSourceRevision": "9a04e7cf94e2b47570fed61ed508e50dcd80edb1",
+  "receiverRepository": "hsoliwal/eclipse.platform.releng.aggregator",
+  "receiverBaseRevision": "0f1cb47ce80d9cf91fbb3ec4cbeccfcd366691b9",
+  "recipeName": "com.synexia.eclipse.Composition20261018",
+  "openRewriteVersion": "8.17.1",
+  "sharedRecipeOwners": [
+    {
+      "path": "synexia-openrewrite-recipes/src/main/java/com/synexia/rewrite/M3EditScope.java",
+      "sha256": "962d37d62d740c3e8055c365a048ae7ee0479c26a9f6bbfe741e540d6c1134ab",
+      "gitBlob": "274360816db1e44a2f1796a3bc5cdeff6b0ce6db",
+      "bytes": 1052
+    },
+    {
+      "path": "synexia-openrewrite-recipes/src/main/java/com/synexia/rewrite/M3ScopeInference.java",
+      "sha256": "13660b59f60ec2941ec19e9bc8964ffd4b04689cdc33cd19711fba14b8da09a4",
+      "gitBlob": "d24729950508857280ea1b56d4e930f05137ec85",
+      "bytes": 7655
+    },
+    {
+      "path": "synexia-openrewrite-recipes/src/main/java/com/synexia/rewrite/M3HashPinnedJavaSnapshotRecipe.java",
+      "sha256": "67f7b81126e4736c7b61b444fa6545153a61e23c012975ca796fcee623ab6625",
+      "gitBlob": "3bdeeaea9a212fe0c7d1f544510f87c4cd49eb40",
+      "bytes": 31181
+    },
+    {
+      "path": "synexia-openrewrite-recipes/src/main/java/com/synexia/rewrite/M3HashPinnedTextSnapshotRecipe.java",
+      "sha256": "58c94f4b87a6e4a53268808bf0c635fe7bd56e2864cb8fe46483c85efba771d0",
+      "gitBlob": "cc5f86ab579d2f4b1b9bc4c26b4592d2d8142244",
+      "bytes": 20355
+    }
+  ],
+  "defaultRecipeOwnerRoot": "${project.basedir}/../../src/main/java",
+  "textOutputs": [
+    {
+      "path": ".gitmodules",
+      "before": "e0db0c3445e743e8a0b081c41535ea5420b6a02e1894d879b5a88920bbab9bbd",
+      "after": "28f1af659cfce0b6581f27e16c2367c3162a8619c3ba4eb7dc73c3a3442013e8",
+      "resource": "gitmodules.txt"
+    },
+    {
+      "path": "docs/M3-SCALE/composition-20261018/composition.tsv",
+      "before": "ABSENT",
+      "after": "fc03143317627ee9998d0301af0eb5bc47b46ea98b726ddc69267a83b4c809f2",
+      "resource": "composition.tsv.txt"
+    }
+  ],
+  "recipeDescriptor": {
+    "path": "resources/META-INF/rewrite/m3-eclipse-composition-20261018.yml",
+    "sha256": "9e547f65d29cc264309f6c7f3f874951c98aabffc9fc66f42be21ea4f7cf8eb9",
+    "gitBlob": "8d05aa2e45d29720bf6b67142136e6db1a4132f7",
+    "bytes": 685
+  },
+  "originalGitmodules": {
+    "sha256": "e0db0c3445e743e8a0b081c41535ea5420b6a02e1894d879b5a88920bbab9bbd",
+    "gitBlob": "0d7252d6ec3d671acdcc4c97ece0a156703078f5",
+    "bytes": 1609
+  },
+  "originalGitlinks": [
+    {
+      "path": "eclipse.jdt",
+      "mode": "160000",
+      "commit": "36db39a9a02496f1feb6f7d5d7a589c6a7280f03",
+      "url": "https://github.com/eclipse-jdt/eclipse.jdt.git"
+    },
+    {
+      "path": "eclipse.jdt.core",
+      "mode": "160000",
+      "commit": "5a4dd839342e057849b378ec912c47035db65dbb",
+      "url": "https://github.com/eclipse-jdt/eclipse.jdt.core.git"
+    },
+    {
+      "path": "eclipse.jdt.core.binaries",
+      "mode": "160000",
+      "commit": "987122d226c7ee6b501d8bc67a2bcda034f2fd6f",
+      "url": "https://github.com/eclipse-jdt/eclipse.jdt.core.binaries.git"
+    },
+    {
+      "path": "eclipse.jdt.debug",
+      "mode": "160000",
+      "commit": "66336db9513b0eb69e5adbc44114ea263b1334f3",
+      "url": "https://github.com/eclipse-jdt/eclipse.jdt.debug.git"
+    },
+    {
+      "path": "eclipse.jdt.ui",
+      "mode": "160000",
+      "commit": "d15cf8713ca45e721128caf7c150f0ae12924ee6",
+      "url": "https://github.com/eclipse-jdt/eclipse.jdt.ui.git"
+    },
+    {
+      "path": "eclipse.pde",
+      "mode": "160000",
+      "commit": "a417758d373e966ce1af14d61d96e76550a84899",
+      "url": "https://github.com/eclipse-pde/eclipse.pde.git"
+    },
+    {
+      "path": "eclipse.platform",
+      "mode": "160000",
+      "commit": "9dd1e78ff1e058c2b5abbc43f72dc95587d55101",
+      "url": "https://github.com/eclipse-platform/eclipse.platform.git"
+    },
+    {
+      "path": "eclipse.platform.swt",
+      "mode": "160000",
+      "commit": "687c8a2f8b7d72344e8671f47e521b130de4499e",
+      "url": "https://github.com/eclipse-platform/eclipse.platform.swt.git"
+    },
+    {
+      "path": "eclipse.platform.ui",
+      "mode": "160000",
+      "commit": "b29167282ef667f36149d5427dc9872ed8b667b5",
+      "url": "https://github.com/eclipse-platform/eclipse.platform.ui.git"
+    },
+    {
+      "path": "equinox",
+      "mode": "160000",
+      "commit": "0dcf6b0d2c33ef1030e2d556d6f80af96cd533f7",
+      "url": "https://github.com/eclipse-equinox/equinox.git"
+    },
+    {
+      "path": "equinox.binaries",
+      "mode": "160000",
+      "commit": "71ca93aa517069ffe41c9470ca4d232e305f50dc",
+      "url": "https://github.com/eclipse-equinox/equinox.binaries.git"
+    },
+    {
+      "path": "equinox.p2",
+      "mode": "160000",
+      "commit": "a5382d1705062835b356ca8a64b1d49e566aa8ed",
+      "url": "https://github.com/eclipse-equinox/p2.git"
+    }
+  ],
+  "selectedGitlinks": [
+    {
+      "path": "eclipse.jdt",
+      "mode": "160000",
+      "commit": "36db39a9a02496f1feb6f7d5d7a589c6a7280f03",
+      "url": "https://github.com/eclipse-jdt/eclipse.jdt.git"
+    },
+    {
+      "path": "eclipse.jdt.core",
+      "mode": "160000",
+      "commit": "5a4dd839342e057849b378ec912c47035db65dbb",
+      "url": "https://github.com/eclipse-jdt/eclipse.jdt.core.git"
+    },
+    {
+      "path": "eclipse.jdt.core.binaries",
+      "mode": "160000",
+      "commit": "987122d226c7ee6b501d8bc67a2bcda034f2fd6f",
+      "url": "https://github.com/eclipse-jdt/eclipse.jdt.core.binaries.git"
+    },
+    {
+      "path": "eclipse.jdt.debug",
+      "mode": "160000",
+      "commit": "66336db9513b0eb69e5adbc44114ea263b1334f3",
+      "url": "https://github.com/eclipse-jdt/eclipse.jdt.debug.git"
+    },
+    {
+      "path": "eclipse.jdt.ui",
+      "mode": "160000",
+      "commit": "d15cf8713ca45e721128caf7c150f0ae12924ee6",
+      "url": "https://github.com/eclipse-jdt/eclipse.jdt.ui.git"
+    },
+    {
+      "path": "eclipse.pde",
+      "mode": "160000",
+      "commit": "a417758d373e966ce1af14d61d96e76550a84899",
+      "url": "https://github.com/eclipse-pde/eclipse.pde.git"
+    },
+    {
+      "path": "eclipse.platform",
+      "mode": "160000",
+      "commit": "52f3d67e43402c5a65207109c2b37b68b5bbd74e",
+      "url": "https://github.com/hsoliwal/eclipse.platform.git"
+    },
+    {
+      "path": "eclipse.platform.swt",
+      "mode": "160000",
+      "commit": "422fb369629ba47fc5c5c6ddf01794b6d7c79f42",
+      "url": "https://github.com/hsoliwal/eclipse.platform.swt.git"
+    },
+    {
+      "path": "eclipse.platform.ui",
+      "mode": "160000",
+      "commit": "52f64fe74beb3f8763cefd28651c5d5ab01d5d92",
+      "url": "https://github.com/hsoliwal/eclipse.platform.ui.git"
+    },
+    {
+      "path": "equinox",
+      "mode": "160000",
+      "commit": "0dcf6b0d2c33ef1030e2d556d6f80af96cd533f7",
+      "url": "https://github.com/eclipse-equinox/equinox.git"
+    },
+    {
+      "path": "equinox.binaries",
+      "mode": "160000",
+      "commit": "71ca93aa517069ffe41c9470ca4d232e305f50dc",
+      "url": "https://github.com/eclipse-equinox/equinox.binaries.git"
+    },
+    {
+      "path": "equinox.p2",
+      "mode": "160000",
+      "commit": "a5382d1705062835b356ca8a64b1d49e566aa8ed",
+      "url": "https://github.com/eclipse-equinox/p2.git"
+    }
+  ],
+  "gitlinkUpdatesOutsideTextRecipe": [
+    {
+      "path": "eclipse.platform",
+      "mode": "160000",
+      "beforeCommit": "9dd1e78ff1e058c2b5abbc43f72dc95587d55101",
+      "afterCommit": "52f3d67e43402c5a65207109c2b37b68b5bbd74e",
+      "beforeUrl": "https://github.com/eclipse-platform/eclipse.platform.git",
+      "afterUrl": "https://github.com/hsoliwal/eclipse.platform.git"
+    },
+    {
+      "path": "eclipse.platform.swt",
+      "mode": "160000",
+      "beforeCommit": "687c8a2f8b7d72344e8671f47e521b130de4499e",
+      "afterCommit": "422fb369629ba47fc5c5c6ddf01794b6d7c79f42",
+      "beforeUrl": "https://github.com/eclipse-platform/eclipse.platform.swt.git",
+      "afterUrl": "https://github.com/hsoliwal/eclipse.platform.swt.git"
+    },
+    {
+      "path": "eclipse.platform.ui",
+      "mode": "160000",
+      "beforeCommit": "b29167282ef667f36149d5427dc9872ed8b667b5",
+      "afterCommit": "52f64fe74beb3f8763cefd28651c5d5ab01d5d92",
+      "beforeUrl": "https://github.com/eclipse-platform/eclipse.platform.ui.git",
+      "afterUrl": "https://github.com/hsoliwal/eclipse.platform.ui.git"
+    }
+  ],
+  "unchangedOtherGitlinks": 9,
+  "gitlinkMutationByRecipe": false,
+  "manifestSchema": {
+    "header": "path\turl\tcommit",
+    "rows": 12,
+    "maximumBytes": 16384
+  },
+  "frozenVerifierFiles": [
+    {
+      "path": "evidence/TEST-M3EclipseCompositionTest.xml",
+      "sha256": "2d7b0ea4f350b06d71ef5bf0bb93efc32c79070aa0dac27f90fb41b25e179a58",
+      "gitBlob": "6511c7cf849eb7dad1cd41809e7fb342cc8f17f6",
+      "bytes": 10375
+    },
+    {
+      "path": "evidence/maven-test.json",
+      "sha256": "cc9432aade2f94344d15cc7cdb026c9f93ab9937d2196aae4e42fb99776fa602",
+      "gitBlob": "f82b4f6b85e7f195dbd2377fc472e32807d3c7e7",
+      "bytes": 238
+    },
+    {
+      "path": "evidence/maven-test.log",
+      "sha256": "c221c7706ac2db53200746723f64d3851a3f3093c1016d0fa47b5e3331248869",
+      "gitBlob": "874fb7b445688a14a5aa7611cc2e088cb873b7ca",
+      "bytes": 2133
+    },
+    {
+      "path": "proof/pom.xml",
+      "sha256": "a681cf8540423d537e78749b8cce9d8d8d4b2e11a93cc76a789d17a46201106c",
+      "gitBlob": "5871241de0aeb48b7f0a15ac19c8a1b38f2939d4",
+      "bytes": 1869
+    },
+    {
+      "path": "proof/src/main/java/M3EclipseComposition.java",
+      "sha256": "c667623237c17762f719a3b10b8c639a698333d9ae1e97cfa46ed7b2623a1473",
+      "gitBlob": "7dd26b29e5abb2fd094fdbd29a334f98acd3cbef",
+      "bytes": 25021
+    },
+    {
+      "path": "proof/src/test/java/M3EclipseCompositionTest.java",
+      "sha256": "07bf6007702850e7e7161afe85ebd2bdf0bae35ab4619d1ed750b40d6e4c6cba",
+      "gitBlob": "8591b84caf39538ef76d74843b99864023aca411",
+      "bytes": 21805
+    }
+  ],
+  "recordedVerifierTestCounts": {
+    "tests": 46,
+    "failures": 0,
+    "errors": 0,
+    "skipped": 0
+  },
+  "frozenVerifierTestsRerunDuringCompositionAssembly": false,
+  "nativeEvidencePointers": [
+    {
+      "sourceRepository": "hsoliwal/com.synexia",
+      "sourceRevision": "9a04e7cf94e2b47570fed61ed508e50dcd80edb1",
+      "path": "synexia-openrewrite-recipes/recipe-crates/m3-jface-forwarding-gate-20261018/evidence/native/native-handoff.json",
+      "sha256": "9447c15a2d5242b8b8d0f9ddb02f12f9ba793da147945086eba10196fdba6224",
+      "gitBlob": "600bea384fb6c3e139109b2d86ef2b3b667e76bd",
+      "bytes": 3023
+    },
+    {
+      "sourceRepository": "hsoliwal/com.synexia",
+      "sourceRevision": "9a04e7cf94e2b47570fed61ed508e50dcd80edb1",
+      "path": "synexia-openrewrite-recipes/recipe-crates/m3-jface-forwarding-gate-20261018/evidence/native/native-green/native-jface.json",
+      "sha256": "485d916e8e6e8752076a4e72f6693f3eb32aae1b1393a7125fef4ac5b2206adc",
+      "gitBlob": "1e22448d524e253675ce6e943b4dcd06ffae1775",
+      "bytes": 2206
+    },
+    {
+      "sourceRepository": "hsoliwal/com.synexia",
+      "sourceRevision": "9a04e7cf94e2b47570fed61ed508e50dcd80edb1",
+      "path": "synexia-openrewrite-recipes/recipe-crates/m3-jface-forwarding-gate-20261018/evidence/native/native-green/TEST-org.eclipse.jface.tests.viewers.M3TreeForwardingTest.xml",
+      "sha256": "bc984d3d195c38ef37619a0954b73ee35bea0b2585b587e25c734256a6a3e52a",
+      "gitBlob": "967ce6d78649fb5dd84482367c9bab96ddc398e6",
+      "bytes": 7352
+    }
+  ],
+  "nativeEvidenceScope": {
+    "tests": 1,
+    "failures": 0,
+    "errors": 0,
+    "skipped": 0,
+    "testClass": "org.eclipse.jface.tests.viewers.M3TreeForwardingTest",
+    "testMethod": "testExpandedStateDelegatesToSwtWithoutWalkingColdVirtualSiblings",
+    "recordedCompositionReportsExit": 0,
+    "fullTychoPdeRun": false,
+    "reexecutedDuringCompositionPackaging": false
+  },
+  "twelveInitializedWorktreeSourceGate": "NOT_RUN_DURING_RECIPE_ASSEMBLY",
+  "fullTychoPdeAcceptance": "NOT_CLAIMED",
+  "wholeEclipseMigration": false,
+  "publishedReceiverRecords": {
+    "eclipse.platform": {
+      "repository": "hsoliwal/eclipse.platform",
+      "commit": "52f3d67e43402c5a65207109c2b37b68b5bbd74e",
+      "tree": "841c993012bce66b9a0603bbe5164a46746c711d",
+      "parent": "2bfb19847bd09bf28749194d489e8696b4a997b1",
+      "branch": "m3/eclipse-rules-forwarding-20261018",
+      "source": "root reports published branch readback and independent76-file tree verification"
+    },
+    "eclipse.platform.ui": {
+      "repository": "hsoliwal/eclipse.platform.ui",
+      "commit": "52f64fe74beb3f8763cefd28651c5d5ab01d5d92",
+      "tree": "9dd9b23b69b684b4712002ff3bd012cebc655a21",
+      "parent": "16e944f83eec18d4cf609afd9ad9a937711211ce",
+      "branch": "m3/eclipse-runtime-forwarding-20261018",
+      "verifiedBy": "integration owner after branch readback and exact 246-file tree verification"
+    },
+    "eclipse.platform.swt": {
+      "repository": "hsoliwal/eclipse.platform.swt",
+      "commit": "422fb369629ba47fc5c5c6ddf01794b6d7c79f42",
+      "verification": "Existing receiver commit selected by integration owner"
+    }
+  }
+}

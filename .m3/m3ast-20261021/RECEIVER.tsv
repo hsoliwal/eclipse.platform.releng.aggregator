@@ -1,0 +1,9 @@
+schema	M3_ECLIPSE_BUILD_SOURCE_GATE_V1
+repository	hsoliwal/eclipse.platform.releng.aggregator
+source_ref	master
+root_path	pom.xml
+root_sha256	1cd287b19012c82003de6a4240800779137b5ec1d428b55766a8fdab4b99aa08
+original_build	MAVEN_TYCHO_RELEASE
+canonical_recipe	com.synexia.eclipse.EstateAstEclipsePlatformRelengAggregator20261021
+canonical_commit	b77c892d7519c6aa037c2b5cebd8658867ea712b
+status	HOLD_NATIVE_AND_SEMANTIC_GATES

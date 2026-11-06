@@ -1,0 +1,180 @@
+{
+  "schema": "m3-eclipse-ci-longpaths-sdk-run-v1",
+  "spdxLicenseId": "Apache-2.0",
+  "phase": "yaml-printer-refusal",
+  "startedAt": "2026-10-19T04:19:33.006738+00:00",
+  "finishedAt": "2026-10-19T04:19:35.932672+00:00",
+  "wallSeconds": 2.926,
+  "command": [
+    "/tmp/eclipse-m3-20261019/toolchain/maven/bin/mvn",
+    "-o",
+    "-B",
+    "-ntp",
+    "-C",
+    "-Dmaven.repo.local=/tmp/eclipse-m3-20261019/maven-cache",
+    "-f",
+    "/tmp/eclipse-m3-20261019/synexia/synexia-openrewrite-recipes/recipe-crates/m3-eclipse-ci-longpaths-20261019/pom.xml",
+    "-Dmaterialize.dir=/tmp/eclipse-m3-20261019/ci-longpaths-authoring/materialized",
+    "test"
+  ],
+  "cwd": "/tmp/eclipse-m3-20261019/synexia/synexia-openrewrite-recipes/recipe-crates/m3-eclipse-ci-longpaths-20261019",
+  "javaHome": "/tmp/eclipse-m3-20261019/toolchain/jdk21",
+  "toolchainVersionCommands": [
+    {
+      "command": [
+        "/tmp/eclipse-m3-20261019/toolchain/jdk21/bin/java",
+        "-version"
+      ],
+      "output": "openjdk version \"21.0.12.1\" 2026-08-18 LTS\nOpenJDK Runtime Environment Temurin-21.0.12.1+1 (build 21.0.12.1+1-LTS)\nOpenJDK 64-Bit Server VM Temurin-21.0.12.1+1 (build 21.0.12.1+1-LTS, mixed mode, sharing)\n"
+    },
+    {
+      "command": [
+        "/tmp/eclipse-m3-20261019/toolchain/maven/bin/mvn",
+        "-version"
+      ],
+      "output": "Apache Maven 3.9.12 (848fbb4bf2d427b72bdb2471c22fced7ebd9a7a1)\nMaven home: /tmp/eclipse-m3-20261019/toolchain/maven\nJava version: 21.0.12.1, vendor: Eclipse Adoptium, runtime: /tmp/eclipse-m3-20261019/toolchain/jdk21\nDefault locale: en, platform encoding: UTF-8\nOS name: \"linux\", version: \"6.18.55\", arch: \"amd64\", family: \"unix\"\n"
+    }
+  ],
+  "offline": true,
+  "recipeOwnerRootOverridden": false,
+  "qualifiedInputs": [
+    {
+      "path": "synexia-openrewrite-recipes/recipe-crates/m3-eclipse-ci-longpaths-20261019/pom.xml",
+      "bytes": 3543,
+      "sha256": "bd27602d8ee7b6b290f17bad646c3bf798201a869578958feb7b1ebc4dd30349",
+      "gitBlob": "84e5e40b2bc814745a5ebefa5b49bc4f69375ffa"
+    },
+    {
+      "path": "synexia-openrewrite-recipes/recipe-crates/m3-eclipse-ci-longpaths-20261019/CONTRACT.md",
+      "bytes": 3449,
+      "sha256": "cc8e4aa71d19815efaa127f4a48f676c5f00245e3b5365eb6132993bcd805d7b",
+      "gitBlob": "a0e6cc524ee6f31bdaa49a87f501902e213ebff0"
+    },
+    {
+      "path": "synexia-openrewrite-recipes/recipe-crates/m3-eclipse-ci-longpaths-20261019/SPECTRUM.md",
+      "bytes": 2256,
+      "sha256": "890a10489c0411de92c47e4d2c64e5cb6ef7186130e050950f1214e50166f0a1",
+      "gitBlob": "b8d51741ff7119f8ea930fdb6a1c38db2c5c8b8d"
+    },
+    {
+      "path": "synexia-openrewrite-recipes/recipe-crates/m3-eclipse-ci-longpaths-20261019/src/test/java/com/synexia/rewrite/M3EclipseCiLongPathsRecipeTest.java",
+      "bytes": 10053,
+      "sha256": "ef705d224cf242b98926439d4e0bd16e195a48d05935e17440a4d466004be013",
+      "gitBlob": "6c683f0ffcd2ec5cab0c38f8ae659a355ae452d0"
+    },
+    {
+      "path": "synexia-openrewrite-recipes/recipe-crates/m3-eclipse-ci-longpaths-20261019/resources/META-INF/rewrite/m3-eclipse-ci-longpaths-20261019.yml",
+      "bytes": 576,
+      "sha256": "73517772c69df85cc17da0a9ebf00f90ff8327ea0018f9e9b824b55b8b3a5ef4",
+      "gitBlob": "da2f91819bfbd877bde3a2dd16f98702fbb5fafa"
+    },
+    {
+      "path": "synexia-openrewrite-recipes/recipe-crates/m3-eclipse-ci-longpaths-20261019/resources/com/synexia/rewrite/hash-pinned-text/m3-eclipse-ci-longpaths-20261019/before-mavenBuild.yml.txt",
+      "bytes": 3238,
+      "sha256": "b9ba4a35ef634726477534373fc39ed23d5185254ee71ecf1ff63475830742e8",
+      "gitBlob": "0416c8be3bef180616929288ad634e3b4c7d9515"
+    },
+    {
+      "path": "synexia-openrewrite-recipes/recipe-crates/m3-eclipse-ci-longpaths-20261019/resources/com/synexia/rewrite/hash-pinned-text/m3-eclipse-ci-longpaths-20261019/mavenBuild.yml.txt",
+      "bytes": 3363,
+      "sha256": "23522344c0010e850bdc279312e9c0ebf546f0af97162e51d59024d533d4c0d9",
+      "gitBlob": "d6d1096b7f38bb975fa3c9e3e6c0ef47a9166fbf"
+    },
+    {
+      "path": "synexia-openrewrite-recipes/recipe-crates/m3-eclipse-ci-longpaths-20261019/resources/com/synexia/rewrite/hash-pinned-text/m3-eclipse-ci-longpaths-20261019/manifest.tsv",
+      "bytes": 182,
+      "sha256": "ce4add2b93cfb55fcffebd6371233867358513fdb83044901aa0a6d6056a0f3a",
+      "gitBlob": "bed1cbeb546e4073c00b77be6621e5becf1fa00d"
+    },
+    {
+      "path": "synexia-openrewrite-recipes/src/main/java/com/synexia/rewrite/M3EditScope.java",
+      "bytes": 1052,
+      "sha256": "962d37d62d740c3e8055c365a048ae7ee0479c26a9f6bbfe741e540d6c1134ab",
+      "gitBlob": "274360816db1e44a2f1796a3bc5cdeff6b0ce6db"
+    },
+    {
+      "path": "synexia-openrewrite-recipes/src/main/java/com/synexia/rewrite/M3ScopeInference.java",
+      "bytes": 7655,
+      "sha256": "13660b59f60ec2941ec19e9bc8964ffd4b04689cdc33cd19711fba14b8da09a4",
+      "gitBlob": "d24729950508857280ea1b56d4e930f05137ec85"
+    },
+    {
+      "path": "synexia-openrewrite-recipes/src/main/java/com/synexia/rewrite/M3HashPinnedJavaSnapshotRecipe.java",
+      "bytes": 31181,
+      "sha256": "67f7b81126e4736c7b61b444fa6545153a61e23c012975ca796fcee623ab6625",
+      "gitBlob": "3bdeeaea9a212fe0c7d1f544510f87c4cd49eb40"
+    },
+    {
+      "path": "synexia-openrewrite-recipes/src/main/java/com/synexia/rewrite/M3HashPinnedTextSnapshotRecipe.java",
+      "bytes": 20355,
+      "sha256": "58c94f4b87a6e4a53268808bf0c635fe7bd56e2864cb8fe46483c85efba771d0",
+      "gitBlob": "cc5f86ab579d2f4b1b9bc4c26b4592d2d8142244"
+    }
+  ],
+  "redSnapshots": [],
+  "exitCode": 1,
+  "rawLog": {
+    "path": "evidence/sdk-yaml-printer-refusal/maven.log",
+    "bytes": 6104,
+    "sha256": "2416feb3d032586bd615f6ac18c0fedf5ad531d24c1a48d77e9a5bcc72435c49",
+    "gitBlob": "9ebbb027a6ea869272a522a8c2fbd3fa28a09926"
+  },
+  "rawXml": {
+    "path": "evidence/sdk-yaml-printer-refusal/TEST-com.synexia.rewrite.M3EclipseCiLongPathsRecipeTest.xml",
+    "bytes": 16955,
+    "sha256": "5deaff2dafbe79d9129f07bf9499338d351dccfa9344c0d5cd62554a668a9ba7",
+    "gitBlob": "d1fd41ffb53be6e5f3a4471c369cf46ae845a1db"
+  },
+  "testCounts": {
+    "tests": 6,
+    "failures": 2,
+    "errors": 0,
+    "skipped": 0
+  },
+  "testIssues": [
+    {
+      "testcase": "namedRecipeCorrectsWindowsCheckoutAndMaterializes",
+      "kind": "failure",
+      "message": "actual YAML parser admission ==> Unexpected type, expected: <org.openrewrite.yaml.tree.Yaml.Documents> but was: <org.openrewrite.tree.ParseError>"
+    },
+    {
+      "testcase": "reviewedPostimageIsFixedPointAndManifestIsClosed",
+      "kind": "failure",
+      "message": "actual YAML parser admission ==> Unexpected type, expected: <org.openrewrite.yaml.tree.Yaml.Documents> but was: <org.openrewrite.tree.ParseError>"
+    }
+  ],
+  "runtimeOrNativeTestsRun": false,
+  "hostedWindowsCheckoutRun": false,
+  "requestedPhase": "green",
+  "status": "AUXILIARY_YAML_PRINTER_ASSERTION_FAILED_ON_EXISTING_BASELINE_FORMATTING",
+  "originalAssertionSourceSnapshots": [
+    {
+      "sourcePath": "src/test/java/com/synexia/rewrite/M3EclipseCiLongPathsRecipeTest.java",
+      "snapshotPath": "evidence/sdk-yaml-printer-refusal/M3EclipseCiLongPathsRecipeTest.java",
+      "bytes": 10053,
+      "sha256": "ef705d224cf242b98926439d4e0bd16e195a48d05935e17440a4d466004be013",
+      "gitBlob": "6c683f0ffcd2ec5cab0c38f8ae659a355ae452d0"
+    },
+    {
+      "sourcePath": "CONTRACT.md",
+      "snapshotPath": "evidence/sdk-yaml-printer-refusal/CONTRACT.md",
+      "bytes": 3449,
+      "sha256": "cc8e4aa71d19815efaa127f4a48f676c5f00245e3b5365eb6132993bcd805d7b",
+      "gitBlob": "a0e6cc524ee6f31bdaa49a87f501902e213ebff0"
+    },
+    {
+      "sourcePath": "SPECTRUM.md",
+      "snapshotPath": "evidence/sdk-yaml-printer-refusal/SPECTRUM.md",
+      "bytes": 2256,
+      "sha256": "890a10489c0411de92c47e4d2c64e5cb6ef7186130e050950f1214e50166f0a1",
+      "gitBlob": "b8d51741ff7119f8ea930fdb6a1c38db2c5c8b8d"
+    },
+    {
+      "sourcePath": "README.md",
+      "snapshotPath": "evidence/sdk-yaml-printer-refusal/README.md",
+      "bytes": 4169,
+      "sha256": "d404e7042bdcd580845490cef74ad369d45015f138ebf77ba07c563c53c45c74",
+      "gitBlob": "5819c65b879ecc34e4ad3ce91a25d4315c505710"
+    }
+  ]
+}

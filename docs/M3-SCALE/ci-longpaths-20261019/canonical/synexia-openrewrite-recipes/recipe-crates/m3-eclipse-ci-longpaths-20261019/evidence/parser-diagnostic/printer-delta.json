@@ -1,0 +1,42 @@
+{
+  "schema": "m3-eclipse-ci-longpaths-yaml-printer-baseline-delta-v1",
+  "spdxLicenseId": "Apache-2.0",
+  "parser": "org.openrewrite.yaml.YamlParser 8.17.1",
+  "observations": [
+    {
+      "resource": "before-mavenBuild.yml.txt",
+      "sourceSha256": "b9ba4a35ef634726477534373fc39ed23d5185254ee71ecf1ff63475830742e8",
+      "sourceBytes": 3238,
+      "parsedTree": "org.openrewrite.yaml.tree.Yaml$Documents",
+      "wrapper": "org.openrewrite.tree.ParseError",
+      "reason": "parse-to-print idempotence",
+      "printedBytes": 3250,
+      "printedSha256": "7e310ec118fb9c84110b1d2bc1c4e1dc35091714ff4ce334603aa833cfc8f2fc",
+      "exactDelta": {
+        "afterUniqueLiteral": "        config: \n",
+        "insertedLiteral": "           \n",
+        "insertedBytes": 12,
+        "location": "unchanged matrix.config formatting"
+      }
+    },
+    {
+      "resource": "mavenBuild.yml.txt",
+      "sourceSha256": "23522344c0010e850bdc279312e9c0ebf546f0af97162e51d59024d533d4c0d9",
+      "sourceBytes": 3363,
+      "parsedTree": "org.openrewrite.yaml.tree.Yaml$Documents",
+      "wrapper": "org.openrewrite.tree.ParseError",
+      "reason": "parse-to-print idempotence",
+      "printedBytes": 3375,
+      "printedSha256": "1d6a28ab7b9004db6c7286ac67a1e298da6d54e8dc90983302bb3f6d463d39e1",
+      "exactDelta": {
+        "afterUniqueLiteral": "        config: \n",
+        "insertedLiteral": "           \n",
+        "insertedBytes": 12,
+        "location": "unchanged matrix.config formatting"
+      }
+    }
+  ],
+  "workflowSourceChangedForParser": false,
+  "textOutputHashGateChanged": false,
+  "hostedWorkflowGateChanged": false
+}

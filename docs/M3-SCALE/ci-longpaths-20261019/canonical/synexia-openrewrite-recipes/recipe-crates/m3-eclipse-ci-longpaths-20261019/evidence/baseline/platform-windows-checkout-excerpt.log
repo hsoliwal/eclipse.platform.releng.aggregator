@@ -1,0 +1,5 @@
+2026-10-18T14:06:58.3182260Z ##[group]Checking out the ref
+2026-10-18T14:06:58.3190289Z [command]"C:\Program Files\Git\bin\git.exe" checkout --progress --force refs/remotes/pull/14/merge
+2026-10-18T14:06:59.2337353Z ##[error]fatal: cannot create directory at 'docs/M3-SCALE/rules-forwarding-20261018/tooling/synexia-openrewrite-recipes/recipe-crates/m3-eclipse-rules-forwarding-20261018/resources/com/synexia/rewrite/hash-pinned-java/m3-eclipse-rules-forwarding-20261018': Filename too long
+2026-10-18T14:06:59.2448440Z ##[error]The process 'C:\Program Files\Git\bin\git.exe' failed with exit code 128
+2026-10-18T14:06:59.2843182Z ##[group]Run actions/upload-artifact@cf430e030ddbb5b0abf93d22962f4752f3646cd9
