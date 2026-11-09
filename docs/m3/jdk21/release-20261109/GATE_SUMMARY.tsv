@@ -2,7 +2,7 @@ metric	value
 master	4fc0258ca6593077562750a8e22984f9987382a0
 upstream_master	88da1d9dca4c3e136057bbe3425e9c8f5b9f1162
 gated_bundles	3
-files	16
+files	0
 roots	3
 base25_errors	0
 jdk21_errors	0
