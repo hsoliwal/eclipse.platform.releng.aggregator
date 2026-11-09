@@ -12,7 +12,7 @@ Tools and raw evidence: [`docs/m3/jdk21/release-20261109`](../jdk21/release-2026
 | G3 | Recipe fixed point (`apply_jdk21.sh` + `apply_jdk21_pins.sh` change nothing on master) | PASS | RECIPE_CHANGES.tsv |
 | G4 | Metadata consistent: Tycho bundle/feature versions match their pom, no EE above 21 in a Java-21 bundle | PASS | META.tsv |
 | G5 | Tycho builds of the six SDK forks on JDK 21 (this repository has no own code bundle above Java 21 to build separately) | PASS 6/6 | g5/*.result.tsv; per-fork PRs; table below |
-| G6 | Eclipse SDK product build and headless launch on JDK 21 | HOLD (disk) | F: free 9.1 GB, need 13.1 GB; section G6 below |
+| G6 | Eclipse SDK product build and headless launch on JDK 21 | HOLD (disk) | F: free 9.1 GB after cleanup, need 13.1 GB (10.1 GB + 3 GB floor); section G6, F_USAGE.tsv |
 
 ## SDK level (all forks, measured 2026-11-09)
 
@@ -102,7 +102,14 @@ Measured need of `mvn -B clean verify -DskipTests` of this aggregator with the s
 Time: G5 compiled 356 fork modules in 1,746 s of build time; the full reactor (~650 modules) plus product assembly for 8
 environments fits the 2-hour budget. Disk is the only blocker.
 
-Where the rest of F: is: see `F_USAGE.tsv` next to this file (largest directories on F:, MB).
+Where the rest of F: is (`F_USAGE.tsv` in docs/m3/jdk21/release-20261109, `du -sm` per directory, stopped after 20 minutes): measured
+11.5 GB in F:/Downloads 5.7 GB, F:/m3-scratch/algopattern-l2-work 2.0 GB, algopattern-l2-run 1.0 GB, F:/m3-superset 0.6 GB,
+algopattern-l2 0.4 GB, F:/M3jdk21-synexia-next-20261006 0.4 GB, F:/m2-synexia-20261005 0.4 GB, algopattern-l1 0.3 GB,
+F:/M3jdk21-inspect-20261006b 0.3 GB and smaller; this lane holds F:/m3-scratch/m2-eclipse 0.85 GB (kept) and
+F:/m3-scratch/rel21 (tools, gate TSVs, this aggregator clone, about 0.2 GB). The other ~85 GB of the 105.6 GB used sit in
+directories whose `du` did not finish: F:/codex-work, F:/synexia-handoff and the other F:/m3-scratch lanes (rc-20261109,
+m3jdk-rel, m3jdk-release-20261109, jdks, m2, worktrees, swingx-*, native-*, resolve-*, ...); none of them belongs to this
+lane, none was touched. Re-measured at 20:27: F: free 9219 MB.
 
 User actions to release G6: free at least 4 GB more on F: (or approve another drive), merge the fork PRs, move the
 submodule gitlinks to the merged masters and to the SWT release commit, then run G6 (SDK product build, then
