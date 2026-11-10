@@ -1,6 +1,6 @@
 [submodule "eclipse.jdt"]
   path = eclipse.jdt
-  url = https://github.com/eclipse-jdt/eclipse.jdt.git
+  url = https://github.com/hsoliwal/eclipse.jdt.git
   branch = master
 [submodule "eclipse.jdt.core"]
   path = eclipse.jdt.core
@@ -8,7 +8,7 @@
   branch = master
 [submodule "eclipse.jdt.core.binaries"]
   path = eclipse.jdt.core.binaries
-  url = https://github.com/eclipse-jdt/eclipse.jdt.core.binaries.git
+  url = https://github.com/hsoliwal/eclipse.jdt.core.binaries.git
   branch = master
 [submodule "eclipse.jdt.debug"]
   path = eclipse.jdt.debug
@@ -20,8 +20,8 @@
   branch = master
 [submodule "eclipse.pde"]
   path = eclipse.pde
-  url = https://github.com/eclipse-pde/eclipse.pde.git
-  branch = master
+  url = https://github.com/hsoliwal/initiative31-eclipse.pde.git
+  branch = upstream-master
 [submodule "eclipse.platform"]
   path = eclipse.platform
   url = https://github.com/hsoliwal/eclipse.platform.git
@@ -36,7 +36,7 @@
   branch = master
 [submodule "equinox.binaries"]
   path = equinox.binaries
-  url = https://github.com/eclipse-equinox/equinox.binaries.git
+  url = https://github.com/hsoliwal/equinox.binaries.git
   branch = master
 [submodule "equinox"]
   path = equinox
