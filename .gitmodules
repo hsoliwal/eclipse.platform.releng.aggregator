@@ -44,5 +44,5 @@
   branch = master
 [submodule "equinox.p2"]
   path = equinox.p2
-  url = https://github.com/eclipse-equinox/p2.git
+  url = https://github.com/hsoliwal/p2.git
   branch = master

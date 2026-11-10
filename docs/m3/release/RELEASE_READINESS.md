@@ -7,12 +7,44 @@ Tools and raw evidence: [`docs/m3/jdk21/release-20261109`](../jdk21/release-2026
 | # | Gate | Verdict | Evidence |
 | --- | --- | --- | --- |
 | G1 | No Java 22+ requirement on master: BREE above JavaSE-21 (0), build/IDE pins above 21 (0), unnamed `_` (0), `import module` (0) | PASS; 7 exempt rows (EXEMPT.tsv, CENSUS_EXEMPT.tsv) | CENSUS.tsv (code view; hits inside strings, text blocks and comments: CENSUS_MASKED.tsv) |
-| G2 | Java-21 compile gate: JDK 25 javac `--release 21` minus `--release 25` over 3 bundles (0 files, 3 roots); 0 baseline rows cancel | PASS (residue 0) | GATE_RESIDUE.tsv, GATE_SUMMARY.tsv |
-| G2b | Parse gate: every tracked Java source (0 files, test bundles included, test-input folders excluded), JDK 25 javac `--release 21` stopped after parsing | PASS | PARSE_GATE.tsv |
+| G2 | Java-21 compile gate: JDK 25 javac `--release 21` minus `--release 25` over 3 bundles (16 files, 3 roots); 0 baseline rows cancel | PASS (residue 0) | GATE_RESIDUE.tsv, GATE_SUMMARY.tsv |
+| G2b | Parse gate: every tracked Java source (61 files, test bundles included, test-input folders excluded), JDK 25 javac `--release 21` stopped after parsing | PASS | PARSE_GATE.tsv |
 | G3 | Recipe fixed point (`apply_jdk21.sh` + `apply_jdk21_pins.sh` change nothing on master) | PASS | RECIPE_CHANGES.tsv |
 | G4 | Metadata consistent: Tycho bundle/feature versions match their pom, no EE above 21 in a Java-21 bundle | PASS | META.tsv |
 | G5 | Tycho builds of the six SDK forks on JDK 21 (this repository has no own code bundle above Java 21 to build separately) | PASS 6/6 | g5/*.result.tsv; per-fork PRs; table below |
-| G6 | Eclipse SDK product build and headless launch on JDK 21 | HOLD (disk) | F: free 9.1 GB after cleanup, need 13.1 GB (10.1 GB + 3 GB floor); section G6, F_USAGE.tsv |
+| G6 | Eclipse SDK product build and headless launch on JDK 21 | HOLD (disk) | need 13.1 GB free on F: (10.1 GB + 3 GB floor); free 9.1 GB on 2026-11-09 after cleanup, 7.2 GB on 2026-11-10 with the JDK lane growing; section G6, F_USAGE.tsv |
+
+## Merged 2026-11-10: submodule pointers
+
+The user merged the fork PRs (real merges; each fork's master is the merge commit). This PR moves the submodule pointers
+to those merge commits. For the six forks the merge commit's tree is identical to the PR head that passed G1 to G5
+(GitHub compare: 1 commit ahead, 0 files changed).
+
+| Submodule | Pointer before | Pointer now (= fork master) | PR | Gates of that tree |
+| --- | --- | --- | --- | --- |
+| eclipse.platform.swt | 5cd3795d948e | b4579e0a346ee7cd39bc959a25e351bafd82deee | hsoliwal/eclipse.platform.swt#335 | SWT lane; see note below |
+| eclipse.jdt.debug | 046c97707da2 | 6b077f8147ef26204d12f64ab08d79c7ad6297d8 | #20 | G1-G4 PASS, G5 PASS 7/7 |
+| equinox | ad07c8a70da6 | 7ed67c081fcabc526c3f7877e802bc09e2f2becf | #3 | G1-G4 PASS, G5 PASS 71/71 |
+| eclipse.platform | c26284637e31 | 776e96e6c8f4545ab1aae85995ad86aac0b9da6b | #32 | G1-G4 PASS, G5 PASS 124/124 |
+| eclipse.platform.ui | 783d04c1b2fe | 38238345c75c7510db93ba4ad8c00ff6f6273467 | #59 | G1-G4 PASS, G5 PASS 115/115 (against SWT 4eed16810f8f) |
+| eclipse.jdt.ui | f4ea08861589 | 785cf01205b0f694a497dbc8fbef4d03f42c1777 | #19 | G1-G4 PASS, G5 PASS 22/22 |
+| eclipse.jdt.core | a0c3923884da | 617d2cc38309a76d03a96d5fe7b8a2ac46875778 | #18 | G1-G4 PASS, G5 PASS 17/17 |
+
+org.eclipse.emf (#3, 3125ebc3baaf) and gef-classic (#24, 97812c14e182) are merged too; they are not submodules of this
+aggregator, so no pointer moves for them.
+
+SWT note: platform.ui's G5 ran against the SWT release candidate 4eed16810f8f. The merged SWT b4579e0a346e is that commit
+plus 22 commits (119 files, among them the Tree fix a729bd1283). platform.ui against the merged SWT is not re-built here
+(PENDING, disk); the SWT version stays 3.138.0 and still carries `SWT.PartVisible` / `Control.isPartVisible()`.
+
+### Submodule URLs (.gitmodules)
+
+| Submodule | URL now | Pointer | Note |
+| --- | --- | --- | --- |
+| eclipse.jdt.core, eclipse.jdt.debug, eclipse.jdt.ui, eclipse.platform, eclipse.platform.swt, eclipse.platform.ui, equinox | hsoliwal forks | moved above | unchanged URLs |
+| equinox.p2 | **hsoliwal/p2** (was eclipse-equinox/p2) | bc63431121cc (unchanged) | the fork contains that commit; its master is 3 commits ahead of it |
+| eclipse.pde | eclipse-pde/eclipse.pde (upstream) | ba6a5d6f2f45 | HOLD: the only hsoliwal PDE repository is hsoliwal/initiative31-eclipse.pde, a fork of swt-initiative31/eclipse.pde whose master diverges (121 behind, 19 ahead of the pointer); it has the commit, but `branch = master` there is another line. User decision: fork eclipse-pde/eclipse.pde, or approve the initiative31 fork |
+| eclipse.jdt, eclipse.jdt.core.binaries, equinox.binaries | upstream eclipse-jdt / eclipse-equinox | unchanged | HOLD: no hsoliwal fork exists; the user creates the forks (no Java sources in jdt.core.binaries / equinox.binaries, eclipse.jdt holds one feature) |
 
 ## SDK level (all forks, measured 2026-11-09)
 
@@ -82,6 +114,10 @@ carry 3.138.0.
 JavaSE-25 and three unnamed lambdas; it is not part of the Maven/Tycho product build and is listed in EXEMPT.tsv.
 
 ## G6: Eclipse SDK product build and launch on JDK 21 - HOLD (disk)
+
+2026-11-10: still HOLD. F: free 7.2 GB (7373 MB measured before this update; the coordinator reports about 6 GB with the JDK lane
+about to use more) against the 13.1 GB the build needs. G6 runs once F: has 13.1 GB free (or another drive is approved),
+with the pointers of this PR.
 
 Rule for this run: attempt G6 only with at least 12 GB free on F: (the only approved drive). Measured after G5 and after
 deleting every clone, target/ and temp directory of this lane (F:/m3-scratch/m2-eclipse kept): **F: free 9.1 GB
