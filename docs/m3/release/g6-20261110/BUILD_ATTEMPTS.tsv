@@ -1,0 +1,7 @@
+attempt	status	seconds	ok	failed	skipped	stopped_at	fix
+1	BUILD FAILURE	1256	252	1	283	org.eclipse.swt.svg compiled before the win32 SWT fragment (Windows reactor order)	-Dosgi.os=linux -Dosgi.ws=gtk -Dosgi.arch=x86_64
+2	BUILD FAILURE	1752	515	4	17	org.eclipse.platform.doc.isv schema-to-html: PDE tools from the 4.42 I-build need JavaSE-25	pdeToolsRepository -> previous-release.baseline (4.41)
+3	BUILD FAILURE	1700	515	4	17	org.eclipse.platform.doc.isv javadoc: invalid source release: 25	maven-javadoc-plugin <source>21</source>
+4	stopped	-	-	-	-	org.eclipse.platform.doc.isv javadoc doclint: M3SparseExtents {@link M3ScrollMetrics}, SWT Button @return ArrayList<String>	platform.ui #63, SWT #341
+5	stopped	-	-	-	-	org.eclipse.jdt.doc.isv javadoc doclint: //FLLDCIM anchor inside ASTNode Javadoc	jdt.core #19
+6	BUILD FAILURE	5984	530	3	3	swt.tests, equinox.p2.tests, equinox-sdk-repository (no product depends on them)	-

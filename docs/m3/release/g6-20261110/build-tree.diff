@@ -1,0 +1,91 @@
+### aggregator
+diff --git a/eclipse-platform-parent/pom.xml b/eclipse-platform-parent/pom.xml
+index 33b7ebc..338fa33 100644
+--- a/eclipse-platform-parent/pom.xml
++++ b/eclipse-platform-parent/pom.xml
+@@ -588,9 +588,11 @@
+           <version>${tycho.version}</version>
+           <configuration>
+             <!-- Without this the schema converter is provisioned from a release hardcoded in Tycho, not from the stream being built. -->
++            <!-- M3JDK21: the PDE schema tools run inside this Java 21 build, so they come from the previous release (Java 21);
++                 the 4.42 I-builds need JavaSE-25 (org.eclipse.core.filesystem 1.12.0.v20261023) and do not resolve on JDK 21. -->
+             <pdeToolsRepository>
+               <id>eclipse</id>
+-              <url>${eclipse-sdk-repo}</url>
++              <url>${previous-release.baseline}</url>
+             </pdeToolsRepository>
+           </configuration>
+         </plugin>
+@@ -736,7 +738,7 @@
+             <artifactId>maven-javadoc-plugin</artifactId>
+             <version>3.12.0</version>
+             <configuration>
+-                <source>25</source>
++                <source>21</source>
+                 <doclint>reference,html,syntax</doclint>
+                 <splitindex>true</splitindex>
+                 <breakiterator>true</breakiterator>
+diff --git a/eclipse.jdt.core b/eclipse.jdt.core
+--- a/eclipse.jdt.core
++++ b/eclipse.jdt.core
+@@ -1 +1 @@
+-Subproject commit 617d2cc38309a76d03a96d5fe7b8a2ac46875778
++Subproject commit 617d2cc38309a76d03a96d5fe7b8a2ac46875778-dirty
+diff --git a/eclipse.platform.swt b/eclipse.platform.swt
+--- a/eclipse.platform.swt
++++ b/eclipse.platform.swt
+@@ -1 +1 @@
+-Subproject commit b4579e0a346ee7cd39bc959a25e351bafd82deee
++Subproject commit b4579e0a346ee7cd39bc959a25e351bafd82deee-dirty
+diff --git a/eclipse.platform.ui b/eclipse.platform.ui
+--- a/eclipse.platform.ui
++++ b/eclipse.platform.ui
+@@ -1 +1 @@
+-Subproject commit 38238345c75c7510db93ba4ad8c00ff6f6273467
++Subproject commit 38238345c75c7510db93ba4ad8c00ff6f6273467-dirty
+### eclipse.platform.ui
+diff --git a/bundles/org.eclipse.ui.ide/src/com/m3/collections/M3SparseExtents.java b/bundles/org.eclipse.ui.ide/src/com/m3/collections/M3SparseExtents.java
+index fb4a5bf..990db52 100644
+--- a/bundles/org.eclipse.ui.ide/src/com/m3/collections/M3SparseExtents.java
++++ b/bundles/org.eclipse.ui.ide/src/com/m3/collections/M3SparseExtents.java
+@@ -20,7 +20,7 @@ import java.util.*;
+  * holds an offset, which rows a viewport shows, how far to scroll to reveal a row,
+  * and how much to move the scroll offset when a row above the viewport changes size.
+  *
+- * <p>{@link M3ScrollMetrics} covers uniform rows; this class is its variable
++ * <p>{@code M3ScrollMetrics} covers uniform rows; this class is its variable
+  * counterpart for widgets whose rows differ in height (wrapped text, owner-drawn
+  * items, nested content). Rows that have not been measured count as the estimate,
+  * so the scrollable extent is available before every row is laid out.</p>
+### eclipse.platform.swt
+diff --git a/bundles/org.eclipse.swt/Eclipse SWT/win32/org/eclipse/swt/widgets/Button.java b/bundles/org.eclipse.swt/Eclipse SWT/win32/org/eclipse/swt/widgets/Button.java
+index e4e61d3..d1bf132 100644
+--- a/bundles/org.eclipse.swt/Eclipse SWT/win32/org/eclipse/swt/widgets/Button.java	
++++ b/bundles/org.eclipse.swt/Eclipse SWT/win32/org/eclipse/swt/widgets/Button.java	
+@@ -311,7 +311,7 @@ static int checkStyle (int style) {
+ 
+ /**
+  * test
+- * @return ArrayList<String> styles
++ * @return {@code ArrayList<String>} styles
+  * @since 3.131
+  */
+ public ArrayList<String> getStyles() {
+### eclipse.jdt.core
+diff --git a/org.eclipse.jdt.core/dom/org/eclipse/jdt/core/dom/ASTNode.java b/org.eclipse.jdt.core/dom/org/eclipse/jdt/core/dom/ASTNode.java
+index adc65b8..876dfbe 100644
+--- a/org.eclipse.jdt.core/dom/org/eclipse/jdt/core/dom/ASTNode.java
++++ b/org.eclipse.jdt.core/dom/org/eclipse/jdt/core/dom/ASTNode.java
+@@ -1881,10 +1881,11 @@ public abstract class ASTNode {
+ 		}
+ 	}
+ 
++	//FLLDCIM: MARK — ML METHOD_SPLIT METHOD
+ 	/**
+ 	 * Returns the value of the given structural property for this node. The value
+ 	 * returned depends on the kind of property:
+-	 * <ul> //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
++	 * <ul>
+ 	 * <li>{@link SimplePropertyDescriptor} - the value of the given simple property,
+ 	 * or <code>null</code> if none; primitive values are "boxed"</li>
+ 	 * <li>{@link ChildPropertyDescriptor} - the child node (type <code>ASTNode</code>),
