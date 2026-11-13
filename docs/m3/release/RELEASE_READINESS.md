@@ -131,7 +131,10 @@ eclipse-platform-repository site. The win32.x86_64 SDK launched headless on JDK 
 org.eclipse.equinox.p2.director -listInstalledRoots` -> `org.eclipse.sdk.ide/4.42.0.I20261110-1028` (exit 0). Details,
 the 6 attempts, the 5 fixes the build needed (2 in eclipse-platform-parent, here; 3 doc-only PRs in platform.ui #63,
 SWT #341, jdt.core #19), product sha256 and launch output: [G6_SDK_PRODUCT_20261110.md](G6_SDK_PRODUCT_20261110.md).
-Three non-product modules still fail (org.eclipse.swt.tests, org.eclipse.equinox.p2.tests, equinox-sdk-repository); see that file.
+Three non-product modules failed (org.eclipse.swt.tests, org.eclipse.equinox.p2.tests, equinox-sdk-repository); see that file.
+The two p2 modules fail on the SWT fork's native-fragment Require-Capability; fixed by #19 (eclipse-platform-parent
+build-time profile property) and hsoliwal/p2#3 (director property for the p2.tests reconciler product), section
+"p2 follow-up" there. org.eclipse.swt.tests stays with the SWT lane (MANIFEST x-friends exports).
 
 ### Earlier record (2026-11-09 and 2026-11-10 morning)
 

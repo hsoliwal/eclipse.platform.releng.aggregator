@@ -60,4 +60,23 @@ Raw: `g6-20261110/BUILD_ATTEMPTS.tsv`, attempt-6 log `build.log.gz`, its `[ERROR
 | Module | Rows | Cause | Owner / next step |
 | --- | --- | --- | --- |
 | org.eclipse.swt.tests | 3,531 ECJ errors | fork test classes use SWT internal packages that the SWT bundles do not export (`Access restriction ... not accessible`, e.g. internal.render, internal.m3.collections, internal.gpu), some of them win32-only (unresolved when compiled for linux/gtk); plus 7 Javadoc errors (`'public' visibility for malformed doc comments hides this 'default' reference`) | SWT lane: export the internal test packages (x-friends) or move the tests; Javadoc rows: SWT PR (doc-only) |
-| org.eclipse.equinox.p2.tests, equinox-sdk-repository | resolution | `org.eclipse.swt 3.138.0 requires 'eclipse.swt; (&(implementation=native)(version=3.135.100))'` not satisfied in the win32 (p2.tests materialize-products) and linux/ppc64le (repository) contexts, via org.eclipse.equinox.p2.installer 1.5.0.v20261028-0714 (built in this reactor; its qualifier is the git date of the p2 pointer) | under investigation, see the follow-up note below |
+| org.eclipse.equinox.p2.tests, equinox-sdk-repository | resolution | `org.eclipse.swt 3.138.0 requires 'eclipse.swt; (&(implementation=native)(version=3.135.100))'` not satisfied in the win32 (p2.tests materialize-products) and linux/ppc64le (repository) contexts, via org.eclipse.equinox.p2.installer 1.5.0.v20261028-0714 (built in this reactor; its qualifier is the git date of the p2 pointer) | fixed by #19 + hsoliwal/p2#3, see "p2 follow-up" below |
+
+## p2 follow-up (2026-11-13)
+
+Root cause: the SWT fork's `org.eclipse.swt` carries `Require-Capability: eclipse.swt;
+filter:="(&(implementation=native)(version=3.135.100))"; cardinality:=multiple` (fork commit 27956de355, folded from
+HannesWell/eclipse.platform.swt; upstream SWT has no such requirement). Any build-time p2 resolution that reaches
+`org.eclipse.swt` without the environment's native fragment among its dependencies fails; the p2 installer is only the
+path (a 4.41 installer would resolve the same reactor `org.eclipse.swt`). p2 publishes the requirement with the filter
+`(!(org.eclipse.equinox.p2.disable.require.capability.eclipse.swt=true))`.
+
+| Fix | Where | PR |
+| --- | --- | --- |
+| `org.eclipse.equinox.p2.disable.require.capability.eclipse.swt=true` in the dependency-resolution profile properties, next to `org.eclipse.jdt.buildtime` | eclipse-platform-parent/pom.xml | #19 |
+| the same property for the director of the reconciler test product (it also loses e4.ui.dialogs' `eclipse.swt; (image.format=svg)`) | equinox.p2 bundles/org.eclipse.equinox.p2.tests/pom.xml | hsoliwal/p2#3 |
+
+Rerun in this tree (`-pl <failed modules, products, sites> -am`, same options as attempt 6): p2.tests materialize-products
+passes (reconciler, win32/win32/x86_64); the Eclipse Platform product still materializes for all 8 environments with
+org.eclipse.swt, its native fragment and org.eclipse.swt.svg; equinox-sdk-repository passes with the parent property
+(2026-11-10 reruns). Rows: `g6-20261110/BUILD_ATTEMPTS.tsv`, attempts 7 and 8.

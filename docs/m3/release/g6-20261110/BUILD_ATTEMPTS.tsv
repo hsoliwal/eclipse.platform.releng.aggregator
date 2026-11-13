@@ -5,3 +5,5 @@ attempt	status	seconds	ok	failed	skipped	stopped_at	fix
 4	stopped	-	-	-	-	org.eclipse.platform.doc.isv javadoc doclint: M3SparseExtents {@link M3ScrollMetrics}, SWT Button @return ArrayList<String>	platform.ui #63, SWT #341
 5	stopped	-	-	-	-	org.eclipse.jdt.doc.isv javadoc doclint: //FLLDCIM anchor inside ASTNode Javadoc	jdt.core #19
 6	BUILD FAILURE	5984	530	3	3	swt.tests, equinox.p2.tests, equinox-sdk-repository (no product depends on them)	-
+7	BUILD FAILURE	580	184	2	0	2026-11-10 rerun of the 3 failed modules (186-module reactor) with the parent property: equinox-sdk-repository SUCCESS; p2.tests director still requires eclipse.swt (image.format=svg); swt.tests 321 errors	eclipse-platform-parent disable.require.capability.eclipse.swt (#19); director property (hsoliwal/p2#3)
+8	stopped	-	303	0	-	2026-11-13 rerun p2fix-r1 with #19 + hsoliwal/p2#3 (-pl failed modules, products, sites -am): p2.tests materialize-products PASS (win32), Platform product materialized for 8 environments; stopped by a session restart at 303/369	-
