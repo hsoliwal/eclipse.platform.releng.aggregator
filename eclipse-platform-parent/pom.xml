@@ -245,6 +245,12 @@
             <profileProperties>
                 <!-- this is to disable some requirements only important for installtime but not for compile time in JDT-->
                 <org.eclipse.jdt.buildtime>true</org.eclipse.jdt.buildtime>
+                <!-- M3JDK21: the SWT fork's org.eclipse.swt requires its native fragment through the generic capability
+                     'eclipse.swt; implementation=native' (fork commit 27956de355, not upstream); p2 publishes that requirement
+                     with the filter below, so build-time resolution (equinox-sdk-repository, p2.tests) switches it off, as
+                     org.eclipse.jdt.buildtime does for JDT. Products include the fragments through their features; install-time
+                     p2 keeps the requirement. -->
+                <org.eclipse.equinox.p2.disable.require.capability.eclipse.swt>true</org.eclipse.equinox.p2.disable.require.capability.eclipse.swt>
             </profileProperties>
           </dependency-resolution>
         </configuration>
