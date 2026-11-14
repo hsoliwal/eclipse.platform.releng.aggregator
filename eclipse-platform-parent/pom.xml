@@ -588,9 +588,11 @@
           <version>${tycho.version}</version>
           <configuration>
             <!-- Without this the schema converter is provisioned from a release hardcoded in Tycho, not from the stream being built. -->
+            <!-- M3JDK21: the PDE schema tools run inside this Java 21 build, so they come from the previous release (Java 21);
+                 the 4.42 I-builds need JavaSE-25 (org.eclipse.core.filesystem 1.12.0.v20261023) and do not resolve on JDK 21. -->
             <pdeToolsRepository>
               <id>eclipse</id>
-              <url>${eclipse-sdk-repo}</url>
+              <url>${previous-release.baseline}</url>
             </pdeToolsRepository>
           </configuration>
         </plugin>
@@ -736,7 +738,7 @@
             <artifactId>maven-javadoc-plugin</artifactId>
             <version>3.12.0</version>
             <configuration>
-                <source>25</source>
+                <source>21</source>
                 <doclint>reference,html,syntax</doclint>
                 <splitindex>true</splitindex>
                 <breakiterator>true</breakiterator>
