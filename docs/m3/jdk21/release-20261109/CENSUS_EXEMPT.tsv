@@ -1,7 +1,0 @@
-exempt	scripts/.classpath:3:	<classpathentry kind="con" path="org.eclipse.jdt.launching.JRE_CONTAINER/org.eclipse.jdt.internal.debug.ui.launcher.StandardVMType/JavaSE-25"/>
-exempt	scripts/.settings/org.eclipse.jdt.core.prefs:3:org.eclipse.jdt.core.compiler.codegen.targetPlatform=25
-exempt	scripts/.settings/org.eclipse.jdt.core.prefs:5:org.eclipse.jdt.core.compiler.compliance=25
-exempt	scripts/.settings/org.eclipse.jdt.core.prefs:12:org.eclipse.jdt.core.compiler.source=25
-exempt	scripts/releng/BuildDropDataGenerator.java:174:	JSON.Array comparatorLogs = collectFilesInDirectory(files, comparatorLogsDirectory, _ -> true);
-exempt	scripts/releng/TestResultsGenerator.java:161:			JSON.Object summary = summaries.computeIfAbsent(configuration, _ -> JSON.Object.create());
-exempt	scripts/releng/utilities/XmlProcessorFactoryRelEng.java:66:		builder.setEntityResolver((_, _) -> new InputSource(new ByteArrayInputStream(new byte[0])));
