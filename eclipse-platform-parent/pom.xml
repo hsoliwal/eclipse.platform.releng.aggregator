@@ -136,6 +136,8 @@
     <printApiMessages>false</printApiMessages>
     <failOnJavadocErrors>false</failOnJavadocErrors>
     <compileLogDir>${project.build.directory}/compilelogs</compileLogDir>
+    <!-- M3JDK21: see the dependency-resolution profile properties below; true only in projects that compile nothing against SWT -->
+    <swt.capability.buildtime.disabled>false</swt.capability.buildtime.disabled>
   </properties>
 
   <organization>
@@ -246,11 +248,11 @@
                 <!-- this is to disable some requirements only important for installtime but not for compile time in JDT-->
                 <org.eclipse.jdt.buildtime>true</org.eclipse.jdt.buildtime>
                 <!-- M3JDK21: the SWT fork's org.eclipse.swt requires its native fragment through the generic capability
-                     'eclipse.swt; implementation=native' (fork commit 27956de355, not upstream); p2 publishes that requirement
-                     with the filter below, so build-time resolution (equinox-sdk-repository, p2.tests) switches it off, as
-                     org.eclipse.jdt.buildtime does for JDT. Products include the fragments through their features; install-time
-                     p2 keeps the requirement. -->
-                <org.eclipse.equinox.p2.disable.require.capability.eclipse.swt>true</org.eclipse.equinox.p2.disable.require.capability.eclipse.swt>
+                     'eclipse.swt; implementation=native' (fork commit 27956de355, not upstream; the fork has no p2.inf). That
+                     requirement is what puts the SWT fragment (all SWT classes) on build classpaths, so it stays on by
+                     default. p2 publishes it with the filter below; a project that only assembles p2 content sets
+                     swt.capability.buildtime.disabled=true (sites/equinox-sdk-repository, equinox.p2 p2.tests). -->
+                <org.eclipse.equinox.p2.disable.require.capability.eclipse.swt>${swt.capability.buildtime.disabled}</org.eclipse.equinox.p2.disable.require.capability.eclipse.swt>
             </profileProperties>
           </dependency-resolution>
         </configuration>
