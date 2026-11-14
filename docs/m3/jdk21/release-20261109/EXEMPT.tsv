@@ -1,1 +1,0 @@
-scripts/*	releng CI tooling launched by jobs/builds/*.jenkinsfile as multi-file source programs (JEP 458, JDK 22+); not part of the Maven/Tycho product build
