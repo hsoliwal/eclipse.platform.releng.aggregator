@@ -1,5 +1,0 @@
-$ eclipsec -nosplash -consoleLog -vm C:/Program Files/Java/jdk-21/bin/javaw.exe -data Z:/launch/ws-eclipse-platform -application org.eclipse.equinox.p2.director -listInstalledRoots -profile SDKProfile
-WARNING: Using incubator modules: jdk.incubator.vector
-org.eclipse.platform.ide/4.42.0.I20261110-1028
-Operation completed in 12 ms.
-exit=0

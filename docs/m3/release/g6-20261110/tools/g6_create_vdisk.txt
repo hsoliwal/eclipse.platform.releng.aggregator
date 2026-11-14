@@ -1,2 +1,0 @@
-create vdisk file="I:\m3-sdk-build-20261110\sdk.vhdx" maximum=18000 type=expandable
-exit

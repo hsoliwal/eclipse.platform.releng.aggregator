@@ -12,7 +12,7 @@ Tools and raw evidence: [`docs/m3/jdk21/release-20261109`](../jdk21/release-2026
 | G3 | Recipe fixed point (`apply_jdk21.sh` + `apply_jdk21_pins.sh` change nothing on master) | PASS | RECIPE_CHANGES.tsv |
 | G4 | Metadata consistent: Tycho bundle/feature versions match their pom, no EE above 21 in a Java-21 bundle | PASS | META.tsv |
 | G5 | Tycho builds of the six SDK forks on JDK 21 (this repository has no own code bundle above Java 21 to build separately) | PASS 6/6 | g5/*.result.tsv; per-fork PRs; table below |
-| G6 | Eclipse SDK product build and headless launch on JDK 21 | PASS (SDK product built for 8 environments and launched headless on JDK 21.0.9; 3 non-product modules fail) | G6_SDK_PRODUCT_20261110.md, g6-20261110/ |
+| G6 | Eclipse SDK product build and headless launch on JDK 21 | HOLD (disk) | need 13.1 GB free on F: (10.1 GB + 3 GB floor); free 9.1 GB on 2026-11-09 after cleanup, 7.2 GB on 2026-11-10 with the JDK lane growing; section G6, F_USAGE.tsv |
 
 ## Merged 2026-11-10: submodule pointers
 
@@ -34,27 +34,17 @@ org.eclipse.emf (#3, 3125ebc3baaf) and gef-classic (#24, 97812c14e182) are merge
 aggregator, so no pointer moves for them.
 
 SWT note: platform.ui's G5 ran against the SWT release candidate 4eed16810f8f. The merged SWT b4579e0a346e is that commit
-plus 22 commits (119 files, among them the Tree fix a729bd1283). G6 (2026-11-10) built platform.ui and the whole SDK
-against the merged SWT b4579e0a346e on JDK 21; the SWT version stays 3.138.0 and carries `SWT.PartVisible` / `Control.isPartVisible()`.
+plus 22 commits (119 files, among them the Tree fix a729bd1283). platform.ui against the merged SWT is not re-built here
+(PENDING, disk); the SWT version stays 3.138.0 and still carries `SWT.PartVisible` / `Control.isPartVisible()`.
 
 ### Submodule URLs (.gitmodules)
 
-Since aggregator master 9948656c21a1 (#17) every submodule URL is an hsoliwal fork; the pinned commits did not change.
-
-| Submodule | URL | Pointer |
-| --- | --- | --- |
-| eclipse.jdt | hsoliwal/eclipse.jdt | 28561c3c115d |
-| eclipse.jdt.core | hsoliwal/eclipse.jdt.core | 617d2cc38309 |
-| eclipse.jdt.core.binaries | hsoliwal/eclipse.jdt.core.binaries | 987122d226c7 |
-| eclipse.jdt.debug | hsoliwal/eclipse.jdt.debug | 6b077f8147ef |
-| eclipse.jdt.ui | hsoliwal/eclipse.jdt.ui | 785cf01205b0 |
-| eclipse.pde | hsoliwal/initiative31-eclipse.pde (branch upstream-master) | ba6a5d6f2f45 |
-| eclipse.platform | hsoliwal/eclipse.platform | 776e96e6c8f4 |
-| eclipse.platform.swt | hsoliwal/eclipse.platform.swt | b4579e0a346e |
-| eclipse.platform.ui | hsoliwal/eclipse.platform.ui | 38238345c75c |
-| equinox | hsoliwal/equinox | 7ed67c081fca |
-| equinox.binaries | hsoliwal/equinox.binaries | 7a1125f75ed9 |
-| equinox.p2 | hsoliwal/p2 | bc63431121cc |
+| Submodule | URL now | Pointer | Note |
+| --- | --- | --- | --- |
+| eclipse.jdt.core, eclipse.jdt.debug, eclipse.jdt.ui, eclipse.platform, eclipse.platform.swt, eclipse.platform.ui, equinox | hsoliwal forks | moved above | unchanged URLs |
+| equinox.p2 | **hsoliwal/p2** (was eclipse-equinox/p2) | bc63431121cc (unchanged) | the fork contains that commit; its master is 3 commits ahead of it |
+| eclipse.pde | eclipse-pde/eclipse.pde (upstream) | ba6a5d6f2f45 | HOLD: the only hsoliwal PDE repository is hsoliwal/initiative31-eclipse.pde, a fork of swt-initiative31/eclipse.pde whose master diverges (121 behind, 19 ahead of the pointer); it has the commit, but `branch = master` there is another line. User decision: fork eclipse-pde/eclipse.pde, or approve the initiative31 fork |
+| eclipse.jdt, eclipse.jdt.core.binaries, equinox.binaries | upstream eclipse-jdt / eclipse-equinox | unchanged | HOLD: no hsoliwal fork exists; the user creates the forks (no Java sources in jdt.core.binaries / equinox.binaries, eclipse.jdt holds one feature) |
 
 ## SDK level (all forks, measured 2026-11-09)
 
@@ -123,20 +113,7 @@ carry 3.138.0.
 `scripts/` (releng CI tooling run by jobs/builds/*.jenkinsfile as multi-file source programs, JEP 458, JDK 22+) keeps
 JavaSE-25 and three unnamed lambdas; it is not part of the Maven/Tycho product build and is listed in EXEMPT.tsv.
 
-## G6: Eclipse SDK product build and launch on JDK 21 - PASS (2026-11-10)
-
-Built from aggregator master 9948656c21a1, every component from an hsoliwal fork at its pinned commit, on Oracle JDK
-21.0.9: the Eclipse SDK product for all 8 environments (BUILD SUCCESS) and the Eclipse Platform product, plus the
-eclipse-platform-repository site. The win32.x86_64 SDK launched headless on JDK 21: `-application
-org.eclipse.equinox.p2.director -listInstalledRoots` -> `org.eclipse.sdk.ide/4.42.0.I20261110-1028` (exit 0). Details,
-the 6 attempts, the 5 fixes the build needed (2 in eclipse-platform-parent, here; 3 doc-only PRs in platform.ui #63,
-SWT #341, jdt.core #19), product sha256 and launch output: [G6_SDK_PRODUCT_20261110.md](G6_SDK_PRODUCT_20261110.md).
-Three non-product modules failed (org.eclipse.swt.tests, org.eclipse.equinox.p2.tests, equinox-sdk-repository); see that file.
-The two p2 modules fail on the SWT fork's native-fragment Require-Capability; fixed by #19 (eclipse-platform-parent
-build-time profile property) and hsoliwal/p2#3 (director property for the p2.tests reconciler product), section
-"p2 follow-up" there. org.eclipse.swt.tests stays with the SWT lane (MANIFEST x-friends exports).
-
-### Earlier record (2026-11-09 and 2026-11-10 morning)
+## G6: Eclipse SDK product build and launch on JDK 21 - HOLD (disk)
 
 2026-11-10: still HOLD. F: free 7.2 GB (7373 MB measured before this update; the coordinator reports about 6 GB with the JDK lane
 about to use more) against the 13.1 GB the build needs. G6 runs once F: has 13.1 GB free (or another drive is approved),
