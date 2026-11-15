@@ -17,10 +17,13 @@ This guide is for local source/build exploration, not permission to publish rele
 | Update repositories | [sites](../sites) | p2 repository composition |
 | Release automation | [jobs](../jobs), [production](../production) | CI orchestration and publication, separate from a local build |
 
-All twelve entries in the checked-in .gitmodules use `hsoliwal` forks. The PDE
+All twelve entries in the checked-in .gitmodules use `hsoliwal` forks, as
+inventoried in [fork release readiness](FORK_RELEASE_READINESS.md). The PDE
 entry uses `initiative31-eclipse.pde` on `upstream-master`; the others use
-`master`. A submodule's recorded gitlink selects its revision; its `branch`
-setting does not make ordinary checkout track the latest remote branch.
+`master`. Forking this aggregator elsewhere does not automatically rewrite its
+submodule remotes. A submodule's recorded gitlink selects its exact source
+revision; its `branch` setting does not make an ordinary checkout track the
+remote tip.
 
 ## Prerequisites
 
