@@ -17,10 +17,11 @@ This guide is for local source/build exploration, not permission to publish rele
 | Update repositories | [sites](../sites) | p2 repository composition |
 | Release automation | [jobs](../jobs), [production](../production) | CI orchestration and publication, separate from a local build |
 
-A fork of the aggregator does not automatically use the owner's forks of every
-component. The checked-in .gitmodules currently points to upstream Eclipse
-repositories. A submodule's recorded gitlink selects its revision; its `branch`
-setting does not make ordinary checkout track the latest remote branch.
+The checked-in .gitmodules currently points to hsoliwal's Eclipse component
+forks, as inventoried in [fork release readiness](FORK_RELEASE_READINESS.md).
+Forking this aggregator elsewhere does not automatically rewrite its submodule
+remotes. A submodule's recorded gitlink selects its exact source revision;
+its `branch` setting does not make an ordinary checkout track the remote tip.
 
 ## Prerequisites
 
