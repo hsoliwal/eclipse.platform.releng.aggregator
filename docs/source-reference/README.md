@@ -2,6 +2,12 @@
 
 > Inspected source revision: `55bf9d0a12bb2b80c5e79d7382e7d9b04d074c3c`. Source/manifest observation only; builds and tests were not run.
 
+This is a historical source reference. For the current fork's Java 21 build,
+`hsoliwal` submodule remotes and candidate verification, use the [root
+README](../../README.md) and [downstream SDK verification](../../RELEASE.md#downstream-sdk-verification).
+Version, runtime and workspace-path observations below remain tied to the
+revision above; they are not release claims about the current tree.
+
 This reference separates repository ownership, Eclipse workspace projects, Maven aggregation, OSGi bundles, features and Java source namespaces. The linked inventories account for the pinned tracked tree without treating every descriptor as an active product module. Names and imports establish structure; [selected contracts](CONTRACTS.md) explain inspected behavior.
 
 ## Start here
