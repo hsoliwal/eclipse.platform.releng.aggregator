@@ -41,15 +41,18 @@ exact revision here.
 
 This is [hsoliwal's downstream fork](https://github.com/hsoliwal/eclipse.platform.releng.aggregator)
 of the [Eclipse SDK aggregator](https://github.com/eclipse-platform/eclipse.platform.releng.aggregator).
-The inspected [.gitmodules](.gitmodules) still uses upstream component URLs.
-Cloning this fork does not automatically include changes in the sibling hsoliwal
-component forks. The [coverage ledger](docs/source-reference/COVERAGE.md) documents
-the inspected source boundaries; an inventory or opt-in research lane is not an
-SDK compatibility, release or performance qualification.
+All twelve entries in [.gitmodules](.gitmodules) now use `hsoliwal` component
+forks. PDE uses `hsoliwal/initiative31-eclipse.pde` on `upstream-master`; the other
+entries track `master`. A recursive clone uses the exact gitlinks committed here,
+so later changes in a sibling fork still require an explicit integration update.
+The [source reference](docs/source-reference/README.md) is a historical inventory;
+its inspected revision is not the current release candidate.
 
 ## SDK quickstart
 
-The retained build instructions below require **Java 25+ and Maven 3.9.12+**.
+This fork's SDK build targets **Java 21 and Maven 3.9.12+**. The parent uses Java 21
+Javadoc and Java 21-compatible PDE schema tools; the SDK and Platform products
+require Java 21. Upstream maintenance workflows may also install newer JDKs.
 Also provide Git, network access to component/Maven/p2 repositories, sufficient
 disk space and the native/display prerequisites of the selected test platforms.
 For an IDE workspace see [the Oomph setup](oomph/PlatformSDKConfiguration.setup).
@@ -64,8 +67,14 @@ mvn -version
 mvn clean verify
 ```
 
-The full test build can be lengthy. Commands here describe the checked-in entry
-points; this homepage update did not run the SDK build or its tests.
+The full test build can be lengthy. Use the [release verification
+workflow](.github/workflows/release-verification.yml) for the Linux, Windows and
+macOS Java 21 SDK matrix. It checks the recorded component revisions, runs the
+normal Maven lifecycle with tests and strict Javadoc, and requires actual SWT,
+JFace, JFace extension and Workbench test reports. A workflow definition is not
+evidence that a particular candidate has passed.
+Each host also rebuilds its SWT JNI from the recorded SWT source revision;
+tracked native libraries alone do not establish Java/JNI consistency.
 
 ## SDK command cheat sheet
 
@@ -105,7 +114,7 @@ Use [the source reference](docs/source-reference/README.md) for module/package
 navigation and [RELEASE.md](RELEASE.md) before release work. Original upstream
 build, contribution and licensing documentation is retained below.
 
-> Source tour checked at [`98a846bf6264`](https://github.com/hsoliwal/eclipse.platform.releng.aggregator/tree/98a846bf62648d30bb7871e3c8a61d6888761f25). Commands describe that revision; recheck build configuration when changing revisions. Build/UI/performance verification was not run for this README update.
+> Historical source tour: [`98a846bf6264`](https://github.com/hsoliwal/eclipse.platform.releng.aggregator/tree/98a846bf62648d30bb7871e3c8a61d6888761f25). The current checkout and Java 21 instructions above follow this fork's build configuration. See [release verification](RELEASE.md#downstream-sdk-verification) for the candidate checks.
 
 ---
 
@@ -140,13 +149,11 @@ git clone --recurse-submodules https://github.com/hsoliwal/eclipse.platform.rele
 cd eclipse.platform.releng.aggregator
 ```
 
-**The submodules still point to upstream repositories.** See
-[.gitmodules](.gitmodules): Platform, SWT, Platform UI, JDT, PDE and Equinox
-URLs are upstream URLs. A recursive clone checks out the submodule commits
-recorded by this aggregator; it does not automatically select the latest
-`master` commits or the corresponding `hsoliwal` forks. If evaluating changes
-from sibling forks, record the exact component revisions and integration
-changes separately rather than assuming they are included.
+**The submodules point to the corresponding `hsoliwal` forks.** See
+[.gitmodules](.gitmodules) for Platform, SWT, Platform UI, JDT, PDE and Equinox.
+A recursive clone checks out the submodule commits recorded by this aggregator;
+it does not automatically select their latest branch tips. Record the exact
+component revisions and review gitlink changes when integrating newer work.
 
 The [root reactor](pom.xml) ties together these distinct areas:
 
@@ -236,7 +243,10 @@ mvn clean verify -DskipTests=true -Dcbi-ecj-version=99.99
 Build requirements
 ------------------
 
-The build commands require the installation and setup of Java 25 or higher and Maven version 3.9.12 or higher.
+This fork's build commands require Java 21 and Maven version 3.9.12 or higher.
+When using `-Pbree-libs`, install the Java 11, 17 and 21 toolchains required by
+the participating bundles. The release workflow installs them in that order so
+Maven itself runs on Java 21. Newer-JDK compatibility is a separate test lane.
 See also the complete instructions on the [Platform Build wiki](https://github.com/eclipse-platform/eclipse.platform.releng.aggregator/wiki/Platform-Build). 
 Note, it is highly recommended to use toolchains.xml and `-Pbree-libs` as described in [Using BREE Libs](https://github.com/eclipse-platform/eclipse.platform.releng.aggregator/wiki/Platform-Build#using-bree-libs).
 
