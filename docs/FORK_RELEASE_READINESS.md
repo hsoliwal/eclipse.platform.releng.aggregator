@@ -17,13 +17,19 @@ not assert that a component was compiled, tested or successfully launched.
 | `eclipse.jdt.core.binaries` | `hsoliwal/eclipse.jdt.core.binaries` | `master` |
 | `eclipse.jdt.debug` | `hsoliwal/eclipse.jdt.debug` | `master` |
 | `eclipse.jdt.ui` | `hsoliwal/eclipse.jdt.ui` | `master` |
-| `eclipse.pde` | `hsoliwal/initiative31-eclipse.pde` | `upstream-master` |
+| `eclipse.pde` | `hsoliwal/initiative31-eclipse.pde` | `master` |
 | `eclipse.platform` | `hsoliwal/eclipse.platform` | `master` |
 | `eclipse.platform.swt` | `hsoliwal/eclipse.platform.swt` | `master` |
 | `eclipse.platform.ui` | `hsoliwal/eclipse.platform.ui` | `master` |
 | `equinox` | `hsoliwal/equinox` | `master` |
 | `equinox.binaries` | `hsoliwal/equinox.binaries` | `master` |
 | `equinox.p2` | `hsoliwal/p2` | `master` |
+
+`equinox.binaries` is a pinned native executable and launcher-library input.
+Its repository has no root Maven POM. The `equinox` reactor consumes those
+files through `equinox.binaries.loc`; the other eleven managed components
+are declared reactor modules. The binary input retains every fork URL,
+tracking branch, gitlink and optional checkout-identity check.
 
 `org.eclipse.jface`, JFace text, JFace data binding, and Eclipse 4 Application
 Model (`org.eclipse.e4.ui.model.workbench`) live inside the `eclipse.platform.ui`
@@ -43,8 +49,9 @@ python3 scripts/fork_source_preflight.py --root . --require-checkout
 ```
 
 The standard gate verifies the committed `.gitmodules` and `pom.xml` anchors,
-the exact 12 fork URLs and tracking branch declarations, the Maven reactor
-modules, and each pinned 40-character gitlink at `HEAD`. It rejects missing,
+the exact 12 fork URLs and tracking branch declarations, the eleven managed
+reactor modules, the separate Equinox binary-input role, and each pinned
+40-character gitlink at `HEAD`. It rejects missing,
 renamed, unexpected or unpinned components, and dirty local anchor files.
 The optional checkout gate also verifies that every initialized submodule's
 current commit equals its parent gitlink. It does **not** fetch or move source,

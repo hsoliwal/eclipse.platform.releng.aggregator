@@ -35,7 +35,9 @@ class SourceClosureTest(unittest.TestCase):
                            f'\turl = https://github.com/hsoliwal/{repo}.git\n'
                            f'\tbranch = {branch}\n')
         (self.root / ".gitmodules").write_text("".join(modules), encoding="utf-8")
-        reactor = "".join(f"<module>{path}</module>" for path in MODULE.EXPECTED)
+        # Match the pinned aggregator: Equinox binaries are an input, not a module.
+        reactor = "".join(f"<module>{path}</module>" for path in MODULE.EXPECTED
+                          if path != "equinox.binaries")
         (self.root / "pom.xml").write_text(f"<project><modules>{reactor}</modules></project>", encoding="utf-8")
         run(self.root, "add", ".gitmodules", "pom.xml")
         for i, path in enumerate(MODULE.EXPECTED, start=1):
@@ -78,9 +80,33 @@ class SourceClosureTest(unittest.TestCase):
         result = MODULE.inspect(self.root)
         self.assertTrue(any("Missing Maven reactor module: equinox" in x for x in result["errors"]))
 
+    def test_binary_input_stays_pinned_without_reactor_module(self) -> None:
+        run(self.root, "rm", "--cached", "-q", "equinox.binaries")
+        run(self.root, "commit", "-qm", "remove binary source pin")
+        result = MODULE.inspect(self.root)
+        self.assertEqual(["Missing/invalid committed gitlink: equinox.binaries"], result["errors"])
+        self.assertFalse(result["source_closure_passed"])
+
+    def test_binary_input_cannot_be_declared_as_reactor_module(self) -> None:
+        path = self.root / "pom.xml"
+        path.write_text(path.read_text().replace("</modules>",
+                        "<module>equinox.binaries</module></modules>"), encoding="utf-8")
+        run(self.root, "add", "pom.xml")
+        run(self.root, "commit", "-qm", "declare binary input as reactor module")
+        result = MODULE.inspect(self.root)
+        self.assertEqual(["Non-reactor binary input is declared as Maven module: equinox.binaries"],
+                         result["errors"])
+        self.assertFalse(result["source_closure_passed"])
+
     def test_tracking_branch_drift_fails(self) -> None:
         path = self.root / ".gitmodules"
-        path.write_text(path.read_text().replace("branch = upstream-master", "branch = master"), encoding="utf-8")
+        before = path.read_text(encoding="utf-8")
+        after = before.replace(
+            "\turl = https://github.com/hsoliwal/initiative31-eclipse.pde.git\n\tbranch = master\n",
+            "\turl = https://github.com/hsoliwal/initiative31-eclipse.pde.git\n\tbranch = upstream-master\n",
+        )
+        self.assertNotEqual(before, after, "the PDE-only tracking drift must be exercised")
+        path.write_text(after, encoding="utf-8")
         run(self.root, "add", ".gitmodules")
         run(self.root, "commit", "-qm", "alter PDE branch")
         result = MODULE.inspect(self.root)

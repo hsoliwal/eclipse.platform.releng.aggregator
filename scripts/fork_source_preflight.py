@@ -22,7 +22,7 @@ EXPECTED = {
     "eclipse.jdt.core.binaries": ("eclipse.jdt.core.binaries", "master"),
     "eclipse.jdt.debug": ("eclipse.jdt.debug", "master"),
     "eclipse.jdt.ui": ("eclipse.jdt.ui", "master"),
-    "eclipse.pde": ("initiative31-eclipse.pde", "upstream-master"),
+    "eclipse.pde": ("initiative31-eclipse.pde", "master"),
     "eclipse.platform": ("eclipse.platform", "master"),
     "eclipse.platform.swt": ("eclipse.platform.swt", "master"),
     "eclipse.platform.ui": ("eclipse.platform.ui", "master"),
@@ -30,6 +30,8 @@ EXPECTED = {
     "equinox.binaries": ("equinox.binaries", "master"),
     "equinox.p2": ("p2", "master"),
 }
+# This pinned repository supplies native artifacts to Equinox reactor modules.
+NON_REACTOR_INPUTS = frozenset({"equinox.binaries"})
 SHA_RE = re.compile(r"[0-9a-f]{40}\Z")
 
 
@@ -99,7 +101,10 @@ def inspect(root: Path, *, require_checkout: bool = False) -> dict:
             errors.append(f"Unexpected fork URL for {path}: {url!r}")
         if configured_branch != branch:
             errors.append(f"Unexpected tracking branch for {path}: {configured_branch!r}")
-        if path not in reactor:
+        if path in NON_REACTOR_INPUTS:
+            if path in reactor:
+                errors.append(f"Non-reactor binary input is declared as Maven module: {path}")
+        elif path not in reactor:
             errors.append(f"Missing Maven reactor module: {path}")
 
         pin = None

@@ -21,7 +21,7 @@
 [submodule "eclipse.pde"]
   path = eclipse.pde
   url = https://github.com/hsoliwal/initiative31-eclipse.pde.git
-  branch = upstream-master
+  branch = master
 [submodule "eclipse.platform"]
   path = eclipse.platform
   url = https://github.com/hsoliwal/eclipse.platform.git
