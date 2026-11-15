@@ -17,14 +17,14 @@ This guide is for local source/build exploration, not permission to publish rele
 | Update repositories | [sites](../sites) | p2 repository composition |
 | Release automation | [jobs](../jobs), [production](../production) | CI orchestration and publication, separate from a local build |
 
-A fork of the aggregator does not automatically use the owner's forks of every
-component. The checked-in .gitmodules currently points to upstream Eclipse
-repositories. A submodule's recorded gitlink selects its revision; its `branch`
+All twelve entries in the checked-in .gitmodules use `hsoliwal` forks. The PDE
+entry uses `initiative31-eclipse.pde` on `upstream-master`; the others use
+`master`. A submodule's recorded gitlink selects its revision; its `branch`
 setting does not make ordinary checkout track the latest remote branch.
 
 ## Prerequisites
 
-The [README](../README.md) specifies Java 25 or higher and Maven 3.9.12 or higher.
+The [README](../README.md) specifies Java 21 and Maven 3.9.12 or higher for this fork.
 [extensions.xml](../.mvn/extensions.xml) selects Tycho 5.0.4, and
 [maven.config](../.mvn/maven.config) sets `aggregatorBuild=true`.
 Use the README's linked BREE/toolchains instructions when enabling `bree-libs`;
@@ -126,7 +126,7 @@ everything or editing dependency versions.
    latter when the former is true. A product cannot install sources absent from the
    repository it consumes.
 6. Separate installation from startup: the SDK product currently sets
-   `osgi.requiredJavaVersion=25`, native-access flags and macOS first-thread options.
+   `osgi.requiredJavaVersion=21`, native-access flags and macOS first-thread options.
    Record the actual launched JDK and OS when a materialized product fails to start.
 
 The following are read-only inspection commands for an existing checkout; they were
