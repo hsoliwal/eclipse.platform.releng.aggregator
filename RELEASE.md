@@ -2,6 +2,16 @@
 
 ## Downstream SDK verification
 
+### Optimized superset compatibility
+
+The hsoliwal Eclipse SDK and its component forks are optimized supersets of
+their supported upstream subsets. Existing applications and plugins must retain
+the subset's public API/ABI and observable behavior when run on the fork.
+Release integration also preserves the fork's added capabilities, optimizations
+and regression tests. Compatibility is directional: upstream need not provide
+fork-only extensions. Qualify both inherited contracts and retained fork
+extensions on the exact assembled candidate for each supported platform.
+
 The `hsoliwal` fork uses [SDK release verification](.github/workflows/release-verification.yml)
 for pushes and pull requests to `release/**`, and for manual runs on a selected
 branch. It reuses the existing Maven build matrix on Linux, Windows and macOS,
