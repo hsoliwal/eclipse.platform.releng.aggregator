@@ -1,5 +1,53 @@
 # Releng-Tasks 2.1
 
+## Downstream SDK verification
+
+### Optimized superset compatibility
+
+The hsoliwal Eclipse SDK and its component forks are optimized supersets of
+their supported upstream subsets. Existing applications and plugins must retain
+the subset's public API/ABI and observable behavior when run on the fork.
+Release integration also preserves the fork's added capabilities, optimizations
+and regression tests. Compatibility is directional: upstream need not provide
+fork-only extensions. Qualify both inherited contracts and retained fork
+extensions on the exact assembled candidate for each supported platform.
+
+The `hsoliwal` fork uses [SDK release verification](.github/workflows/release-verification.yml)
+for pushes and pull requests to `release/**`, and for manual runs on a selected
+branch. It reuses the existing Maven build matrix on Linux, Windows and macOS,
+installs the Java 11/17/21 BREE toolchains, and runs Maven on Java 21.
+
+Each candidate runs `clean verify` with tests enabled, test failures fatal,
+strict Javadoc, and baseline binary replacement disabled. Checkout uses the
+committed submodule revisions. The workflow retains those exact revisions and
+the actual JDK/Maven versions beside its test reports.
+
+The matrix explicitly builds the host SWT JNI with `-Dnative`: GTK3 Linux
+x86_64, Win32 x86_64, or Cocoa for the macOS runner's architecture. The native
+sources come from the same committed SWT gitlink as the Java sources. This
+avoids testing newer Java against old checked-in native libraries. A host run
+qualifies only its rebuilt native target; other native fragments in a
+multi-platform SDK still require their own source builds and runtime checks.
+
+The report check reuses the pinned SWT JUnit parser and requires executed tests
+from SWT, JFace, the JFace extension tests and Workbench. It also rejects failures
+or errors in other reactor reports, malformed or inconsistent counters, aliased
+reports, missing required components and entirely skipped components. Skipped
+testcases are reported separately and never counted as passing. Review those
+skips and the component-specific suites when deciding platform support; this
+report check is not a line/branch coverage measurement or a complete release
+approval.
+
+Before publishing an SDK, integrate the intended component changes through
+reviewed gitlink updates, obtain passing tests for that exact candidate, launch
+the assembled product on each supported platform, and retain the component
+native/API checks and licensing/signing results. Mobile SWT and Nebula have
+their own device qualification; SDK assembly does not establish Android or iOS
+support. Canonical recipes and qualification evidence remain in `com.synexia`.
+
+The upstream Eclipse operational procedures follow. The verification workflow
+above does not invoke signing, deployment or any of those publication jobs.
+
 [Eclipse Simultaneous Release Schedule](https://github.com/eclipse-simrel/.github/blob/main/wiki/Simultaneous_Release.md)
 
 ## Milestone and RC Releases
