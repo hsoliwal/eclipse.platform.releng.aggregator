@@ -31,7 +31,7 @@ jobs:
       - name: Fail closed on an unexpected Gitlink or source ref
         shell: bash
         env:
-          PIN_UI: e0c9cc54363f23d29a0811acb091c28eafa7d5c3
+          PIN_UI: 413267a4f66943685687123bfc19aea0dea03495
           PIN_SWT: 51a70dad3ea1d4ede76ab74e79b42926b82b4857
         run: |
           set -euo pipefail
