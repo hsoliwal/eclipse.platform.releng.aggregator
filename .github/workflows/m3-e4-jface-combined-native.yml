@@ -5,6 +5,7 @@ name: E4 and JFace combined source-pinned native SDK acceptance
 on:
   pull_request:
     branches:
+      - master
       - candidate/e4-jface-native-receipt-gate-20261123
     paths:
       - '.github/workflows/m3-e4-jface-combined-native.yml'
@@ -12,7 +13,13 @@ on:
       - 'eclipse.platform.swt'
   push:
     branches:
+      - master
+      - candidate/e4-jface-native-receipt-gate-20261123
       - candidate/e4-jface-combined-sdk-20261123
+    paths:
+      - '.github/workflows/m3-e4-jface-combined-native.yml'
+      - 'eclipse.platform.ui'
+      - 'eclipse.platform.swt'
   workflow_dispatch:
 
 permissions:
@@ -31,7 +38,7 @@ jobs:
       - name: Fail closed on an unexpected Gitlink or source ref
         shell: bash
         env:
-          PIN_UI: 413267a4f66943685687123bfc19aea0dea03495
+          PIN_UI: a6fa7796f150149eea123445fac4808dd14b3b3f
           PIN_SWT: 51a70dad3ea1d4ede76ab74e79b42926b82b4857
         run: |
           set -euo pipefail
