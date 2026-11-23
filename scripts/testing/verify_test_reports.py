@@ -21,6 +21,66 @@ REQUIRED = (
 )
 COUNTERS = ("tests", "failures", "errors", "skipped", "reports")
 
+# Explicitly opt-in for the E4/JFace receiver candidates. Legacy SDK verification
+# remains unchanged unless --require-e4-jface is supplied by a native CI lane.
+E4_REPORT = "eclipse.platform.ui/tests/org.eclipse.e4.ui.tests/target/surefire-reports"
+JFACE_REPORT = "eclipse.platform.ui/tests/org.eclipse.jface.tests/target/surefire-reports"
+NATIVE_UI_CONTRACTS = {
+    E4_REPORT: frozenset({
+        ("org.eclipse.e4.ui.tests.workbench.DisplayUISynchronizeAdmissionTest",
+         name)
+        for name in (
+            "missingOrDisposedDisplayRejectsWithoutPosting",
+            "liveSubmissionAcknowledgesAndPreservesLegacyAsyncExec",
+            "disposedDuringAdmissionRefusesButLegacyPathStillThrows",
+            "unrelatedSwtSubmissionFailurePropagatesExactly",
+            "e4JobRefusalReturnsTerminalCancelWithoutInvokingUiBody",
+            "e4JobAcceptedCallbackRemainsAsynchronous",
+            "e4JobDispositionRaceReturnsTerminalCancel",
+            "e4JobRetainsCustomSynchronizerDispatchContract",
+            "refusedSubmissionCompletesOnceThroughJobManager",
+            "acceptedJobCompletesOnNativeDisplayExactlyOnce",
+        )
+    }),
+    JFACE_REPORT: frozenset({
+        ("org.eclipse.jface.tests.viewers.m3.M3ViewersTest",
+         "failedObsoleteBatchCannotRefreshReplacementInput"),
+        ("org.eclipse.jface.tests.viewers.m3.M3ViewersTest",
+         "failingCurrentGenerationStillUsesExistingRefreshFallback"),
+    }),
+}
+
+
+def verify_native_ui_contract_cases(root: Path) -> dict:
+    """Reject missing/skipped/failed/duplicate native UI contract test cases.
+
+    This verifies report contents, not the identity, freshness, or provenance
+    of the build that generated them; CI must pin the tested checkout itself.
+    """
+    checked = {}
+    for directory, required in NATIVE_UI_CONTRACTS.items():
+        actual = root / directory
+        observed = set()
+        for report in sorted(actual.glob("TEST-*.xml")):
+            suite = ET.parse(report).getroot()
+            for case in suite.iter("testcase"):
+                identity = (case.get("classname"), case.get("name"))
+                if identity not in required:
+                    continue
+                if identity in observed:
+                    raise ValueError("duplicate required UI case: " + repr(identity))
+                if any(case.find(tag) is not None
+                       for tag in ("skipped", "failure", "error")):
+                    raise ValueError("skipped or failed required UI case: " + repr(identity))
+                observed.add(identity)
+        missing = sorted(required - observed)
+        if missing:
+            raise ValueError("missing required UI cases in " + directory + ": " + repr(missing))
+        checked[directory] = len(observed)
+    return checked
+
+
+
 
 def load_junit_report(swt_root: Path):
     """Use the parser owned by the exact SWT submodule being built."""
@@ -33,12 +93,13 @@ def load_junit_report(swt_root: Path):
     return module.junit_report
 
 
-def verify(root: Path, junit_report) -> dict:
+def verify(root: Path, junit_report, require_e4_jface: bool = False) -> dict:
     root = root.resolve()
     directories = {path.parent for path in root.rglob("TEST-*.xml")
                    if path.parent.name == "surefire-reports"
                    and path.parent.parent.name == "target"}
-    missing = [path for path in REQUIRED if root / path not in directories]
+    required_directories = REQUIRED + ((E4_REPORT,) if require_e4_jface else ())
+    missing = [path for path in required_directories if root / path not in directories]
     if missing:
         raise ValueError("missing required test reports: " + ", ".join(missing))
     totals = dict.fromkeys(COUNTERS, 0)
@@ -55,15 +116,24 @@ def verify(root: Path, junit_report) -> dict:
             totals[key] += counts[key]
         modules.append({"path": directory.relative_to(root).as_posix(),
                         **{key: counts[key] for key in COUNTERS}})
-    return {"scope": "SDK reported test execution; not coverage or release approval",
-            **totals, "passed": totals["tests"] - totals["skipped"],
-            "modules": modules}
+    result = {"scope": "SDK reported test execution; not coverage or release approval",
+              **totals, "passed": totals["tests"] - totals["skipped"],
+              "modules": modules}
+    if require_e4_jface:
+        result["required_ui_contract_cases"] = verify_native_ui_contract_cases(root)
+    return result
 
 
 def main() -> int:
+    import argparse
+    parser = argparse.ArgumentParser(description="Verify executed SDK test reports")
+    parser.add_argument("--require-e4-jface", action="store_true",
+                        help="also require 10 E4 UIJob and 2 JFace native test cases")
+    args = parser.parse_args()
     root = Path(__file__).resolve().parents[2]
     try:
-        summary = verify(root, load_junit_report(root / "eclipse.platform.swt"))
+        summary = verify(root, load_junit_report(root / "eclipse.platform.swt"),
+                         require_e4_jface=args.require_e4_jface)
     except (OSError, ValueError, AttributeError, ET.ParseError) as error:
         print("SDK test-report check failed: " + str(error), file=sys.stderr)
         return 1
