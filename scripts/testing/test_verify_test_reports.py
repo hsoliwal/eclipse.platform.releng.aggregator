@@ -6,7 +6,8 @@ from pathlib import Path
 import tempfile
 import unittest
 
-from verify_test_reports import REQUIRED, load_junit_report, verify
+from verify_test_reports import (E4_REPORT, JFACE_REPORT, NATIVE_UI_CONTRACTS,
+                                 REQUIRED, load_junit_report, verify)
 
 ROOT = Path(__file__).resolve().parents[2]
 PARSE = load_junit_report(Path(os.environ.get("SWT_SOURCE", ROOT / "eclipse.platform.swt")))
@@ -97,6 +98,77 @@ class TestSdkReports(unittest.TestCase):
         target.symlink_to(source)
         with self.assertRaisesRegex(ValueError, "symlink"):
             verify(self.root, PARSE)
+
+
+    def write_contracts(self, omitted=None, skipped=None, duplicate=None):
+        from xml.etree import ElementTree as ET
+        omitted = omitted or set()
+        for directory, required in NATIVE_UI_CONTRACTS.items():
+            cases = sorted(required - omitted)
+            suite = ET.Element("testsuite", tests=str(len(cases)), failures="0",
+                               errors="0", skipped=str(int(skipped in cases)))
+            for classname, name in cases:
+                element = ET.SubElement(suite, "testcase", classname=classname,
+                                        name=name)
+                if (classname, name) == skipped:
+                    ET.SubElement(element, "skipped")
+            self.write(directory, ET.tostring(suite, encoding="unicode"),
+                       name="TEST-source-contracts.xml")
+            if duplicate and directory == duplicate[0]:
+                dup = ET.Element("testsuite", tests="1", failures="0",
+                                 errors="0", skipped="0")
+                ET.SubElement(dup, "testcase", classname=duplicate[1][0],
+                              name=duplicate[1][1])
+                self.write(directory, ET.tostring(dup, encoding="unicode"),
+                           name="TEST-duplicate-contract.xml")
+
+    def test_strict_e4_jface_accepts_twelve_named_methods(self):
+        self.write_contracts()
+        report = verify(self.root, PARSE, require_e4_jface=True)
+        self.assertEqual(report["required_ui_contract_cases"],
+                         {E4_REPORT: 10, JFACE_REPORT: 2})
+        self.assertEqual(report["skipped"], 0)
+
+    def test_strict_mode_does_not_weaken_old_required_modules(self):
+        self.write_contracts()
+        (self.root / REQUIRED[0] / "TEST-suite.xml").unlink()
+        with self.assertRaisesRegex(ValueError, "missing required"):
+            verify(self.root, PARSE, require_e4_jface=True)
+
+    def test_strict_mode_requires_e4_module(self):
+        with self.assertRaisesRegex(ValueError, "missing required test reports"):
+            verify(self.root, PARSE, require_e4_jface=True)
+
+    def test_strict_mode_rejects_missing_e4_test_method(self):
+        missing = next(iter(sorted(NATIVE_UI_CONTRACTS[E4_REPORT])))
+        self.write_contracts(omitted={missing})
+        with self.assertRaisesRegex(ValueError, "missing required UI cases"):
+            verify(self.root, PARSE, require_e4_jface=True)
+
+    def test_strict_mode_rejects_missing_jface_test_method(self):
+        missing = next(iter(sorted(NATIVE_UI_CONTRACTS[JFACE_REPORT])))
+        self.write_contracts(omitted={missing})
+        with self.assertRaisesRegex(ValueError, "missing required UI cases"):
+            verify(self.root, PARSE, require_e4_jface=True)
+
+    def test_strict_mode_rejects_skipped_e4_jobmanager(self):
+        item = ("org.eclipse.e4.ui.tests.workbench.DisplayUISynchronizeAdmissionTest",
+                "refusedSubmissionCompletesOnceThroughJobManager")
+        self.write_contracts(skipped=item)
+        with self.assertRaisesRegex(ValueError, "skipped or failed required UI case"):
+            verify(self.root, PARSE, require_e4_jface=True)
+
+    def test_strict_mode_rejects_skipped_jface_test(self):
+        item = next(iter(sorted(NATIVE_UI_CONTRACTS[JFACE_REPORT])))
+        self.write_contracts(skipped=item)
+        with self.assertRaisesRegex(ValueError, "skipped or failed required UI case"):
+            verify(self.root, PARSE, require_e4_jface=True)
+
+    def test_strict_mode_rejects_duplicate_e4_test(self):
+        item = next(iter(sorted(NATIVE_UI_CONTRACTS[E4_REPORT])))
+        self.write_contracts(duplicate=(E4_REPORT, item))
+        with self.assertRaisesRegex(ValueError, "duplicate required UI case"):
+            verify(self.root, PARSE, require_e4_jface=True)
 
 
 if __name__ == "__main__":
