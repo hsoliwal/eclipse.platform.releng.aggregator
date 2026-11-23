@@ -141,10 +141,10 @@ jobs:
       run: git -C eclipse.platform.swt lfs pull --include='/binaries/org.eclipse.swt.win32.win32.x86_64/WebView2Loader.dll'
 
     - name: Refuse incomplete E4/JFace native proof configuration
-      if: ${{ inputs.require-e4-jface && (!inputs.verify-test-reports || !inputs.rebuild-swt-native) }}
+      if: ${{ inputs.require-e4-jface && (!inputs.verify-test-reports || !inputs.rebuild-swt-native || inputs.submodules != 'recursive') }}
       shell: bash
       run: |
-        echo 'E4/JFace native reports require executed SDK tests and a platform SWT native rebuild' >&2
+        echo 'E4/JFace native reports require SDK tests, platform SWT native rebuild and recursive source checkout' >&2
         exit 1
     - name: Build with Maven
       env:
