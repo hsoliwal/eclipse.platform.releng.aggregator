@@ -3,11 +3,12 @@
 """Regression cases for SDK report admission, using the actual SWT parser."""
 import os
 from pathlib import Path
+import subprocess
 import tempfile
 import unittest
 
 from verify_test_reports import (E4_REPORT, JFACE_REPORT, NATIVE_UI_CONTRACTS,
-                                 REQUIRED, load_junit_report, verify)
+                                 REQUIRED, load_junit_report, verify, verify_native_source_checkout)
 
 ROOT = Path(__file__).resolve().parents[2]
 PARSE = load_junit_report(Path(os.environ.get("SWT_SOURCE", ROOT / "eclipse.platform.swt")))
@@ -169,6 +170,160 @@ class TestSdkReports(unittest.TestCase):
         self.write_contracts(duplicate=(E4_REPORT, item))
         with self.assertRaisesRegex(ValueError, "duplicate required UI case"):
             verify(self.root, PARSE, require_e4_jface=True)
+
+
+
+
+class NativeSourceClosureTests(unittest.TestCase):
+    """Real Git DAG/gitlink fixtures; no mocks of ls-tree or rev-parse."""
+
+    def setUp(self):
+        self.tmp = tempfile.TemporaryDirectory()
+        self.addCleanup(self.tmp.cleanup)
+        self.root = Path(self.tmp.name) / "sdk"
+        self.root.mkdir()
+        self.module_shas = {}
+        for name in ("eclipse.platform.ui", "eclipse.platform.swt"):
+            module = self.root / name
+            module.mkdir()
+            self.git(module, "init", "-q")
+            self.git(module, "config", "user.name", "Native Test")
+            self.git(module, "config", "user.email", "fixture@example.invalid")
+            file = module / "fixture.txt"
+            file.write_text(name, encoding="utf-8")
+            self.git(module, "add", "fixture.txt")
+            self.git(module, "commit", "-qm", "source input")
+            self.module_shas[name] = self.git(module, "rev-parse", "HEAD")
+        self.ui_blobs = {"fixture.txt": self.git(self.root / "eclipse.platform.ui",
+                                                    "rev-parse", "HEAD:fixture.txt")}
+        self.git(self.root, "init", "-q")
+        self.git(self.root, "config", "user.name", "Native Test")
+        self.git(self.root, "config", "user.email", "fixture@example.invalid")
+        for name, sha in self.module_shas.items():
+            self.git(self.root, "update-index", "--add", "--cacheinfo",
+                     "160000," + sha + "," + name)
+        self.git(self.root, "commit", "-qm", "pin Gitlinks")
+
+    @staticmethod
+    def git(directory, *args):
+        return subprocess.check_output(["git", "-C", str(directory), *args],
+                                       text=True, stderr=subprocess.PIPE).strip()
+
+    def validate(self, **kwargs):
+        return verify_native_source_checkout(self.root,
+                pins=kwargs.get("pins", self.module_shas),
+                ui_blobs=kwargs.get("blobs", self.ui_blobs))
+
+    def test_exact_materialized_submodules_and_ui_blobs_pass(self):
+        receipt = self.validate()
+        self.assertEqual(receipt["pinned_submodules"], self.module_shas)
+        self.assertEqual(receipt["reviewed_ui_blobs"], 1)
+
+    def test_wrong_ui_pin_is_refused(self):
+        pins = dict(self.module_shas)
+        pins["eclipse.platform.ui"] = "f" * 40
+        with self.assertRaisesRegex(ValueError, "gitlink mismatch"):
+            self.validate(pins=pins)
+
+    def test_wrong_swt_pin_is_refused(self):
+        pins = dict(self.module_shas)
+        pins["eclipse.platform.swt"] = "f" * 40
+        with self.assertRaisesRegex(ValueError, "gitlink mismatch"):
+            self.validate(pins=pins)
+
+    def test_materialized_checkout_drift_is_refused(self):
+        module = self.root / "eclipse.platform.ui"
+        (module / "another.txt").write_text("new source", encoding="utf-8")
+        self.git(module, "add", "another.txt")
+        self.git(module, "commit", "-qm", "move HEAD after super checkout")
+        with self.assertRaisesRegex(ValueError, "checkout differs"):
+            self.validate()
+
+    def test_wrong_reviewed_blob_is_refused(self):
+        with self.assertRaisesRegex(ValueError, "reviewed UI source blob mismatch"):
+            self.validate(blobs={"fixture.txt": "f" * 40})
+
+    def test_dirty_reviewed_source_is_refused(self):
+        (self.root / "eclipse.platform.ui" / "fixture.txt").write_text("mutated", encoding="utf-8")
+        with self.assertRaisesRegex(ValueError, "uncommitted changes"):
+            self.validate()
+
+    def test_regular_blob_replacing_gitlink_is_refused(self):
+        blob = subprocess.check_output(["git", "-C", str(self.root),
+                                        "hash-object", "-w", "--stdin"],
+                                       input=b"not-a-gitlink").decode().strip()
+        self.git(self.root, "update-index", "--add", "--cacheinfo",
+                 "100644," + blob + ",eclipse.platform.swt")
+        self.git(self.root, "commit", "-qm", "bad regular blob")
+        with self.assertRaisesRegex(ValueError, "gitlink mismatch"):
+            self.validate()
+
+    def test_missing_reviewed_ui_owner_is_refused(self):
+        with self.assertRaisesRegex(ValueError, "reviewed UI source blob mismatch"):
+            self.validate(blobs={"missing.java": "f" * 40})
+
+    def test_dirty_native_swt_checkout_is_refused(self):
+        (self.root / "eclipse.platform.swt" / "fixture.txt").write_text("mutated", encoding="utf-8")
+        with self.assertRaisesRegex(ValueError, "uncommitted changes"):
+            self.validate()
+
+    def test_ignored_injected_ui_java_is_refused(self):
+        module = self.root / "eclipse.platform.ui"
+        with (module / ".git" / "info" / "exclude").open("a") as excluded:
+            excluded.write("\nhidden.java\n")
+        (module / "hidden.java").write_text("class Hidden {}", encoding="utf-8")
+        # Without --ignored, ordinary status incorrectly reports clean.
+        self.assertEqual(self.git(module, "status", "--porcelain=v1",
+                                  "--untracked-files=all"), "")
+        with self.assertRaisesRegex(ValueError, "uncommitted changes"):
+            self.validate()
+
+    def test_ignored_injected_swt_source_is_refused(self):
+        module = self.root / "eclipse.platform.swt"
+        with (module / ".git" / "info" / "exclude").open("a") as excluded:
+            excluded.write("\nhidden.c\n")
+        (module / "hidden.c").write_text("/* injected */", encoding="utf-8")
+        with self.assertRaisesRegex(ValueError, "uncommitted changes"):
+            self.validate()
+
+    def test_assume_unchanged_modified_reviewed_source_is_refused(self):
+        module = self.root / "eclipse.platform.ui"
+        (module / "fixture.txt").write_text("tampered source", encoding="utf-8")
+        self.git(module, "update-index", "--assume-unchanged", "fixture.txt")
+        self.assertEqual(self.git(module, "status", "--porcelain=v1",
+                                  "--untracked-files=all"), "")
+        with self.assertRaisesRegex(ValueError, "unsafe Git index flags"):
+            self.validate()
+
+    def test_assume_unchanged_modified_swt_source_is_refused(self):
+        module = self.root / "eclipse.platform.swt"
+        (module / "fixture.txt").write_text("tampered native source", encoding="utf-8")
+        self.git(module, "update-index", "--assume-unchanged", "fixture.txt")
+        self.assertEqual(self.git(module, "status", "--porcelain=v1",
+                                  "--untracked-files=all", "--ignored=matching"), "")
+        with self.assertRaisesRegex(ValueError, "unsafe Git index flags"):
+            self.validate()
+
+    def test_skip_worktree_modified_swt_source_is_refused(self):
+        module = self.root / "eclipse.platform.swt"
+        (module / "fixture.txt").write_text("tampered skipped native source", encoding="utf-8")
+        self.git(module, "update-index", "--skip-worktree", "fixture.txt")
+        self.assertEqual(self.git(module, "status", "--porcelain=v1",
+                                  "--untracked-files=all", "--ignored=matching"), "")
+        with self.assertRaisesRegex(ValueError, "unsafe Git index flags"):
+            self.validate()
+
+    def test_skip_worktree_clean_ui_source_is_refused(self):
+        module = self.root / "eclipse.platform.ui"
+        self.git(module, "update-index", "--skip-worktree", "fixture.txt")
+        with self.assertRaisesRegex(ValueError, "unsafe Git index flags"):
+            self.validate()
+
+    def test_untracked_ui_java_is_refused(self):
+        (self.root / "eclipse.platform.ui" / "injected.java").write_text("class Injected {}", encoding="utf-8")
+        with self.assertRaisesRegex(ValueError, "uncommitted changes"):
+            self.validate()
+
 
 
 if __name__ == "__main__":

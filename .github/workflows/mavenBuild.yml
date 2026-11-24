@@ -146,6 +146,13 @@ jobs:
       run: |
         echo 'E4/JFace native reports require SDK tests, platform SWT native rebuild and recursive source checkout' >&2
         exit 1
+    - name: Require exact native SDK checkout before Maven
+      if: inputs.require-e4-jface
+      shell: bash
+      run: |
+        set -euo pipefail
+        python scripts/testing/verify_test_reports.py --check-native-source \
+          | tee "$RUNNER_TEMP/sdk-native-source-$RUNNER_OS.json"
     - name: Build with Maven
       env:
         GTK_VERSION: ${{ inputs.rebuild-swt-native && '3.0' || '' }}
@@ -180,3 +187,4 @@ jobs:
           ${{ github.workspace }}/**/target/surefire-reports/*.xml
           ${{ github.workspace }}/**/target/screenshots/*.png
           ${{ runner.temp }}/sdk-source-${{ runner.os }}.txt
+          ${{ runner.temp }}/sdk-native-source-${{ runner.os }}.json
