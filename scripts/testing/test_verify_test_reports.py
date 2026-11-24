@@ -292,7 +292,31 @@ class NativeSourceClosureTests(unittest.TestCase):
         self.git(module, "update-index", "--assume-unchanged", "fixture.txt")
         self.assertEqual(self.git(module, "status", "--porcelain=v1",
                                   "--untracked-files=all"), "")
-        with self.assertRaisesRegex(ValueError, "reviewed UI worktree blob mismatch"):
+        with self.assertRaisesRegex(ValueError, "unsafe Git index flags"):
+            self.validate()
+
+    def test_assume_unchanged_modified_swt_source_is_refused(self):
+        module = self.root / "eclipse.platform.swt"
+        (module / "fixture.txt").write_text("tampered native source", encoding="utf-8")
+        self.git(module, "update-index", "--assume-unchanged", "fixture.txt")
+        self.assertEqual(self.git(module, "status", "--porcelain=v1",
+                                  "--untracked-files=all", "--ignored=matching"), "")
+        with self.assertRaisesRegex(ValueError, "unsafe Git index flags"):
+            self.validate()
+
+    def test_skip_worktree_modified_swt_source_is_refused(self):
+        module = self.root / "eclipse.platform.swt"
+        (module / "fixture.txt").write_text("tampered skipped native source", encoding="utf-8")
+        self.git(module, "update-index", "--skip-worktree", "fixture.txt")
+        self.assertEqual(self.git(module, "status", "--porcelain=v1",
+                                  "--untracked-files=all", "--ignored=matching"), "")
+        with self.assertRaisesRegex(ValueError, "unsafe Git index flags"):
+            self.validate()
+
+    def test_skip_worktree_clean_ui_source_is_refused(self):
+        module = self.root / "eclipse.platform.ui"
+        self.git(module, "update-index", "--skip-worktree", "fixture.txt")
+        with self.assertRaisesRegex(ValueError, "unsafe Git index flags"):
             self.validate()
 
     def test_untracked_ui_java_is_refused(self):
