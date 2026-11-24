@@ -140,7 +140,11 @@ def verify_native_source_checkout(root: Path, *, pins=None, ui_blobs=None) -> di
         checked = _git_text(directory, "rev-parse", "HEAD")
         if checked != expected:
             raise ValueError("native submodule checkout differs from Gitlink: " + name)
-        if _git_text(directory, "status", "--porcelain=v1", "--untracked-files=all"):
+        # Ordinary Git status hides ignored and assume-unchanged paths.
+        # Refuse ignored build inputs too: this check runs before Maven.
+        if _git_text(directory, "status", "--porcelain=v1",
+                     "--untracked-files=all", "--ignored=matching",
+                     "--ignore-submodules=none"):
             raise ValueError("native submodule has uncommitted changes: " + name)
         result["pinned_submodules"][name] = checked
     ui_dir = root / "eclipse.platform.ui"
@@ -148,6 +152,15 @@ def verify_native_source_checkout(root: Path, *, pins=None, ui_blobs=None) -> di
         actual = _git_text(ui_dir, "ls-tree", "HEAD", "--", path)
         if actual != f"100644 blob {blob}\t{path}":
             raise ValueError("reviewed UI source blob mismatch: " + path)
+        # Check actual compiler-visible file content too. Git status/diff can
+        # ignore a tracked file explicitly marked assume-unchanged.
+        working_file = ui_dir / path
+        if working_file.is_symlink() or not working_file.is_file():
+            raise ValueError("reviewed UI source missing or linked: " + path)
+        worktree_blob = _git_text(ui_dir, "hash-object", "--path=" + path,
+                                  "--", path)
+        if worktree_blob != blob:
+            raise ValueError("reviewed UI worktree blob mismatch: " + path)
     result["reviewed_ui_blobs"] = len(ui_blobs)
     return result
 
