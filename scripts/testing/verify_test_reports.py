@@ -114,6 +114,24 @@ def _git_text(directory: Path, *args: str) -> str:
         raise ValueError("native checkout Git inspection failed: " + str(args)) from error
 
 
+def _require_safe_index_flags(directory: Path, name: str) -> None:
+    """Reject Git index hints that can suppress worktree drift reporting.
+
+    NUL-delimited byte output handles unusual paths safely. A full native SDK
+    checkout must contain only the ordinary H (cached) index flag: lowercase
+    h means assume-unchanged; S/s indicates skip-worktree/sparse state.
+    """
+    try:
+        entries = subprocess.check_output(
+            ["git", "-C", str(directory), "ls-files", "-v", "-z"],
+            stderr=subprocess.PIPE)
+    except (OSError, subprocess.CalledProcessError) as error:
+        raise ValueError("native submodule Git index inspection failed: " + name) from error
+    if not entries or any(record and not record.startswith(b"H ")
+                          for record in entries.split(b"\0")):
+        raise ValueError("native submodule has unsafe Git index flags: " + name)
+
+
 def verify_native_source_checkout(root: Path, *, pins=None, ui_blobs=None) -> dict:
     """Require that the current build runner materialized EXACT reviewed inputs.
 
@@ -146,6 +164,7 @@ def verify_native_source_checkout(root: Path, *, pins=None, ui_blobs=None) -> di
                      "--untracked-files=all", "--ignored=matching",
                      "--ignore-submodules=none"):
             raise ValueError("native submodule has uncommitted changes: " + name)
+        _require_safe_index_flags(directory, name)
         result["pinned_submodules"][name] = checked
     ui_dir = root / "eclipse.platform.ui"
     for path, blob in sorted(ui_blobs.items()):
