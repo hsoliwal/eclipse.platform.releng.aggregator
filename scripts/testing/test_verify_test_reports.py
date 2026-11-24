@@ -267,6 +267,34 @@ class NativeSourceClosureTests(unittest.TestCase):
         with self.assertRaisesRegex(ValueError, "uncommitted changes"):
             self.validate()
 
+    def test_ignored_injected_ui_java_is_refused(self):
+        module = self.root / "eclipse.platform.ui"
+        with (module / ".git" / "info" / "exclude").open("a") as excluded:
+            excluded.write("\nhidden.java\n")
+        (module / "hidden.java").write_text("class Hidden {}", encoding="utf-8")
+        # Without --ignored, ordinary status incorrectly reports clean.
+        self.assertEqual(self.git(module, "status", "--porcelain=v1",
+                                  "--untracked-files=all"), "")
+        with self.assertRaisesRegex(ValueError, "uncommitted changes"):
+            self.validate()
+
+    def test_ignored_injected_swt_source_is_refused(self):
+        module = self.root / "eclipse.platform.swt"
+        with (module / ".git" / "info" / "exclude").open("a") as excluded:
+            excluded.write("\nhidden.c\n")
+        (module / "hidden.c").write_text("/* injected */", encoding="utf-8")
+        with self.assertRaisesRegex(ValueError, "uncommitted changes"):
+            self.validate()
+
+    def test_assume_unchanged_modified_reviewed_source_is_refused(self):
+        module = self.root / "eclipse.platform.ui"
+        (module / "fixture.txt").write_text("tampered source", encoding="utf-8")
+        self.git(module, "update-index", "--assume-unchanged", "fixture.txt")
+        self.assertEqual(self.git(module, "status", "--porcelain=v1",
+                                  "--untracked-files=all"), "")
+        with self.assertRaisesRegex(ValueError, "reviewed UI worktree blob mismatch"):
+            self.validate()
+
     def test_untracked_ui_java_is_refused(self):
         (self.root / "eclipse.platform.ui" / "injected.java").write_text("class Injected {}", encoding="utf-8")
         with self.assertRaisesRegex(ValueError, "uncommitted changes"):
